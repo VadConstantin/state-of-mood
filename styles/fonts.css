@@ -1,0 +1,13 @@
+@font-face {
+  font-family: 'Americana';
+  src: url('/fonts/Americana.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Knockout';
+  src: url('/fonts/KnockoutJuniorSumo.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+}
