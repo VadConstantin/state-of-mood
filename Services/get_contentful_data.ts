@@ -1,23 +1,21 @@
 import { createClient } from 'contentful';
 import { Entry } from 'contentful';
 
-import { INavLink, INavcategory, INavigation } from '../Types/contentful';
+import { INavLink, INavcategory, INavigation, IHomePage, IModuleTwo } from '../Types/contentful';
 
 const contentful = createClient({
   space: process.env.NEXT_PUBLIC_CONTENTFUL_SPACE_ID || '',
   accessToken: process.env.NEXT_PUBLIC_CONTENTFUL_ACCESS_TOKEN || '',
 })
 
-export const enrichNavCategories = async (entry: Entry<INavigation>) => {
+const enrichNavCategories = async (entry: Entry<INavigation>) => {
   await Promise.all(
     (entry.fields.navCategories as any).map(async (cat: any, index: any) => {
 
       if (cat.sys.contentType.sys.id == 'navCategory') {
         if ((cat.fields as any).links){
-          console.log('LOL')
-          const idsToGet = (cat.fields as any).links.map((link: any) => link.sys.id)
 
-          console.log('ID des links ==>', idsToGet)
+          const idsToGet = (cat.fields as any).links.map((link: any) => link.sys.id)
 
           const linksInfo = await contentful.getEntries<INavLink>({
             content_type: 'navLink',
@@ -35,6 +33,10 @@ export const enrichNavCategories = async (entry: Entry<INavigation>) => {
   )
 }
 
+const enrichModuleTwo = async (entry: Entry<IModuleTwo>) => {
+  
+}
+
 export const getNavigationData = async ():Promise<Entry<INavigation>> => {
   const entries = await contentful.getEntries<INavigation>({
     content_type: 'navigation'
@@ -43,3 +45,12 @@ export const getNavigationData = async ():Promise<Entry<INavigation>> => {
   await enrichNavCategories(entries.items[0] as Entry<INavigation>)
   return entries.items[0]
 }
+
+export const getHomePageData = async ():Promise<Entry<IHomePage>> => {
+  const entries = await contentful.getEntries<IHomePage>({
+    content_type: 'homePage'
+  }as any)
+
+  return entries.items[0]
+}
+

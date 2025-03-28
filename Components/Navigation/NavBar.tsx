@@ -51,7 +51,6 @@ const NavBar:React.FC<NavBarProps> = ({ navData }) => {
       <Dropdown isDropdown={isDropDownVisible}>
         <DropdownLinksWrapper>
           {(navCategories as any).map((cat:any, i: any) => {
-            console.log(cat)
             return(
               <Section key={i}>
                 <span>
@@ -63,9 +62,9 @@ const NavBar:React.FC<NavBarProps> = ({ navData }) => {
                   </DropdownLinkTitle>
                 </span>
                 <SubCategoriesWrapper>
-                  {cat.fields.links.map((link: any)=> {
+                  {cat.fields.links.map((link: any, i: number)=> {
                     return ( 
-                      <SubCategory href={"/"+link.fields.slug}>
+                      <SubCategory href={"/"+link.fields.slug} key={i}>
                         {link.fields.name}
                       </SubCategory>
                     )
@@ -96,8 +95,6 @@ const Top = styled.div`
     padding: 0 20px 0 20px;
   }
 `
-
-
 
 const MenuLink = styled.a<{ isDropdown: boolean }>`
   font-family: 'Knockout', sans-serif !important;
@@ -151,7 +148,7 @@ const MenuLink = styled.a<{ isDropdown: boolean }>`
 
 const DesktopWrapper = styled.div`
   background-color: white;
-  color: black;
+  color: rgb(0, 0, 0);
   position: relative;
   z-index: 1000;
 `
