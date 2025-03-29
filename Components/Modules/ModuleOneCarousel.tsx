@@ -101,7 +101,7 @@ const Slide = styled.div`
 
 const Dots = styled.div`
   position: absolute;
-  bottom: 50px;
+  bottom: 60px;
   left: 50%;
   transform: translateX(-50%);
   display: flex;

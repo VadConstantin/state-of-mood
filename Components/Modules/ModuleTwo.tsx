@@ -73,5 +73,13 @@ const Description = styled.div`
 `
 
 const WeeklyModulesWrapper = styled.div`
+  display: flex;
+    flex-wrap: wrap;
+    padding: 0 15vw 0 15vw;
+    gap: 10vw;
+    justify-content: space-between;
 
+  @media (max-width: 600px) {
+    justify-content: center;
+  }
 `

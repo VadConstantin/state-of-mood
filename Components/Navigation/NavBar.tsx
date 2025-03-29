@@ -184,7 +184,7 @@ const Dropdown = styled.div<{ isDropdown: boolean }>`
   width: 100%;
   height: 500px;
   background-color: white;
-  position: absolute;
+  position: fixed;
   top: 120px;
   left: 0;
   z-index: 1000;
@@ -194,9 +194,10 @@ const Dropdown = styled.div<{ isDropdown: boolean }>`
   pointer-events: ${({ isDropdown }) => (isDropdown ? "auto" : "none")};
 
   @media (max-width: 600px) {
-    height: calc(100vh - 120px);
+    height: calc(100vh - 120px); 
   }
 `;
+
 
 const Cross = styled.img`
   width: 30px;

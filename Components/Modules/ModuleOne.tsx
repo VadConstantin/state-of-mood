@@ -97,7 +97,12 @@ const FirstPicAndText = styled.div`
 const Tag = styled.div`
   font-family: 'Knockout', sans-serif !important;
   color: white;
-  font-size: 0.6rem;
+  font-size: clamp(0.4rem, 0.7vw, 1rem);
+
+  @media (max-width: 600px) {
+    font-size: 0.4rem;
+    text-align: center;
+  }
 `
 
 const FirstLine = styled.div`
@@ -105,17 +110,28 @@ const FirstLine = styled.div`
   font-size: clamp(1rem, 3.5vw, 5rem);
   color: white;
   
+  @media (max-width: 600px) {
+    text-align: center;
+  }
 `
 
 const SecondLine = styled.div`
   font-family: 'Americana', sans-serif !important;
   font-size: clamp(1rem, 3.5vw, 5rem);
   color: white;
+
+  @media (max-width: 600px) {
+    text-align: center;
+  }
 `
 
 const LinkAndArrow = styled.div`
   display: flex;
     gap: 1vw;
+
+  @media (max-width: 600px) {
+    justify-content: center;
+  }
 `
 
 const Arrow = styled.img`
