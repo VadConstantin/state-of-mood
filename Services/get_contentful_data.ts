@@ -1,7 +1,7 @@
 import { createClient } from 'contentful';
 import { Entry } from 'contentful';
 
-import { INavLink, INavcategory, INavigation, IHomePage, IModuleTwo } from '../Types/contentful';
+import { INavLink, INavcategory, INavigation, IHomePage, IModuleTwo, IWeeklySelectionModule } from '../Types/contentful';
 
 const contentful = createClient({
   space: process.env.NEXT_PUBLIC_CONTENTFUL_SPACE_ID || '',
@@ -23,7 +23,7 @@ const enrichNavCategories = async (entry: Entry<INavigation>) => {
           });
 
           linksInfo.items.sort((itemA, itemB) =>
-          idsToGet.indexOf(itemA.sys.id) < idsToGet.indexOf(itemB.sys.id) ? -1 : 1
+            idsToGet.indexOf(itemA.sys.id) < idsToGet.indexOf(itemB.sys.id) ? -1 : 1
           );
           
           ((entry.fields.navCategories[index] as any).fields).links = linksInfo.items
@@ -33,9 +33,29 @@ const enrichNavCategories = async (entry: Entry<INavigation>) => {
   )
 }
 
-const enrichModuleTwo = async (entry: Entry<IModuleTwo>) => {
-  
-}
+const enrichModuleTwo = async (entry: Entry<IHomePage>) => {
+  const moduleTwo = entry.fields.moduleTwo as any;
+
+  if (moduleTwo?.sys?.contentType?.sys?.id === 'moduleTwo') {
+    if (moduleTwo.fields?.weeklySelectionModules) {
+      const idsToGet = moduleTwo.fields.weeklySelectionModules.map(
+        (weeklyModule: any) => weeklyModule.sys.id
+      );
+
+      const weeklyModulesInfo = await contentful.getEntries<IWeeklySelectionModule>({
+        content_type: 'weeklySelectionModule',
+        'sys.id[in]': idsToGet.join(',')
+      });
+
+      weeklyModulesInfo.items.sort((itemA, itemB) =>
+        idsToGet.indexOf(itemA.sys.id) < idsToGet.indexOf(itemB.sys.id) ? -1 : 1
+      );
+
+      moduleTwo.fields.weeklySelectionModules = weeklyModulesInfo.items;
+    }
+  }
+};
+
 
 export const getNavigationData = async ():Promise<Entry<INavigation>> => {
   const entries = await contentful.getEntries<INavigation>({
@@ -51,6 +71,7 @@ export const getHomePageData = async ():Promise<Entry<IHomePage>> => {
     content_type: 'homePage'
   }as any)
 
+  await enrichModuleTwo(entries.items[0])
   return entries.items[0]
 }
 

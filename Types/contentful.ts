@@ -10,7 +10,7 @@ export interface INavigation extends EntrySkeletonType<NavigationFields> {}
 
 
 
-interface NavCategoryFields {
+export interface NavCategoryFields {
   name: string
   numberInMenu: string
   links: Array<INavLink>
@@ -19,7 +19,7 @@ export interface INavcategory extends EntrySkeletonType<NavCategoryFields> {}
 
 
 
-interface NavLinkFields {
+export interface NavLinkFields {
   name: string
   slug: string
 }
@@ -27,7 +27,7 @@ export interface INavLink extends EntrySkeletonType<NavLinkFields> {}
 
 
 
-interface ModuleOneFields {
+export interface ModuleOneFields {
   name: string
   titleFirstLine: string
   titleSecondLine?: string
@@ -35,9 +35,7 @@ interface ModuleOneFields {
   linkTitle: string
   backgroundColor: string
   firstPicture: Asset
-  firstPictureRectangleColor: string
   secondPicture: Asset
-  secondPictureRectangleColor: string
   linkSlug: string
   stampForSecondPicture?: Asset
 }
@@ -45,7 +43,7 @@ interface ModuleOneFields {
 export interface IModuleOne extends EntrySkeletonType<ModuleOneFields> {}
 
 
-interface WeeklySelectionModuleFields {
+export interface WeeklySelectionModuleFields {
   name: string
   picture: Asset
   title: string
@@ -57,7 +55,7 @@ interface WeeklySelectionModuleFields {
 export interface IWeeklySelectionModule extends EntrySkeletonType<WeeklySelectionModuleFields> {}
 
 
-interface ModuleTwoFields {
+export interface ModuleTwoFields {
   name: string
   titleFirstLine: string
   titleSecondLine?: string
@@ -69,7 +67,7 @@ export interface IModuleTwo extends EntrySkeletonType<ModuleTwoFields> {}
 
 
 
-interface ModuleThreeFields {
+export interface ModuleThreeFields {
   name: string
   backgroundColor: string
   picture: Asset
@@ -85,7 +83,7 @@ export interface IModuleThree extends EntrySkeletonType<ModuleThreeFields> {}
 
 
 
-interface HomePageFields {
+export interface HomePageFields {
   name: string
   modulesOne: Array<IModuleOne>
   moduleTwo: IModuleTwo

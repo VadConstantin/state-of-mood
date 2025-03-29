@@ -82,7 +82,7 @@ const NavBar:React.FC<NavBarProps> = ({ navData }) => {
 export default NavBar
 
 const Top = styled.div`
-  height: 100px;
+  height: 120px;
   display: flex;
     justify-content: space-between;
     gap: 20px;
@@ -151,6 +151,7 @@ const DesktopWrapper = styled.div`
   color: rgb(0, 0, 0);
   position: relative;
   z-index: 1000;
+
 `
 
 const TopMenu = styled.div`
@@ -158,7 +159,7 @@ const TopMenu = styled.div`
 `
 
 const CustomLogo = styled.img`
-  width: 200px;
+  width: 240px;
 `
 
 const SocialLinks = styled.div`
@@ -182,7 +183,7 @@ const Dropdown = styled.div<{ isDropdown: boolean }>`
   height: 500px;
   background-color: white;
   position: absolute;
-  top: 100px;
+  top: 120px;
   left: 0;
   z-index: 1000;
 
@@ -191,7 +192,7 @@ const Dropdown = styled.div<{ isDropdown: boolean }>`
   pointer-events: ${({ isDropdown }) => (isDropdown ? "auto" : "none")};
 
   @media (max-width: 600px) {
-    height: calc(100vh - 100px);
+    height: calc(100vh - 120px);
   }
 `;
 
@@ -214,7 +215,7 @@ const DropdownLinksWrapper = styled.div`
   width: 100%;
 
   @media (max-width: 600px) {
-    padding-top: 100px;
+    padding-top: 120px;
   }
 `
 

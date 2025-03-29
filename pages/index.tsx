@@ -1,10 +1,11 @@
 import NavBar from "@/Components/Navigation/NavBar";
 import styled from "styled-components";
 import { GetServerSideProps } from "next";
-import { IHomePage, INavigation } from '@/Types/contentful';
+import { IHomePage, IModuleOne, INavigation, HomePageFields } from '@/Types/contentful';
 import { Entry } from 'contentful';
 import { getHomePageData, getNavigationData } from "@/Services/get_contentful_data";
 import { useEffect, useState } from "react";
+import ModuleOneCarousel from "@/Components/Modules/ModuleOneCarousel";
 
 interface HomePageProps {
   navData: Entry<INavigation>
@@ -15,7 +16,6 @@ const Index:React.FC<HomePageProps> = ({ navData, homePageData }) => {
 
   console.log("HomePage Data ----->", homePageData);
   
-
   const [isMounted, setIsMounted] = useState(false);
 
   useEffect(() => {
@@ -27,7 +27,7 @@ const Index:React.FC<HomePageProps> = ({ navData, homePageData }) => {
   return(
     <Wrapper>
       <NavBar navData={navData}/>
-      <>Hello Home page !</>
+      <ModuleOneCarousel modulesOneData={homePageData.fields.modulesOne}/>
     </Wrapper>
   )
 }
@@ -36,7 +36,7 @@ export default Index;
 
 const Wrapper = styled.div`
   color: black;
-  background-color: #dfdfdf;
+  background-color: #2e2e2e;
   height: 100vh;
 `
 
