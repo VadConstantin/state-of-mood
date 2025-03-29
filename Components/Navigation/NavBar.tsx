@@ -1,7 +1,7 @@
-import { INavigation, INavcategory } from '@/Types/contentful';
+import { INavigation } from '@/Types/contentful';
 import { Entry } from 'contentful';
 import styled from "styled-components";
-import {  useState } from "react";
+import { useState } from "react";
 
 interface NavBarProps {
   navData: Entry<INavigation>
@@ -81,20 +81,24 @@ const NavBar:React.FC<NavBarProps> = ({ navData }) => {
 
 export default NavBar
 
+
 const Top = styled.div`
   height: 120px;
   display: flex;
-    justify-content: space-between;
+  justify-content: space-between;
     gap: 20px;
-    padding: 0 90px 0 90px;
-  position: relative;
+  padding: 0 90px;
+  position: fixed;
+  width: 100%;
+  top: 0;
   z-index: 1010;
   background-color: white;
 
   @media (max-width: 600px) {
-    padding: 0 20px 0 20px;
+    padding: 0 20px;
   }
-`
+`;
+
 
 const MenuLink = styled.a<{ isDropdown: boolean }>`
   font-family: 'Knockout', sans-serif !important;
@@ -149,9 +153,7 @@ const MenuLink = styled.a<{ isDropdown: boolean }>`
 const DesktopWrapper = styled.div`
   background-color: white;
   color: rgb(0, 0, 0);
-  position: relative;
   z-index: 1000;
-
 `
 
 const TopMenu = styled.div`

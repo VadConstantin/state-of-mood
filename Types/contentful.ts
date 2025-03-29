@@ -60,6 +60,7 @@ export interface ModuleTwoFields {
   titleFirstLine: string
   titleSecondLine?: string
   description: string
+  backgroundColor: string
   weeklySelectionModules: Array<IWeeklySelectionModule>
 }
 

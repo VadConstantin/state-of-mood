@@ -1,11 +1,12 @@
 import NavBar from "@/Components/Navigation/NavBar";
 import styled from "styled-components";
 import { GetServerSideProps } from "next";
-import { IHomePage, IModuleOne, INavigation, HomePageFields } from '@/Types/contentful';
+import { IHomePage, INavigation } from '@/Types/contentful';
 import { Entry } from 'contentful';
 import { getHomePageData, getNavigationData } from "@/Services/get_contentful_data";
 import { useEffect, useState } from "react";
 import ModuleOneCarousel from "@/Components/Modules/ModuleOneCarousel";
+import ModuleTwo from "@/Components/Modules/ModuleTwo";
 
 interface HomePageProps {
   navData: Entry<INavigation>
@@ -28,6 +29,7 @@ const Index:React.FC<HomePageProps> = ({ navData, homePageData }) => {
     <Wrapper>
       <NavBar navData={navData}/>
       <ModuleOneCarousel modulesOneData={homePageData.fields.modulesOne}/>
+      <ModuleTwo moduleTwoData={homePageData.fields.moduleTwo} />
     </Wrapper>
   )
 }
@@ -37,7 +39,7 @@ export default Index;
 const Wrapper = styled.div`
   color: black;
   background-color: #2e2e2e;
-  height: 100vh;
+  /* height: 100vh; */
 `
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
