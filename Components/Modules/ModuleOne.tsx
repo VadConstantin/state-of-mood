@@ -135,7 +135,7 @@ const LinkAndArrow = styled.div`
 
 const Arrow = styled.img`
   color: white;
-  width: clamp(30px, 6vw, 30vw);
+  width: clamp(10px, 6vw, 30vw);
 `
 
 const CustomLink = styled.a`

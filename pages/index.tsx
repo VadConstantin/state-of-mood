@@ -40,7 +40,6 @@ export default Index;
 
 const Wrapper = styled.div`
   color: black;
-  background-color: #2e2e2e;
 `
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
