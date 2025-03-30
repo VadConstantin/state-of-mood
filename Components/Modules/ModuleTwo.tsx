@@ -1,7 +1,4 @@
-import { INavigation } from '@/Types/contentful';
-import { Entry } from 'contentful';
 import styled from "styled-components";
-import { useState } from "react";
 import WeeklySelectionModule from './WeeklySelectionModule';
 
 interface ModuleTwoProps {
@@ -19,9 +16,10 @@ const ModuleTwo:React.FC<ModuleTwoProps> = ({ moduleTwoData }) => {
           <FirstLine>
             {titleFirstLine}
           </FirstLine>
+          {titleSecondLine && 
           <SecondLine>
             {titleSecondLine}
-          </SecondLine>
+          </SecondLine>}
         </Title>
         <Description>
           {description}
@@ -50,6 +48,10 @@ const TextsWrapper = styled.div`
   text-transform: uppercase;
   text-align: center;
   color: black;
+
+  @media (max-width: 600px) {
+    padding: 50px 0 50px 0;
+  }
 `
 
 const FirstLine = styled.div`
@@ -64,6 +66,10 @@ const SecondLine = styled.div`
 
 const Title = styled.div`
   padding-bottom: 35px;
+
+  @media (max-width: 600px) {
+    padding-bottom: 25px;
+  }
 `
 
 const Description = styled.div`
@@ -75,11 +81,12 @@ const Description = styled.div`
 const WeeklyModulesWrapper = styled.div`
   display: flex;
     flex-wrap: wrap;
-    padding: 0 15vw 0 15vw;
+    padding: 0 5vw 50px 12vw;
     gap: 10vw;
-    justify-content: space-between;
+    justify-content: start;
 
   @media (max-width: 600px) {
     justify-content: center;
+    padding: 0 5vw 0 5vw;
   }
 `

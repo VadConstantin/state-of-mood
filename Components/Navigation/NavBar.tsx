@@ -22,7 +22,7 @@ const NavBar:React.FC<NavBarProps> = ({ navData }) => {
 
   return(
     <DesktopWrapper>
-      <Top>
+      <Top isDropdown={isDropDownVisible}>
         <TopMenu>
           <MenuLink href="/" onClick={handleClickDropdown} isDropdown={isDropDownVisible}>
             MENU
@@ -73,6 +73,16 @@ const NavBar:React.FC<NavBarProps> = ({ navData }) => {
               </Section>
             )
           })}
+          <SocialLinksPhoneWrapper>
+            <SocialLinksPhone isDropdown={isDropDownVisible}>
+            <a href="/">
+              <CustomLinkLogo src="/logo-pinterest.png" alt="logo-pinterest" />
+            </a>
+            <a href="/">
+              <CustomLinkLogo src="/logo-insta.png" alt="logo-insta" />
+            </a>
+            </SocialLinksPhone>
+          </SocialLinksPhoneWrapper>
         </DropdownLinksWrapper>
       </Dropdown>
     </DesktopWrapper>
@@ -82,7 +92,7 @@ const NavBar:React.FC<NavBarProps> = ({ navData }) => {
 export default NavBar
 
 
-const Top = styled.div`
+const Top = styled.div<{isDropdown: boolean}>`
   height: 120px;
   display: flex;
   justify-content: space-between;
@@ -93,6 +103,7 @@ const Top = styled.div`
   top: 0;
   z-index: 1010;
   background-color: white;
+  box-shadow: ${({isDropdown}) => (isDropdown ? 'none' : '0 2px 6px rgba(0, 0, 0, 0.01)' )};
 
   @media (max-width: 600px) {
     padding: 0 20px;
@@ -110,6 +121,7 @@ const MenuLink = styled.a<{ isDropdown: boolean }>`
   position: relative;
 
   @media (max-width: 600px) {
+    opacity: 1;
     font-size: 0;
 
     &::before,
@@ -176,6 +188,22 @@ const SocialLinks = styled.div`
   }
 `
 
+const SocialLinksPhone = styled.div<{isDropdown: boolean}>`
+  display: flex;
+    justify-content: space-between;
+    gap: 10px;
+  padding-top: 50px;
+
+  @media (min-width: 600px) {
+    opacity: 0;
+    pointer-events: none;
+  }
+`
+
+const SocialLinksPhoneWrapper = styled.div`
+
+`
+
 const CustomLinkLogo = styled.img`
   width: 30px;
 `
@@ -193,11 +221,12 @@ const Dropdown = styled.div<{ isDropdown: boolean }>`
   transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
   pointer-events: ${({ isDropdown }) => (isDropdown ? "auto" : "none")};
 
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+
   @media (max-width: 600px) {
     height: calc(100vh - 120px); 
   }
 `;
-
 
 const Cross = styled.img`
   width: 30px;

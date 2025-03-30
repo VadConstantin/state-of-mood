@@ -1,5 +1,3 @@
-import { INavigation, INavcategory, IModuleOne } from '@/Types/contentful';
-import { Entry } from 'contentful';
 import styled from "styled-components";
 
 interface ModuleOneProps {
@@ -30,9 +28,10 @@ const ModuleOne:React.FC<ModuleOneProps> = ({ moduleOneData }) => {
           <FirstLine>
             {titleFirstLine}
           </FirstLine>
+          {titleSecondLine && 
           <SecondLine>
             {titleSecondLine}
-          </SecondLine>
+          </SecondLine>}
           <LinkAndArrow> 
             <Arrow src="/Arrow-white.png" alt="arrow" />
             <CustomLink href={linkSlug}>
@@ -42,7 +41,7 @@ const ModuleOne:React.FC<ModuleOneProps> = ({ moduleOneData }) => {
         </FirstPicAndText>
         <SecondPicAndStamp>
           <SecondPicture src={secondPicture.fields.file.url} alt="picture" />
-          <Stamp src={stampForSecondPicture.fields.file.url} alt="stamp"/>
+          {stampForSecondPicture && <Stamp src={stampForSecondPicture?.fields.file.url} alt="stamp"/>}
         </SecondPicAndStamp>
       </PicturesWrapper>
     </Wrapper>
