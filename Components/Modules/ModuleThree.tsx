@@ -53,6 +53,10 @@ const Wrapper = styled.div<{backgroundColor: string}>`
 const TextsWrapper = styled.div`
   padding: 0px 20px 0px 20px;
 
+  @media (max-width: 1200px) {
+    padding: 0px 20px 50px 20px;
+  }
+
   @media (max-width: 600px) {
     padding-top: 50px;
   }

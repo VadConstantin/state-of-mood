@@ -8,6 +8,7 @@ import { useEffect, useState } from "react";
 import ModuleOneCarousel from "@/Components/Modules/ModuleOneCarousel";
 import ModuleTwo from "@/Components/Modules/ModuleTwo";
 import ModuleThree from "@/Components/Modules/ModuleThree";
+import Footer from "@/Components/Navigation/Footer";
 
 interface HomePageProps {
   navData: Entry<INavigation>
@@ -32,6 +33,7 @@ const Index:React.FC<HomePageProps> = ({ navData, homePageData }) => {
       <ModuleOneCarousel modulesOneData={homePageData.fields.modulesOne}/>
       <ModuleTwo moduleTwoData={homePageData.fields.moduleTwo} />
       <ModuleThree moduleThreeData={homePageData.fields.moduleThree}/>
+      <Footer />
     </Wrapper>
   )
 }
