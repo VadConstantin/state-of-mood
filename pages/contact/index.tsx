@@ -20,8 +20,8 @@ const Index:React.FC<ContactPageProps> = ({ navData }) => {
     setIsMounted(true);
   }, []);
 
-
   if (!isMounted) return null;
+
   return(
     <>
       <NavBar navData={navData}/>
@@ -215,7 +215,6 @@ const SecondLine = styled.div`
   }
 `
 
-
 const MobileTitle = styled.div`
   display: flex;
     gap: 30px;
@@ -225,14 +224,13 @@ const MobileTitle = styled.div`
   }
 `
 
-
-const FirstLineMobile = styled.div`
-  font-family: 'Knockout', sans-serif !important;
-  font-size: 8vw;
-`
-
 const SecondLineMobile = styled.div`
   font-family: 'Americana', sans-serif !important;
   font-size: 10vw;
+  padding-top: 60px;
+
+  @media (max-width: 800px) {
+    padding-top: 0px;
+  }
 `
 
