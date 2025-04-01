@@ -17,8 +17,6 @@ interface HomePageProps {
 
 const Index:React.FC<HomePageProps> = ({ navData, homePageData }) => {
 
-  console.log("HomePage Data ----->", homePageData);
-  
   const [isMounted, setIsMounted] = useState(false);
 
   useEffect(() => {

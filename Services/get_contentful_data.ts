@@ -1,7 +1,7 @@
 import { createClient } from 'contentful';
 import { Entry } from 'contentful';
 
-import { INavLink, INavcategory, INavigation, IHomePage, IModuleTwo, IWeeklySelectionModule } from '../Types/contentful';
+import { INavLink, INavcategory, INavigation, IHomePage, IModuleTwo, IWeeklySelectionModule, IWhatWeDoPage } from '../Types/contentful';
 
 const contentful = createClient({
   space: process.env.NEXT_PUBLIC_CONTENTFUL_SPACE_ID || '',
@@ -72,6 +72,14 @@ export const getHomePageData = async ():Promise<Entry<IHomePage>> => {
   }as any)
 
   await enrichModuleTwo(entries.items[0])
+  return entries.items[0]
+}
+
+export const getWhatWeDoPageData = async ():Promise<Entry<IWhatWeDoPage>> => {
+  const entries = await contentful.getEntries<IWhatWeDoPage>({
+    content_type: 'pageWhatWeDo'
+  }as any)
+
   return entries.items[0]
 }
 

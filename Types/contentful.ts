@@ -92,3 +92,17 @@ export interface HomePageFields {
 }
 
 export interface IHomePage extends EntrySkeletonType<HomePageFields> {}
+
+
+
+export interface WhatWeDoPageFields {
+  name: string
+  bannerImage: Asset
+  bannerRectangleColor: string
+  bannerTextColor: string
+  bannerMainTitle: string
+  bannerSecondTitle: string
+  bannerDescription: string
+}
+
+export interface IWhatWeDoPage extends EntrySkeletonType<WhatWeDoPageFields> {}
