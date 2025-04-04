@@ -1,12 +1,12 @@
 import NavBar from "@/Components/Navigation/NavBar";
 import styled from "styled-components";
 import { GetServerSideProps } from "next";
-import { INavigation, IWhatWeDoPage } from '@/Types/contentful';
+import { IModuleFour, INavigation, IWhatWeDoPage } from '@/Types/contentful';
 import { Entry } from 'contentful';
 import { getNavigationData, getWhatWeDoPageData } from "@/Services/get_contentful_data";
 import { useEffect, useState } from "react";
 import Footer from "@/Components/Navigation/Footer";
-import { url } from "inspector";
+import ModuleFour from "@/Components/Modules/ModuleFour";
 
 interface IndexProps {
   navData: Entry<INavigation>
@@ -20,6 +20,8 @@ const Index:React.FC<IndexProps> = ({ navData, whatWeDoPageData }) => {
   }, []);
 
   if (!isMounted) return null;
+
+  console.log('data ---->', whatWeDoPageData)
 
   const imageUrl = (whatWeDoPageData.fields.bannerImage as any).fields.file.url
   const { bannerMainTitle, bannerSecondTitle, bannerRectangleColor, bannerTextColor, bannerDescription } = whatWeDoPageData.fields
@@ -37,11 +39,12 @@ const Index:React.FC<IndexProps> = ({ navData, whatWeDoPageData }) => {
               {bannerSecondTitle as any}
             </SecondTitle>
             <Description>
-
+              Let’s craft a bespoke creative strategy <br></br>tailored to your brand.
             </Description>
           </TextsWrapper>
         </BannerRectangle>
       </BannerWrapper>
+      <ModuleFour moduleFourData={whatWeDoPageData.fields.moduleFour as any}/>
       <Footer />
     </Wrapper>
   )
@@ -72,6 +75,10 @@ const BannerWrapper = styled.div<{bgImage: string}>`
   background-position: center;
   background-repeat: no-repeat;
   align-content: center;
+
+  @media (max-width: 800px) {
+    height: 100vw;
+  }
 `
 
 const BannerRectangle = styled.div<{backgroundColor: string, color: string}>`
@@ -82,23 +89,55 @@ const BannerRectangle = styled.div<{backgroundColor: string, color: string}>`
   color: ${(props) => props.color};
   text-transform: uppercase;
   text-align: center;
+
+  @media (max-width: 800px) {
+    width: 90vw;
+    height: 40vw;
+    align-content: center;
+  }
 `
 
 const FirstTitle = styled.div`
   font-family: 'Knockout', sans-serif !important;
   font-size: clamp(1rem, 2.5rem, 5rem);
   padding-bottom: 10px;
+
+  @media (max-width: 800px) {
+    font-size: 5vw;
+    padding-bottom: 1vw;
+  }
 `
 
 const SecondTitle = styled.div`
   font-family: 'Americana', sans-serif !important;
   font-size: clamp(1rem, 1.8rem, 5rem);
+  padding-bottom: 25px;
+
+  @media (max-width: 800px) {
+    font-size: 4vw;
+    padding-bottom: 3vw;
+  }
 `
 
 const Description = styled.div`
+  font-family: 'Knockout', sans-serif !important;
+  font-size: clamp(0.7rem, 0.8rem, 2rem);
+  width: 100%;
+  display: flex;
+    justify-content: center;
+  letter-spacing: 1px;
+    line-height: 25px;
 
+  @media (max-width: 800px) {
+    font-size: 1.7vw;
+    line-height: 3vw;
+  }
 `
 
 const TextsWrapper = styled.div`
   padding: 80px 20px 50px 20px;
+
+  @media (max-width: 800px) {
+    padding: 0;
+  }
 `

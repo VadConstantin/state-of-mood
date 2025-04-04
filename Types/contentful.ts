@@ -103,6 +103,36 @@ export interface WhatWeDoPageFields {
   bannerMainTitle: string
   bannerSecondTitle: string
   bannerDescription: string
+  moduleFour: IModuleFour
 }
 
 export interface IWhatWeDoPage extends EntrySkeletonType<WhatWeDoPageFields> {}
+
+
+
+export interface ModuleFourFields {
+  name: string
+  backgroundColor: string
+  textColor: string
+  lineColor: string
+  leftText: string
+  rightText: string
+  firstPartPicture: Asset
+  firstPartFirstLineTitle: string
+  firstPartSecondLineTitle?: string
+  firstPartMiddleTitle: string
+  firstPartTags: string
+  firstPartDescription: string
+  firstPartWorkTogetherLinkSlug: string
+  firstPartSeeCaseStudyLinkSlug: string
+  secondPartPicture: Asset
+  secondPartFirstLineTitle: string
+  secondPartSecondLineTitle?: string
+  secondPartMiddleTitle: string
+  secondPartTags: string
+  secondPartDescription: string
+  secondPartWorkTogetherLinkSlug: string
+  secondPartSeeCaseStudyLinkSlug: string
+}
+
+export interface IModuleFour extends EntrySkeletonType<ModuleFourFields> {}
