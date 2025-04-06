@@ -8,7 +8,9 @@ interface ModuleFourProps {
 
 const ModuleFour:React.FC<ModuleFourProps> = ({ moduleFourData }) => {
 
-  console.log('moduleFourData ------>', moduleFourData)
+  function isScreenWidthGreaterThan600() {
+    return window.innerWidth > 600;
+  }
 
   const { backgroundColor,
           textColor,
@@ -43,7 +45,7 @@ const ModuleFour:React.FC<ModuleFourProps> = ({ moduleFourData }) => {
         </RightText>
       </FirstTexts>
       <Line color={lineColor}></Line>
-      <FirstPartWrapper>
+      <PartWrapper>
         <Picture src={firstPartPicture.fields.file?.url as any}/>
         <Texts>
           <div>
@@ -65,14 +67,45 @@ const ModuleFour:React.FC<ModuleFourProps> = ({ moduleFourData }) => {
           <Description>
             {firstPartDescription}
           </Description>
-          <WorkTogetherButton color={lineColor} href=''>
+          <WorkTogetherButton color={lineColor} href='mailto:contact@stateofmood.com'>
             Let's work together
           </WorkTogetherButton>
-          <CaseStudyLink>
+          <CaseStudyLink href={firstPartSeeCaseStudyLinkSlug}>
             See Case Study
           </CaseStudyLink>
         </Texts>
-      </FirstPartWrapper>
+      </PartWrapper>
+      <PartWrapper>
+        {!isScreenWidthGreaterThan600() && <SecondPicture src={secondPartPicture.fields.file?.url as any}/>}
+        <Texts>
+          <div>
+            <FirstLineTitle>
+              {secondPartFirstLineTitle}
+            </FirstLineTitle>
+            <SecondLineTitle>
+              {secondPartSecondLineTitle}
+            </SecondLineTitle>
+          </div>
+          <div>
+            <MiddleTitle>
+              {secondPartMiddleTitle}
+            </MiddleTitle>
+            <Tags>
+              {secondPartTags}
+            </Tags>
+          </div>
+          <Description>
+            {secondPartDescription}
+          </Description>
+          <WorkTogetherButton color={lineColor} href='mailto:contact@stateofmood.com'>
+            Let's work together
+          </WorkTogetherButton>
+          <CaseStudyLink href={secondPartSeeCaseStudyLinkSlug}>
+            See Case Study
+          </CaseStudyLink>
+        </Texts>
+        {isScreenWidthGreaterThan600() && <SecondPicture src={secondPartPicture.fields.file?.url as any}/>}
+      </PartWrapper>
     </Wrapper>
   )
 }
@@ -118,9 +151,11 @@ const Line = styled.div<{color: string}>`
   margin: 60px 0 40px 0;
   outline: 0.5px solid black;
   outline: ${(props) => `0.5px solid ${props.color}`};
+
+
 `
 
-const FirstPartWrapper = styled.div`
+const PartWrapper = styled.div`
   display: flex;
     justify-content: start;
     gap: 7vw;
@@ -128,9 +163,6 @@ const FirstPartWrapper = styled.div`
 
   @media (max-width: 600px) {
     gap: 5vw;
-  }
-
-  @media (max-width: 480px) {
     flex-wrap: wrap;
   }
 `
@@ -142,6 +174,16 @@ const Picture = styled.img`
   @media (max-width: 600px) {
     width: 50vw;
     height: 58vw;
+  }
+`
+
+const SecondPicture = styled.img`
+  width: 42vw;
+  height: 32vw;
+
+  @media (max-width: 600px) {
+    width: 60vw;
+    height: 50vw;
   }
 `
 
@@ -193,8 +235,8 @@ const Tags = styled.div`
   letter-spacing: 2px;
 
   @media (max-width: 800px) {
-    font-size: 0.3rem;
-    letter-spacing: 1.3px;
+    font-size: 0.4rem;
+    letter-spacing: 1.1px;
   }
 `
 
@@ -231,4 +273,8 @@ const CaseStudyLink = styled.a`
   font-size: clamp(0.9rem, 1vw, 2rem);
   font-weight: 900;
   text-decoration: underline;
+
+  @media (max-width: 600px) {
+    font-size: 0.8rem;
+  }
 `
