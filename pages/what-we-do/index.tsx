@@ -37,7 +37,7 @@ const Index:React.FC<IndexProps> = ({ navData, whatWeDoPageData }) => {
               {bannerSecondTitle as any}
             </SecondTitle>
             <Description>
-              Let’s craft a bespoke creative strategy <br></br>tailored to your brand.
+              {bannerDescription as any}
             </Description>
           </TextsWrapper>
         </BannerRectangle>
@@ -120,20 +120,27 @@ const SecondTitle = styled.div`
 const Description = styled.div`
   font-family: 'Knockout', sans-serif !important;
   font-size: clamp(0.7rem, 0.8rem, 2rem);
-  width: 100%;
   display: flex;
     justify-content: center;
   letter-spacing: 1px;
-    line-height: 25px;
+  line-height: 25px;
+  max-width: 400px;
+  margin: auto;
 
   @media (max-width: 800px) {
     font-size: 1.7vw;
     line-height: 3vw;
+    max-width: 300px;
+  }
+
+  @media (max-width: 500px) {
+    max-width: 250px;
   }
 `
 
 const TextsWrapper = styled.div`
   padding: 80px 20px 50px 20px;
+  width: 100%;
 
   @media (max-width: 800px) {
     padding: 0;
