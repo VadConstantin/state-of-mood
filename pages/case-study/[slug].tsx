@@ -3,7 +3,7 @@ import { Entry } from 'contentful';
 import styled from "styled-components";
 import { useEffect, useState } from "react";
 import { GetServerSideProps } from "next";
-import { getNavigationData, getWhatWeDoPageData, getCaseStudyData } from "@/Services/get_contentful_data";
+import { getNavigationData, getCaseStudyData } from "@/Services/get_contentful_data";
 import ModuleFive from "@/Components/Modules/ModuleFive";
 import NavBar from "@/Components/Navigation/NavBar";
 
@@ -15,12 +15,6 @@ interface CaseStudySlugProps {
 
 const Slug: React.FC<CaseStudySlugProps> = ({ caseStudyData, navData }) => {
 
-  const [isMounted, setIsMounted] = useState(false);
-  useEffect(() => {
-    setIsMounted(true);
-  }, []);
-
-  if (!isMounted) return null;
   
   return(
     <>
@@ -58,4 +52,3 @@ const Wrapper = styled.div`
     flex-direction: column;
     gap: 30px;
 `
-

@@ -1,7 +1,4 @@
 import { IModuleFive } from "@/Types/contentful";
-import { Entry } from 'contentful';
-import styled from "styled-components";
-import { useEffect, useState } from "react";
 import ModuleFiveCase3 from "../Mini-Modules/ModuleFive/module-five-case3";
 import ModuleFiveCase1 from "../Mini-Modules/ModuleFive/module-five-case1";
 import ModuleFiveCase2 from "../Mini-Modules/ModuleFive/module-five-case2";

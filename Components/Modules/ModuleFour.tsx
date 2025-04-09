@@ -1,5 +1,4 @@
 import { IModuleFour } from "@/Types/contentful";
-import { Entry } from 'contentful';
 import styled from "styled-components";
 
 interface ModuleFourProps {
