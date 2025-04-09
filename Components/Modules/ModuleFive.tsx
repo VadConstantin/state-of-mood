@@ -1,9 +1,9 @@
 import { IModuleFive } from "@/Types/contentful";
-import ModuleFiveCase3 from "../Mini-Modules/ModuleFive/module-five-case3";
-import ModuleFiveCase1 from "../Mini-Modules/ModuleFive/module-five-case1";
-import ModuleFiveCase2 from "../Mini-Modules/ModuleFive/module-five-case2";
-import ModuleFiveCase4 from "../Mini-Modules/ModuleFive/module-five-case4";
-import ModuleFiveCase5 from "../Mini-Modules/ModuleFive/module-five-case5";
+import Module5Case1 from "../Mini-Modules/Module5/Module5Case1";
+import Module5Case2 from "../Mini-Modules/Module5/Module5Case2";
+import Module5Case3 from "../Mini-Modules/Module5/Module5Case3";
+import Module5Case4 from "../Mini-Modules/Module5/Module5Case4";
+import Module5Case5 from "../Mini-Modules/Module5/Module5Case5";
 
 interface ModuleFiveProps {
   moduleFiveData : IModuleFive
@@ -17,11 +17,11 @@ const ModuleFive:React.FC<ModuleFiveProps> = ({ moduleFiveData }) => {
   const isThreeImage: boolean = moduleFiveData.fields.images.length == 3
   const isText: boolean = !!moduleFiveData.fields.description
 
-  if (isText) return <ModuleFiveCase3 data={moduleFiveData}/>
-  if (isPlain && isOneImage && !isText) return <ModuleFiveCase1 data={moduleFiveData}/>
-  if (!isPlain && isOneImage) return <ModuleFiveCase2 data={moduleFiveData}/>
-  if (!isPlain && isTwoImage) return <ModuleFiveCase4 data={moduleFiveData}/>
-  if (isThreeImage) return <ModuleFiveCase5 data={moduleFiveData}/>
+  if (isText) return <Module5Case3 data={moduleFiveData}/>
+  if (isPlain && isOneImage && !isText) return <Module5Case1 data={moduleFiveData}/>
+  if (!isPlain && isOneImage) return <Module5Case2 data={moduleFiveData}/>
+  if (!isPlain && isTwoImage) return <Module5Case4 data={moduleFiveData}/>
+  if (isThreeImage) return <Module5Case5 data={moduleFiveData}/>
   
   return(
     <div>

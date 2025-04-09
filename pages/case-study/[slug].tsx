@@ -14,8 +14,15 @@ interface CaseStudySlugProps {
 }
 
 const Slug: React.FC<CaseStudySlugProps> = ({ caseStudyData, navData }) => {
-
   
+  const [isMounted, setIsMounted] = useState(false);
+
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
+
+  if (!isMounted) return null;
+
   return(
     <>
       <NavBar navData={navData}/>
@@ -26,6 +33,8 @@ const Slug: React.FC<CaseStudySlugProps> = ({ caseStudyData, navData }) => {
           }
         })}
       </Wrapper>
+
+      {/* <ModuleFiveCase3 data={caseStudyData.fields.modules[0]}/> */}
     </>
   )
 }

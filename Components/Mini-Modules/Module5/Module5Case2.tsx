@@ -5,18 +5,16 @@ interface Props {
   data: IModuleFive
 }
 
-const ModuleFiveCase3: React.FC<Props> = ({ data }) => {
-  console.log("DATA =====>", data);
+const Module5Case2: React.FC<Props> = ({ data }) => {
   
   return(
     <Wrapper>
-      hey this is a test
-      Module Case 3 !
+      Case 2
     </Wrapper>
   )
 }
 
-export default ModuleFiveCase3
+export default Module5Case2
 
 const Wrapper = styled.div`
   
