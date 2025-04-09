@@ -21,8 +21,6 @@ const Index:React.FC<IndexProps> = ({ navData, whatWeDoPageData }) => {
 
   if (!isMounted) return null;
 
-  console.log('data ---->', whatWeDoPageData)
-
   const imageUrl = (whatWeDoPageData.fields.bannerImage as any).fields.file.url
   const { bannerMainTitle, bannerSecondTitle, bannerRectangleColor, bannerTextColor, bannerDescription } = whatWeDoPageData.fields
   

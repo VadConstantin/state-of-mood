@@ -1,12 +1,45 @@
 import { createClient } from 'contentful';
 import { Entry } from 'contentful';
 
-import { INavLink, INavcategory, INavigation, IHomePage, IModuleTwo, IWeeklySelectionModule, IWhatWeDoPage } from '../Types/contentful';
+import { INavLink,
+        INavcategory, 
+        INavigation, 
+        IHomePage, 
+        IModuleTwo, 
+        IWeeklySelectionModule, 
+        IWhatWeDoPage, 
+        IModuleFive,
+        ICaseStudyPage } from '../Types/contentful';
 
 const contentful = createClient({
   space: process.env.NEXT_PUBLIC_CONTENTFUL_SPACE_ID || '',
   accessToken: process.env.NEXT_PUBLIC_CONTENTFUL_ACCESS_TOKEN || '',
 })
+
+
+
+const enrichModuleTwo = async (entry: Entry<IHomePage>) => {
+  const moduleTwo = entry.fields.moduleTwo as any;
+
+  if (moduleTwo?.sys?.contentType?.sys?.id === 'moduleTwo') {
+    if (moduleTwo.fields?.weeklySelectionModules) {
+      const idsToGet = moduleTwo.fields.weeklySelectionModules.map(
+        (weeklyModule: any) => weeklyModule.sys.id
+      );
+
+      const weeklyModulesInfo = await contentful.getEntries<IWeeklySelectionModule>({
+        content_type: 'weeklySelectionModule',
+        'sys.id[in]': idsToGet.join(',')
+      });
+
+      weeklyModulesInfo.items.sort((itemA, itemB) =>
+        idsToGet.indexOf(itemA.sys.id) < idsToGet.indexOf(itemB.sys.id) ? -1 : 1
+      );
+
+      moduleTwo.fields.weeklySelectionModules = weeklyModulesInfo.items;
+    }
+  }
+};
 
 // const enrichNavCategories = async (entry: Entry<INavigation>) => {
 //   await Promise.all(
@@ -33,29 +66,6 @@ const contentful = createClient({
 //   )
 // }
 
-const enrichModuleTwo = async (entry: Entry<IHomePage>) => {
-  const moduleTwo = entry.fields.moduleTwo as any;
-
-  if (moduleTwo?.sys?.contentType?.sys?.id === 'moduleTwo') {
-    if (moduleTwo.fields?.weeklySelectionModules) {
-      const idsToGet = moduleTwo.fields.weeklySelectionModules.map(
-        (weeklyModule: any) => weeklyModule.sys.id
-      );
-
-      const weeklyModulesInfo = await contentful.getEntries<IWeeklySelectionModule>({
-        content_type: 'weeklySelectionModule',
-        'sys.id[in]': idsToGet.join(',')
-      });
-
-      weeklyModulesInfo.items.sort((itemA, itemB) =>
-        idsToGet.indexOf(itemA.sys.id) < idsToGet.indexOf(itemB.sys.id) ? -1 : 1
-      );
-
-      moduleTwo.fields.weeklySelectionModules = weeklyModulesInfo.items;
-    }
-  }
-};
-
 
 // export const getNavigationData = async ():Promise<Entry<INavigation>> => {
 //   const entries = await contentful.getEntries<INavigation>({
@@ -65,7 +75,6 @@ const enrichModuleTwo = async (entry: Entry<IHomePage>) => {
 //   await enrichNavCategories(entries.items[0] as Entry<INavigation>)
 //   return entries.items[0]
 // }
-
 
 export const getNavigationData = async () => {
   return(
@@ -580,4 +589,17 @@ export const getWhatWeDoPageData = async ():Promise<Entry<IWhatWeDoPage>> => {
 
   return entries.items[0]
 }
+
+
+
+export const getCaseStudyData = async (slug: string): Promise<Entry<ICaseStudyPage>> => {
+  const entries = await contentful.getEntries<ICaseStudyPage>({
+    content_type: 'pageCaseStudy',
+    'fields.slug': slug
+  } as any)
+
+  return  entries.items[0]
+
+}
+
 

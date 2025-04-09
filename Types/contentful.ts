@@ -136,3 +136,31 @@ export interface ModuleFourFields {
 }
 
 export interface IModuleFour extends EntrySkeletonType<ModuleFourFields> {}
+
+
+
+export interface ModuleFiveFieds {
+  name: string
+  plainImages: boolean
+  images: Array<Asset>
+  backgroundColor?: string
+  firstImageBackgroundColor?: string
+  secondImageBackgroundColor?: string
+  tag?: string
+  firstLineTitle?: string
+  secondLineTitle?: string
+  middleTitle?: string
+  description?: string
+}
+
+export interface IModuleFive extends EntrySkeletonType<ModuleFiveFieds> {}
+
+
+
+export interface CaseStudyPageFieds {
+  name: string
+  slug: string
+  modules: Array<IModuleFive>
+}
+
+export interface ICaseStudyPage extends EntrySkeletonType<CaseStudyPageFieds> {}
