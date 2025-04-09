@@ -21,8 +21,6 @@ const Slug: React.FC<CaseStudySlugProps> = ({ caseStudyData, navData }) => {
   }, []);
 
   if (!isMounted) return null;
-
-  console.log("data ===>", caseStudyData);
   
   return(
     <>
@@ -30,7 +28,7 @@ const Slug: React.FC<CaseStudySlugProps> = ({ caseStudyData, navData }) => {
       <Wrapper>
         {caseStudyData.fields.modules.map((module) => {
           if ((module as any).sys.contentType.sys.id === "moduleFive") {
-            return <ModuleFive ModuleFiveData={module}/>
+            return <ModuleFive moduleFiveData={module}/>
           }
         })}
       </Wrapper>
