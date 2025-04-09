@@ -19,6 +19,8 @@ const Index:React.FC<HomePageProps> = ({ navData, homePageData }) => {
 
   const [isMounted, setIsMounted] = useState(false);
 
+  console.log('navData --->', navData)
+
   useEffect(() => {
     setIsMounted(true);
   }, []);

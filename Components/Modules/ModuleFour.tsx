@@ -151,8 +151,6 @@ const Line = styled.div<{color: string}>`
   margin: 60px 0 40px 0;
   outline: 0.5px solid black;
   outline: ${(props) => `0.5px solid ${props.color}`};
-
-
 `
 
 const PartWrapper = styled.div`

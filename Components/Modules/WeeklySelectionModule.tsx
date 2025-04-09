@@ -6,20 +6,21 @@ interface WeeklySelectionModuleProps {
 
 const WeeklySelectionModule:React.FC<WeeklySelectionModuleProps> = ({ weeklyModuleData }) => {
 
-  const { name, description, picture, slug, tag } = weeklyModuleData.fields
+  const { description, picture, slug, tag, title } = weeklyModuleData.fields
   return(
     <Wrapper>
       <a href={slug}>
         <Picture src={picture.fields.file.url} alt="picture"/>
+        {tag && 
         <Tag>
           {tag}
-        </Tag>
-        <Name>
-          {name}
-        </Name>
-        <Description>
+        </Tag>}
+        {title && <Title>
+          {title}
+        </Title>}
+        {description && <Description>
           {description}
-        </Description>
+        </Description>}
       </a>
     </Wrapper>
   )
@@ -70,7 +71,7 @@ const Tag = styled.div`
   }
 `
 
-const Name = styled.div`
+const Title = styled.div`
   font-family: 'Knockout', sans-serif !important;
   font-size: clamp(0.5rem, 1.2vw, 2rem);
   text-transform: uppercase;
