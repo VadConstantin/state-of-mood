@@ -10,7 +10,6 @@ import NavBar from "@/Components/Navigation/NavBar";
 interface CaseStudySlugProps {
   caseStudyData: ICaseStudyPage
   navData: Entry<INavigation>
-  
 }
 
 const Slug: React.FC<CaseStudySlugProps> = ({ caseStudyData, navData }) => {
@@ -33,8 +32,6 @@ const Slug: React.FC<CaseStudySlugProps> = ({ caseStudyData, navData }) => {
           }
         })}
       </Wrapper>
-
-      {/* <ModuleFiveCase3 data={caseStudyData.fields.modules[0]}/> */}
     </>
   )
 }

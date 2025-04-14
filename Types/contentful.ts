@@ -143,7 +143,8 @@ export interface ModuleFiveFieds {
   name: string
   plainImages: boolean
   images: Array<Asset>
-  backgroundColor?: string
+  backgroundColorForText?: string
+  textColor?: string
   firstImageBackgroundColor?: string
   secondImageBackgroundColor?: string
   tag?: string

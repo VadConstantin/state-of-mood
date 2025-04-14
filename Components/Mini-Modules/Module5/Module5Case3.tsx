@@ -7,10 +7,41 @@ interface Props {
 
 const Module5Case3: React.FC<Props> = ({ data }) => {
   console.log("DATA =====>", data);
+
+  const image = data.fields.images[0]
+  const textColor = data.fields.textColor || "black"
+  const backgroundColor = data.fields.backgroundColorForText || "white"
+  const tag = data.fields.tag
+  const firstLineTitle = data.fields.firstLineTitle
+  const secondLineTitle = data.fields.secondLineTitle
+  const middleTitle = data.fields.middleTitle
+  const description = data.fields.description
   
   return(
     <Wrapper>
-      je change le truc.... hihiahah ohaha
+      <Picture src={image.fields.file?.url as any} />
+      <TextsPart textColor={textColor as any} backgroundColor={backgroundColor}>
+        <Texts>
+          <Tag>
+            {tag}
+          </Tag>
+          <Titles>
+            <FirstLineTitle>
+              {firstLineTitle}
+            </FirstLineTitle>
+            <SecondLineTitle>
+              {secondLineTitle}
+            </SecondLineTitle>
+          </Titles>
+          <MiddleTitle>
+            {middleTitle}
+          </MiddleTitle>
+          <Description>
+            {description}
+          </Description>
+        </Texts>
+      </TextsPart>
+
     </Wrapper>
   )
 }
@@ -18,5 +49,116 @@ const Module5Case3: React.FC<Props> = ({ data }) => {
 export default Module5Case3
 
 const Wrapper = styled.div`
-  
+  display: flex;
+
+  @media (max-width: 600px) {
+    flex-wrap: wrap;
+  }
+`
+
+const Picture = styled.img`
+  width: 50%;
+  height: auto;
+
+  @media (max-width: 600px) {
+    width: 100%;
+  }
+`
+
+const TextsPart = styled.div<{backgroundColor: string, textColor: string}>`
+  background-color: ${(props) => props.backgroundColor};
+  width: 50%;
+  color: ${(props) => props.color};
+  align-content: center;
+  padding: 50px;
+
+  @media (max-width: 600px) {
+    width: 100%;
+    min-height: 300px;
+  }
+`
+
+const Texts = styled.div`
+  width: fit-content;
+  margin: auto;
+`
+
+const Tag = styled.div`
+  font-family: 'Knockout', sans-serif !important;
+  text-transform: uppercase;
+  font-size: clamp(0.6rem, 0.7rem, 1.5rem);
+  letter-spacing: 2px;
+
+  @media (max-width: 800px) {
+    font-size: 1vw;
+  }
+`
+
+const Titles = styled.div`
+  display: flex;
+    flex-direction: column;
+    gap: -10px;
+`
+
+const FirstLineTitle = styled.div`
+  font-family: 'Knockout', sans-serif !important;
+  text-transform: uppercase;
+  font-size: clamp(1.5rem, 3.5vw, 5rem);
+
+  @media (max-width: 800px) {
+    font-size: 4vw;
+  }
+
+  @media (max-width: 600px) {
+    font-size: 6vw;
+  }
+`
+
+const SecondLineTitle = styled.div`
+  font-family: 'Americana', sans-serif !important;
+  text-transform: uppercase;
+  font-size: clamp(1.5rem, 3.5vw, 5rem);
+
+  @media (max-width: 800px) {
+    font-size: 4vw;
+  }
+
+
+  @media (max-width: 600px) {
+    font-size: 6vw;
+  }
+`
+
+const MiddleTitle = styled.div`
+  font-family: 'Knockout', sans-serif !important;
+  text-transform: uppercase;
+  font-size: clamp(0.8rem, 0.9rem, 1.5rem);
+  letter-spacing: -0.5px;
+  padding-top: 20px;
+
+  @media (max-width: 800px) {
+    font-size: 0.4rem;
+    letter-spacing: 1.1px;
+  }
+
+  @media (max-width: 600px) {
+    font-size: 3vw;
+  }
+`
+
+const Description = styled.div`
+  padding-top: 20px;
+  max-width: 500px;
+  line-height: clamp(1rem, 1.3vw, 2rem);
+  font-size: clamp(0.8rem, 0.8vw, 2rem);
+
+  @media (max-width: 800px) {
+    font-size: 1.5vw;
+    line-height: 1.8vw;
+  }
+
+  @media (max-width: 600px) {
+    font-size: 3vw;
+    line-height: 4vw;
+  }
 `
