@@ -1,4 +1,6 @@
 import styled from "styled-components";
+import FirstTitle from "../FirstTitle";
+import SecondTitle from "../SecondTitle";
 import WeeklySelectionModule from './WeeklySelectionModule';
 
 interface ModuleTwoProps {
@@ -13,13 +15,14 @@ const ModuleTwo:React.FC<ModuleTwoProps> = ({ moduleTwoData }) => {
     <Wrapper color={backgroundColor}>
       <TextsWrapper>
         <Title>
-          <FirstLine>
+          <FirstTitle>
             {titleFirstLine}
-          </FirstLine>
+          </FirstTitle>
           {titleSecondLine && 
-          <SecondLine>
-            {titleSecondLine}
-          </SecondLine>}
+            <SecondTitle>
+              {titleSecondLine}
+            </SecondTitle>
+          }
         </Title>
         <Description>
           {description}
@@ -54,16 +57,6 @@ const TextsWrapper = styled.div`
   }
 `
 
-const FirstLine = styled.div`
-  font-family: 'Knockout', sans-serif !important;
-  font-size: clamp(1rem, 3.5vw, 5rem);
-`
-
-const SecondLine = styled.div`
-  font-family: 'Americana', sans-serif !important;
-  font-size: clamp(1rem, 3.5vw, 5rem);
-`
-
 const Title = styled.div`
   padding-bottom: 35px;
 
@@ -76,6 +69,9 @@ const Description = styled.div`
   font-family: 'Knockout', sans-serif !important;
   font-size: clamp(0.5rem, 0.7vw, 2rem);
   letter-spacing: 1px;
+  max-width: 750px;
+  margin: auto;
+  line-height: 20px;
 `
 
 const WeeklyModulesWrapper = styled.div`

@@ -166,3 +166,27 @@ export interface CaseStudyPageFieds {
 }
 
 export interface ICaseStudyPage extends EntrySkeletonType<CaseStudyPageFieds> {}
+
+
+interface ModuleSixFields {
+  name: string
+  firstLineTitle: string
+  secondLineTitle: string
+  description: string
+  keyWord1?: string
+  keyWord2?: string
+  keyWord3?: string
+  keyWord4?: string
+  keyWord5?: string
+  picture1: Asset
+  picture2: Asset
+  picture3: Asset
+  picture4: Asset
+  picture5: Asset
+  picture6: Asset
+  picture7: Asset
+  picture8: Asset
+  picture9: Asset
+}
+
+export interface IModuleSix extends EntrySkeletonType<ModuleSixFields> {}

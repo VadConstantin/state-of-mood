@@ -91,6 +91,8 @@ const TextsPart = styled.div<{backgroundColor: string, textColor: string}>`
   @media (max-width: 600px) {
     width: 100%;
     min-height: 300px;
+    padding: 50px 5vw;
+    
   }
 `
 

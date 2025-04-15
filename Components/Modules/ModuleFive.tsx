@@ -6,22 +6,22 @@ import Module5Case4 from "../Mini-Modules/Module5/Module5Case4";
 import Module5Case5 from "../Mini-Modules/Module5/Module5Case5";
 
 interface ModuleFiveProps {
-  moduleFiveData : IModuleFive
+  data : IModuleFive
 }
 
-const ModuleFive:React.FC<ModuleFiveProps> = ({ moduleFiveData }) => {
+const ModuleFive:React.FC<ModuleFiveProps> = ({ data }) => {
 
-  const isPlain: boolean = moduleFiveData.fields.plainImages
-  const isOneImage: boolean = moduleFiveData.fields.images.length == 1
-  const isTwoImage: boolean = moduleFiveData.fields.images.length == 2
-  const isThreeImage: boolean = moduleFiveData.fields.images.length == 3
-  const isText: boolean = !!moduleFiveData.fields.description
+  const isPlain: boolean = data.fields.plainImages
+  const isOneImage: boolean = data.fields.images.length == 1
+  const isTwoImage: boolean = data.fields.images.length == 2
+  const isThreeImage: boolean = data.fields.images.length == 3
+  const isText: boolean = !!data.fields.description
 
-  if (isText) return <Module5Case3 data={moduleFiveData}/>
-  if (isPlain && isOneImage && !isText) return <Module5Case1 data={moduleFiveData}/>
-  if (!isPlain && isOneImage) return <Module5Case2 data={moduleFiveData}/>
-  if (!isPlain && isTwoImage) return <Module5Case4 data={moduleFiveData}/>
-  if (isThreeImage) return <Module5Case5 data={moduleFiveData}/>
+  if (isText) return <Module5Case3 data={data}/>
+  if (isPlain && isOneImage && !isText) return <Module5Case1 data={data}/>
+  if (!isPlain && isOneImage) return <Module5Case2 data={data}/>
+  if (!isPlain && isTwoImage) return <Module5Case4 data={data}/>
+  if (isThreeImage) return <Module5Case5 data={data}/>
   
   return(
     <div>
