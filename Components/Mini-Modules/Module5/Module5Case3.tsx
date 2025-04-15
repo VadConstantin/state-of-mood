@@ -6,7 +6,6 @@ interface Props {
 }
 
 const Module5Case3: React.FC<Props> = ({ data }) => {
-  console.log("DATA =====>", data);
 
   const image = data.fields.images[0]
   const textColor = data.fields.textColor || "black"
