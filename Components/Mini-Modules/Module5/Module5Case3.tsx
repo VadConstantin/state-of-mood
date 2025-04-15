@@ -16,10 +16,15 @@ const Module5Case3: React.FC<Props> = ({ data }) => {
   const secondLineTitle = data.fields.secondLineTitle
   const middleTitle = data.fields.middleTitle
   const description = data.fields.description
+  const pictureHasBorderColor = data.fields.firstImageBackgroundColor || null
+  const isTextBefore = data.fields.isTextBefore
   
   return(
-    <Wrapper>
-      <Picture src={image.fields.file?.url as any} />
+    <Wrapper isTextBefore={isTextBefore as string}>
+      {pictureHasBorderColor ? 
+          <PictureBorder src={image.fields.file?.url as any} borderColor={pictureHasBorderColor}/> 
+        : <Picture src={image.fields.file?.url as any} /> 
+      }
       <TextsPart textColor={textColor as any} backgroundColor={backgroundColor}>
         <Texts>
           <Tag>
@@ -41,15 +46,15 @@ const Module5Case3: React.FC<Props> = ({ data }) => {
           </Description>
         </Texts>
       </TextsPart>
-
     </Wrapper>
   )
 }
 
 export default Module5Case3
 
-const Wrapper = styled.div`
+const Wrapper = styled.div<{isTextBefore: string}>`
   display: flex;
+  flex-direction: ${(props) => props.isTextBefore === "yes" ? 'row-reverse' : 'row'};
 
   @media (max-width: 600px) {
     flex-wrap: wrap;
@@ -62,6 +67,18 @@ const Picture = styled.img`
 
   @media (max-width: 600px) {
     width: 100%;
+  }
+`
+
+const PictureBorder = styled.img<{borderColor: string}>`
+  width: 50%;
+  height: auto;
+  padding: 8vw;
+  background-color: ${(props) => props.borderColor};
+
+  @media (max-width: 600px) {
+    width: 100%;
+    padding: 10vw;
   }
 `
 

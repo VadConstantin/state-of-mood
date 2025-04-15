@@ -148,6 +148,7 @@ export interface ModuleFiveFieds {
   firstImageBackgroundColor?: string
   secondImageBackgroundColor?: string
   tag?: string
+  isTextBefore?: string
   firstLineTitle?: string
   secondLineTitle?: string
   middleTitle?: string

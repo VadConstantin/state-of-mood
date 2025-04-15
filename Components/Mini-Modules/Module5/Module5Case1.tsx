@@ -6,16 +6,16 @@ interface Props {
 }
 
 const Module5Case1: React.FC<Props> = ({ data }) => {
+  const image = data.fields.images[0]
   
   return(
-    <Wrapper>
-      Case 1
-    </Wrapper>
+    <Picture src={image.fields.file?.url as any}/>
   )
 }
 
 export default Module5Case1
 
-const Wrapper = styled.div`
-  
+const Picture = styled.img`
+  width: 100%;
+  height: auto;
 `
