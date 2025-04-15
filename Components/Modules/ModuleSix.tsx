@@ -64,7 +64,21 @@ const ModuleSix:React.FC<ModuleSixProps> = ({ data }) => {
           </KeyWordsWrapper>}
       </TextsWrapper>
       <PicturesWrapper>
-
+        <Row>
+          <Picture1 src={picture1.fields.file.url}/>
+          <Picture1 src={picture2.fields.file.url}/>
+          <Picture1 src={picture3.fields.file.url}/>   
+        </Row>
+        <Row>
+          <Picture1 src={picture4.fields.file.url}/>
+          <Picture1 src={picture5.fields.file.url}/>
+          <Picture1 src={picture6.fields.file.url}/>   
+        </Row>
+        <Row>
+          <Picture1 src={picture7.fields.file.url}/>
+          <Picture1 src={picture8.fields.file.url}/>
+          <Picture1 src={picture9.fields.file.url}/>   
+        </Row>
       </PicturesWrapper>
     </Wrapper>
   )
@@ -75,20 +89,20 @@ export default ModuleSix
 const Wrapper = styled.div`
   width: 100%;
   background-color: ${({color}) => color};
+  padding: 60px 50px 100px 50px;
 
   @media (max-width: 600px) {
-    padding: 0 5vw 15vw 5vw;
+    padding: 50px 5vw 15vw 5vw;
   }
 `
 
 const TextsWrapper = styled.div`
-  padding: 60px 50px 100px 50px;
   text-transform: uppercase;
   text-align: center;
   color: black;
 
   @media (max-width: 600px) {
-    padding: 50px 0 50px 0;
+
     text-align: start;
   }
 `
@@ -108,6 +122,7 @@ const Description = styled.div`
   max-width: 750px;
   margin: auto;
   line-height: 25px;
+  padding-bottom: 3vw;
 
   @media (max-width: 600px) {
     line-height: 4vw;
@@ -117,11 +132,11 @@ const Description = styled.div`
 `
 
 const KeyWordsWrapper = styled.div`
-  padding: 3vw 0;
   display: flex;
     flex-direction: column;
     justify-content: center;
     gap: 3vw;
+  padding-bottom: 3vw;
   
   @media (max-width: 800px) {
     gap: 5vw;
@@ -163,5 +178,24 @@ const KeyWord = styled.div`
 `
 
 const PicturesWrapper = styled.div`
+  padding: 0px 100px 100px 100px;
+  display: flex;
+    gap: 3vw;
+  
+  @media (max-width: 600px) {
+    padding: 0;
+    justify-content: space-between;
+  }
+`
 
+const Row = styled.div`
+  width: 30%;
+  display: flex;
+    flex-direction: column;
+
+    gap: 3vw;
+`
+
+const Picture1 = styled.img`
+  width: 100%;
 `

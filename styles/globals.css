@@ -23,6 +23,15 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   padding-top: 120px;
+  background-color: white;
+  color: black;
+}
+
+@media (prefers-color-scheme: dark) {
+  body {
+    background-color: white; /* garde le fond blanc même en dark mode */
+    color: black; /* tu peux adapter la couleur du texte ici */
+  }
 }
 
 * {
