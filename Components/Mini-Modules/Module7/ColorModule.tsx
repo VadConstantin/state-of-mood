@@ -9,7 +9,7 @@ interface ColorModuleProps {
 const ColorModule:React.FC<ColorModuleProps> = ({ data }) => {
 
   const { backgroundColor, firstLineTitle, secondLineTitle} = data.fields
-  const colors = data.fields.colorsForPaletteType.split(',')
+  const colors = data.fields.colorsForColorType.split(',')
 
   return(
     <Wrapper bgColor={backgroundColor}> 

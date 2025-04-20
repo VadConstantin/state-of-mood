@@ -200,7 +200,7 @@ interface ModuleSevenFields {
   firstLineTitle: string
   secondLineTitle: string
   imagesForFontType: Array<Asset>
-  colorsForPaletteType: string
+  colorsForColorType: string
   imagesForPaletteType: Array<Asset>
 }
 
