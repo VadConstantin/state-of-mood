@@ -10,13 +10,10 @@ interface ModuleSevenProps {
 
 const ModuleSeven:React.FC<ModuleSevenProps> = ({ data }) => {
 
-  console.log("data ---->", data);
-
   if (data.fields.type === "Color") return <ColorModule data={data as any}/>
   if (data.fields.type === "Font") return <FontModule data={data as any}/>
   if (data.fields.type === "Palette") return <PaletteModule data={data as any}/>
   
-
   return(
     <Wrapper>
       Module 7
