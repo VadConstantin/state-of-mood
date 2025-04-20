@@ -8,6 +8,7 @@ import ModuleFive from "@/Components/Modules/ModuleFive";
 import NavBar from "@/Components/Navigation/NavBar";
 import ModuleSix from "@/Components/Modules/ModuleSix";
 import ModuleSeven from "@/Components/Modules/ModuleSeven";
+import ModuleEight from "@/Components/Modules/ModuleEight";
 
 interface CaseStudySlugProps {
   caseStudyData: ICaseStudyPage
@@ -29,15 +30,11 @@ const Slug: React.FC<CaseStudySlugProps> = ({ caseStudyData, navData }) => {
       <NavBar navData={navData}/>
       <Wrapper>
         {caseStudyData.fields.modules.map((module) => {
-          if ((module as any).sys.contentType.sys.id === "moduleFive") {
-            return <ModuleFive data={module}/>
-          }
-          if ((module as any).sys.contentType.sys.id === "moduleSix") {
-            return <ModuleSix data={module}/>
-          }
-          if ((module as any).sys.contentType.sys.id === "moduleSeven") {
-            return <ModuleSeven data={module as any}/>
-          }
+          if ((module as any).sys.contentType.sys.id === "moduleFive") return <ModuleFive data={module}/>
+          if ((module as any).sys.contentType.sys.id === "moduleSix") return <ModuleSix data={module}/>
+          if ((module as any).sys.contentType.sys.id === "moduleSeven") return <ModuleSeven data={module as any}/>
+          if ((module as any).sys.contentType.sys.id === "moduleEight") return <ModuleEight data={module as any}/>
+          
         })}
       </Wrapper>
     </>

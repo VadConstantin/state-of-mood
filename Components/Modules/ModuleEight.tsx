@@ -1,25 +1,16 @@
+import { IModuleEight } from "@/Types/contentful";
 import styled from "styled-components";
 import FirstTitle from "../FirstTitle";
 import SecondTitle from "../SecondTitle";
 
-interface ModuleSixProps {
-  data: any
+interface ModuleEightProps {
+  data: IModuleEight
 }
 
-const ModuleSix:React.FC<ModuleSixProps> = ({ data }) => {
-  const { firstLineTitle, 
-          secondLineTitle, 
-          description,
-          picture1,
-          picture2,
-          picture3,
-          picture4,
-          picture5,
-          picture6,
-          picture7,
-          picture8,
-          picture9
-        } = data.fields
+const ModuleEight:React.FC<ModuleEightProps> = ({ data }) => {
+
+  const { firstLineTitle, secondLineTitle, description } = data.fields
+  const images = data.fields.images || []
 
   const keyWord1 = data.fields.keyWord1 || ''
 
@@ -30,9 +21,9 @@ const ModuleSix:React.FC<ModuleSixProps> = ({ data }) => {
     data.fields.keyWord4,
     data.fields.keyWord5
   ].filter((kw) => kw && kw.trim() !== '');
-  
+
   return(
-    <Wrapper> 
+    <Wrapper>
       <TextsWrapper>
         <Title>
           <FirstTitle>
@@ -45,6 +36,13 @@ const ModuleSix:React.FC<ModuleSixProps> = ({ data }) => {
         <Description>
           {description}
         </Description>
+        <ImagesWrapper>
+          {images.map((image, index) => {
+            return(
+              <CustomImage key={index} src={image.fields.file?.url as any}/>
+            )
+          })}
+        </ImagesWrapper>
         {keyWord1 && 
           <KeyWordsWrapper>
             <KeyWordsTitle>
@@ -62,33 +60,16 @@ const ModuleSix:React.FC<ModuleSixProps> = ({ data }) => {
             </KeyWords>
           </KeyWordsWrapper>}
       </TextsWrapper>
-      <PicturesWrapper>
-        <Row>
-          <Picture1 src={picture1.fields.file.url}/>
-          <Picture1 src={picture2.fields.file.url}/>
-          <Picture1 src={picture3.fields.file.url}/>   
-        </Row>
-        <Row>
-          <Picture1 src={picture4.fields.file.url}/>
-          <Picture1 src={picture5.fields.file.url}/>
-          <Picture1 src={picture6.fields.file.url}/>   
-        </Row>
-        <Row>
-          <Picture1 src={picture7.fields.file.url}/>
-          <Picture1 src={picture8.fields.file.url}/>
-          <Picture1 src={picture9.fields.file.url}/>   
-        </Row>
-      </PicturesWrapper>
     </Wrapper>
   )
 }
 
-export default ModuleSix
+export default ModuleEight
 
 const Wrapper = styled.div`
   width: 100%;
-  background-color: ${({color}) => color};
   padding: 60px 50px 100px 50px;
+  text-align: center;
 
   @media (max-width: 600px) {
     padding: 50px 5vw 15vw 5vw;
@@ -96,7 +77,6 @@ const Wrapper = styled.div`
 `
 
 const TextsWrapper = styled.div`
-  text-transform: uppercase;
   text-align: center;
   color: black;
 
@@ -115,18 +95,19 @@ const Title = styled.div`
 `
 
 const Description = styled.div`
-  font-family: 'Knockout', sans-serif !important;
-  font-size: clamp(0.5rem, 0.7vw, 2rem);
-  letter-spacing: 1px;
   max-width: 750px;
   margin: auto;
-  line-height: 25px;
-  padding-bottom: 3vw;
+  line-height: clamp(1rem, 1.3vw, 2rem);
+  font-size: clamp(0.8rem, 0.8vw, 2rem);
+
+  @media (max-width: 800px) {
+    font-size: 1.5vw;
+    line-height: 1.8vw;
+  }
 
   @media (max-width: 600px) {
+    font-size: 3vw;
     line-height: 4vw;
-    letter-spacing: 0.1px;
-    font-size: 2vw;
   }
 `
 
@@ -136,6 +117,8 @@ const KeyWordsWrapper = styled.div`
     justify-content: center;
     gap: 3vw;
   padding-bottom: 3vw;
+  padding-top: 30px;
+  text-transform: uppercase;
   
   @media (max-width: 800px) {
     gap: 5vw;
@@ -176,25 +159,18 @@ const KeyWord = styled.div`
   }
 `
 
-const PicturesWrapper = styled.div`
-  padding: 0px 100px 0px 100px;
+const ImagesWrapper = styled.div`
+  padding: 50px 0 30px 0;
   display: flex;
-    gap: 3vw;
-  
-  @media (max-width: 600px) {
-    padding: 0;
-    justify-content: space-between;
+    gap: 8vw;
+    flex-wrap: wrap;
+    justify-content: center;
+`
+
+const CustomImage = styled.img`
+  width: 90px;
+
+  @media (max-width: 800px) {
+    width: 60px;
   }
-`
-
-const Row = styled.div`
-  width: 30%;
-  display: flex;
-    flex-direction: column;
-
-    gap: 3vw;
-`
-
-const Picture1 = styled.img`
-  width: 100%;
 `

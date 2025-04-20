@@ -205,3 +205,19 @@ interface ModuleSevenFields {
 }
 
 export interface IModuleSeven extends EntrySkeletonType<ModuleSevenFields> {}
+
+
+interface ModuleEightFields {
+  name: string;
+  firstLineTitle: string
+  secondLineTitle: string
+  description: string
+  images: Array<Asset>
+  keyWord1?: string
+  keyWord2?: string
+  keyWord3?: string
+  keyWord4?: string
+  keyWord5?: string
+}
+
+export interface IModuleEight extends EntrySkeletonType<ModuleEightFields> {}
