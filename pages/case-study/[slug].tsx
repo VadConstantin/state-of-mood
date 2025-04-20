@@ -7,6 +7,7 @@ import { getNavigationData, getCaseStudyData } from "@/Services/get_contentful_d
 import ModuleFive from "@/Components/Modules/ModuleFive";
 import NavBar from "@/Components/Navigation/NavBar";
 import ModuleSix from "@/Components/Modules/ModuleSix";
+import ModuleSeven from "@/Components/Modules/ModuleSeven";
 
 interface CaseStudySlugProps {
   caseStudyData: ICaseStudyPage
@@ -33,6 +34,9 @@ const Slug: React.FC<CaseStudySlugProps> = ({ caseStudyData, navData }) => {
           }
           if ((module as any).sys.contentType.sys.id === "moduleSix") {
             return <ModuleSix data={module}/>
+          }
+          if ((module as any).sys.contentType.sys.id === "moduleSeven") {
+            return <ModuleSeven data={module as any}/>
           }
         })}
       </Wrapper>

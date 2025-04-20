@@ -29,8 +29,8 @@ body {
 
 @media (prefers-color-scheme: dark) {
   body {
-    background-color: white; /* garde le fond blanc même en dark mode */
-    color: black; /* tu peux adapter la couleur du texte ici */
+    background-color: white;
+    color: black;
   }
 }
 

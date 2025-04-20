@@ -1,4 +1,3 @@
-import { IModuleSix } from "@/Types/contentful"
 import styled from "styled-components";
 import FirstTitle from "../FirstTitle";
 import SecondTitle from "../SecondTitle";

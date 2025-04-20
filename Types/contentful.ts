@@ -53,6 +53,7 @@ export interface WeeklySelectionModuleFields {
 }
 
 export interface IWeeklySelectionModule extends EntrySkeletonType<WeeklySelectionModuleFields> {}
+// also known as Mini Modules
 
 
 export interface ModuleTwoFields {
@@ -190,3 +191,17 @@ interface ModuleSixFields {
 }
 
 export interface IModuleSix extends EntrySkeletonType<ModuleSixFields> {}
+
+
+interface ModuleSevenFields {
+  name: string
+  type: "Font" | "Color" | "Palette"
+  backgroundColor: string
+  firstLineTitle: string
+  secondLineTitle: string
+  imagesForFontType: Array<Asset>
+  colorsForPaletteType: string
+  imagesForPaletteType: Array<Asset>
+}
+
+export interface IModuleSeven extends EntrySkeletonType<ModuleSevenFields> {}

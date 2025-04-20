@@ -31,7 +31,7 @@ const ModuleTwo:React.FC<ModuleTwoProps> = ({ moduleTwoData }) => {
       <WeeklyModulesWrapper>
         {weeklySelectionModules.map((module: any, index: any) => {
           return(
-            <WeeklySelectionModule weeklyModuleData={module}/>
+            <WeeklySelectionModule weeklyModuleData={module} key={index}/>
           )
         })}
       </WeeklyModulesWrapper>
