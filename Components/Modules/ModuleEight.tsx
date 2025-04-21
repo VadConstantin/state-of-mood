@@ -11,7 +11,6 @@ const ModuleEight:React.FC<ModuleEightProps> = ({ data }) => {
 
   const { firstLineTitle, secondLineTitle, description } = data.fields
   const images = data.fields.images || []
-
   const keyWord1 = data.fields.keyWord1 || ''
 
   const keyWordsArray = [
@@ -81,7 +80,6 @@ const TextsWrapper = styled.div`
   color: black;
 
   @media (max-width: 600px) {
-
     text-align: start;
   }
 `

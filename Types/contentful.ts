@@ -221,3 +221,15 @@ interface ModuleEightFields {
 }
 
 export interface IModuleEight extends EntrySkeletonType<ModuleEightFields> {}
+
+
+interface ModuleNineFields {
+  name: string
+  type: string
+  firstLineTitle: string
+  secondLineTitle: string
+  description?: string
+  images: Array<Asset>
+}
+
+export interface IModuleNine extends EntrySkeletonType<ModuleNineFields> {}
