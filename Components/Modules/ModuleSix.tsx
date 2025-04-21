@@ -138,7 +138,7 @@ const KeyWordsWrapper = styled.div`
   padding-bottom: 3vw;
   
   @media (max-width: 800px) {
-    gap: 5vw;
+    gap: 3vw;
     padding: 6vw 0;
   }
 `

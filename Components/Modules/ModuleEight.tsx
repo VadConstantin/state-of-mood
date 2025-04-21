@@ -71,7 +71,7 @@ const Wrapper = styled.div`
   text-align: center;
 
   @media (max-width: 600px) {
-    padding: 50px 5vw 15vw 5vw;
+    padding: 50px 5vw 50px 5vw;
   }
 `
 
@@ -119,7 +119,7 @@ const KeyWordsWrapper = styled.div`
   text-transform: uppercase;
   
   @media (max-width: 800px) {
-    gap: 5vw;
+    gap: 3vw;
     padding: 6vw 0;
   }
 `

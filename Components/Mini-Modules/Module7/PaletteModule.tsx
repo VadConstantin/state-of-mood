@@ -1,4 +1,5 @@
 import FirstTitle from "@/Components/FirstTitle";
+import SecondTitleSmall from "@/Components/SecondTitleSmall";
 import { IModuleSeven } from "@/Types/contentful";
 import styled from "styled-components";
 
@@ -15,9 +16,9 @@ const PaletteModule:React.FC<PaletteModuleProps> = ({ data }) => {
       <FirstTitle>
         {firstLineTitle}
       </FirstTitle>
-      <SecondTitle>
+      <SecondTitleSmall>
         {secondLineTitle}
-      </SecondTitle>
+      </SecondTitleSmall>
       <ImagesWrapper>
         {imagesForPaletteType.map((image, index: any) => {
           return(
@@ -39,16 +40,6 @@ const Wrapper = styled.div<{bgColor: string}>`
     flex-direction: column;
     justify-content: center;
     text-align: center;
-`
-
-const SecondTitle = styled.div`
-  font-family: 'Americana', sans-serif !important;
-  font-size: clamp(1rem, 2.1vw, 5rem);
-  text-transform: uppercase;
-
-  @media (max-width: 600px) {
-    font-size: 4vw;
-  }
 `
 
 const ImagesWrapper = styled.div`
