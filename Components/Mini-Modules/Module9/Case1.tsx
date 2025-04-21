@@ -6,6 +6,9 @@ interface Case1Props {
 }
 
 const Case1: React.FC<Case1Props> = ({ data }) => {
+
+  console.log("data ----->", data);
+  
   return(
     <div></div>
   )

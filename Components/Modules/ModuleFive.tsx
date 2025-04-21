@@ -10,18 +10,13 @@ interface ModuleFiveProps {
 }
 
 const ModuleFive:React.FC<ModuleFiveProps> = ({ data }) => {
+  const type = data.fields.type
 
-  const isPlain: boolean = data.fields.plainImages
-  const isOneImage: boolean = data.fields.images.length == 1
-  const isTwoImage: boolean = data.fields.images.length == 2
-  const isThreeImage: boolean = data.fields.images.length == 3
-  const isText: boolean = !!data.fields.description
-
-  if (isText) return <Module5Case3 data={data}/>
-  if (isPlain && isOneImage && !isText) return <Module5Case1 data={data}/>
-  if (!isPlain && isOneImage) return <Module5Case2 data={data}/>
-  if (!isPlain && isTwoImage) return <Module5Case4 data={data}/>
-  if (isThreeImage) return <Module5Case5 data={data}/>
+  if(type === 'Case 1') return <Module5Case1 data={data}/>
+  if(type === 'Case 2') return <Module5Case2 data={data}/>
+  if(type === 'Case 3') return <Module5Case3 data={data}/>
+  if(type === 'Case 4') return <Module5Case4 data={data}/>
+  if(type === 'Case 5') return <Module5Case5 data={data}/>
   
   return(
     <div>

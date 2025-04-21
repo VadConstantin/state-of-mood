@@ -1,6 +1,7 @@
 import { IModuleNine } from "@/Types/contentful";
 import styled from "styled-components";
 import FirstTitle from "../FirstTitle";
+import Case1 from "../Mini-Modules/Module9/Case1";
 import SecondTitle from "../SecondTitle";
 
 interface ModuleNineProps {
@@ -10,12 +11,11 @@ interface ModuleNineProps {
 const ModuleNine:React.FC<ModuleNineProps> = ({ data }) => {
   const type = data.fields.type
 
-  if(type === 'Case 1') return (<div></div>)
+  if(type === 'Case 1') return (<Case1 data={data}/>)
   if(type === 'Case 2') return(<div></div>)
   if(type === 'Case 3') return(<div></div>)
   if(type === 'Case 3 bis') return(<div></div>)
   if(type === 'Case 4') return(<div></div>)
-
 
   return(
     <Wrapper>

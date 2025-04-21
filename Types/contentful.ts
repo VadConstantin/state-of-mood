@@ -142,6 +142,7 @@ export interface IModuleFour extends EntrySkeletonType<ModuleFourFields> {}
 
 export interface ModuleFiveFieds {
   name: string
+  type: string
   plainImages: boolean
   images: Array<Asset>
   backgroundColorForText?: string
