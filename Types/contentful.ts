@@ -227,8 +227,8 @@ export interface IModuleEight extends EntrySkeletonType<ModuleEightFields> {}
 interface ModuleNineFields {
   name: string
   type: string
-  firstLineTitle: string
-  secondLineTitle: string
+  firstLineTitle?: string
+  secondLineTitle?: string
   description?: string
   images: Array<Asset>
 }

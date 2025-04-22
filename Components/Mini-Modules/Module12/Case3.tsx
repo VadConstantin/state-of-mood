@@ -1,35 +1,43 @@
 import styled from "styled-components";
 import React from 'react'
-import SecondTitleSmall from "@/Components/SecondTitleSmall";
 import FirstTitle from "@/Components/FirstTitle";
-import { IModuleNine } from "@/Types/contentful";
+import { IModuleTwelve } from "@/Types/contentful";
+import SecondTitle from "@/Components/SecondTitle";
 
 interface Case3Props {
-  data: IModuleNine
+  data: IModuleTwelve
 }
 
 const Case3: React.FC<Case3Props> = ({ data }) => {
 
-  const { firstLineTitle, secondLineTitle, images } = data.fields
+  const { firstLineTitle, secondLineTitle, backgroundColor, images, fontColor } = data.fields
   const firstPic = images[0]
   const secondPic = images[1]
   const thirdPic = images[2]
+  const description = data.fields?.description || null
   
   return(
     <Wrapper>
-      <FirstTitle>
-        {firstLineTitle}
-      </FirstTitle>
-      <SecondTitleSmall>
-        {secondLineTitle}
-      </SecondTitleSmall>
-      <ImagesWrapper>
-        <FirstImage src={firstPic.fields.file?.url as any} />
-        <OtherImagesWrapper>
-          <SecondImage src={secondPic.fields.file?.url as any} />
-          <ThirdImage src={thirdPic.fields.file?.url as any} />
-        </OtherImagesWrapper>
-      </ImagesWrapper>
+      <TopWrapper fontColor={fontColor}>
+        <FirstTitle>
+          {firstLineTitle}
+        </FirstTitle>
+        <SecondTitle>
+          {secondLineTitle}
+        </SecondTitle>
+        {description && 
+          <Description>
+            {description}
+          </Description>
+        }
+      </TopWrapper>
+      <BottomWrapper bgColor={backgroundColor}>
+        <ImagesWrapper>
+          <FirstImage src={(firstPic.fields.file as any).url} />
+          <SecondImage src={(secondPic.fields.file as any).url} />
+          <ThirdImage src={(thirdPic.fields.file as any).url} />
+        </ImagesWrapper>
+      </BottomWrapper>
     </Wrapper>
   )
 }
@@ -37,7 +45,8 @@ const Case3: React.FC<Case3Props> = ({ data }) => {
 export default Case3
 
 const Wrapper = styled.div`
-  padding: 50px 8vw;
+  margin-top: 30px;
+  padding: 50px 0;
   width: 100%;
   display: flex;
     flex-direction: column;
@@ -45,50 +54,52 @@ const Wrapper = styled.div`
   text-align: center;
 
   @media (max-width: 600px) {
-    padding: 20px 5vw 20px 5vw;
+    text-align: start;
+    padding: 20px 0;
+  }
+`
+
+const TopWrapper = styled.div<{fontColor: string}>`
+  color: ${(props) => props.fontColor} !important;
+  @media (max-width: 600px) {
+    padding: 0px 5vw;
     text-align: start;
   }
 `
 
+const BottomWrapper = styled.div<{bgColor: string}>`
+  background-color: ${(props) => props.bgColor} !important;
+  padding: 30px 0;
+  margin-top: 50px;
+`
+
 const ImagesWrapper = styled.div`
-  padding-top: 50px;
+  padding: 7vw 5vw 7vw 5vw;
   position: relative;
   width: 100%;
+  overflow: hidden;
   display: flex;
-    flex-direction: column;
-    gap: 30px;
+    justify-content: center;
+    gap: 2vw;
 
   @media (max-width: 600px) {
-    padding-top: 20px;
-    gap: 3vw;
+    padding: 0px 5vw 0px 5vw;
   }
 `
 
 const FirstImage = styled.img`
-  width: 100%;
+  width: 42%;
 `
 const SecondImage = styled.img`
-  width: 50%;
+  width: 22%;
 `
 const ThirdImage = styled.img`
-  width: 50%;
-`
-
-const OtherImagesWrapper = styled.div`
-  display: flex;
-    justify-content: center;
-    gap: 30px;
-  width: 100%;
-  overflow: hidden;
-
-  @media (max-width: 600px) {
-    gap: 3vw;
-  }
+  width: 32%;
 `
 
 const Description = styled.div`
   font-family: 'Knockout', sans-serif !important;
-  padding-top: 80px;
+  padding-top: 40px;
   max-width: 850px;
   margin: auto;
   letter-spacing: 2px;
@@ -109,4 +120,6 @@ const Description = styled.div`
     line-height: 4vw;
   }
 `
+
+
 

@@ -2,7 +2,7 @@ import styled from "styled-components";
 import React from 'react'
 import SecondTitleSmall from "@/Components/SecondTitleSmall";
 import FirstTitle from "@/Components/FirstTitle";
-import { IModuleNine, IModuleTwelve } from "@/Types/contentful";
+import { IModuleTwelve } from "@/Types/contentful";
 
 interface Case1Props {
   data: IModuleTwelve

@@ -18,12 +18,16 @@ const Case3: React.FC<Case3Props> = ({ data }) => {
   
   return(
     <Wrapper>
-       <FirstTitle>
-        {firstLineTitle}
-      </FirstTitle>
-      <SecondTitleSmall>
-        {secondLineTitle}
-      </SecondTitleSmall>
+      {firstLineTitle && 
+        <FirstTitle>
+          {firstLineTitle}
+        </FirstTitle>
+      }
+      {secondLineTitle && 
+        <SecondTitleSmall>
+          {secondLineTitle}
+        </SecondTitleSmall>
+      }
       <Description>
         {description}
       </Description>

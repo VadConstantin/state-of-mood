@@ -17,12 +17,16 @@ const Case1: React.FC<Case1Props> = ({ data }) => {
   
   return(
     <Wrapper>
-      <FirstTitle>
-        {firstLineTitle}
-      </FirstTitle>
-      <SecondTitleSmall>
-        {secondLineTitle}
-      </SecondTitleSmall>
+      {firstLineTitle && 
+        <FirstTitle>
+          {firstLineTitle}
+        </FirstTitle>
+      }
+      {secondLineTitle && 
+        <SecondTitleSmall>
+          {secondLineTitle}
+        </SecondTitleSmall>
+      }
       <ImagesWrapper>
         <FirstImage src={firstPic.fields.file?.url as any} />
         <OtherImagesWrapper>
