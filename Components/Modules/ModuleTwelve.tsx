@@ -1,5 +1,6 @@
 import { IModuleTwelve } from "@/Types/contentful"
 import styled from "styled-components"
+import Case1 from "../Mini-Modules/Module12/Case1"
 
 interface ModuleTwelveProps {
   data: IModuleTwelve
@@ -9,8 +10,8 @@ const ModuleTwelve:React.FC<ModuleTwelveProps> = ({ data }) => {
 
   const type = data.fields.type
 
-  if (type === 'Case 1') return null
-  if (type === 'Case 2') return null
+  if (type === 'Case 1') return <Case1 data={data as any} />
+  if (type === 'Case 2') return <div>Heyy</div>
 
   return(
     <Wrapper>

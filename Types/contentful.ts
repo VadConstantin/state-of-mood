@@ -268,8 +268,11 @@ interface ModuleTwelveFields {
   name: string
   type: string
   backgroundColor: string
+  fontColor: string
+  description: string
   firstLineTitle: string
   secondLineTitle: string
+  images: Array<Asset>
 }
 
 export interface IModuleTwelve extends EntrySkeletonType<ModuleTwelveFields> {}
