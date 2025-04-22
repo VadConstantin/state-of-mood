@@ -2,11 +2,11 @@ import WorkTogetherButton from "@/Components/WorkTogetherButton"
 import { IModuleEleven } from "@/Types/contentful"
 import styled from "styled-components"
 
-interface CaseCreditsProps {
+interface CaseOthersProps {
   data: IModuleEleven
 }
 
-const CaseCredits:React.FC<CaseCreditsProps> = ({ data }) => {
+const CaseOthers:React.FC<CaseOthersProps> = ({ data }) => {
 
   const { line1, displayButton } = data.fields
   const line2 = data.fields?.line2 || ''
@@ -18,9 +18,6 @@ const CaseCredits:React.FC<CaseCreditsProps> = ({ data }) => {
 
   return(
     <Wrapper>
-      <Title>
-        Credits
-      </Title>
       <LinesWrapper>
         <Line>
           {line1}
@@ -51,13 +48,13 @@ const CaseCredits:React.FC<CaseCreditsProps> = ({ data }) => {
         </Line>}
       </LinesWrapper>
       {displayButton && <ButtonWrapper>
-        <WorkTogetherButton color={"black"} text={"Let's Work Together"}/>
+        <WorkTogetherButton color={"black"} text={"Get In Touch"}/>
       </ButtonWrapper>}
     </Wrapper>
   )
 }
 
-export default CaseCredits
+export default CaseOthers
 
 
 const Wrapper = styled.div`
@@ -75,8 +72,8 @@ const Wrapper = styled.div`
 `
 
 const Line = styled.div`
-  font-family: 'Knockout', sans-serif !important;
-  font-size: clamp(0.5rem, 0.7vw, 2rem);
+  font-family: 'Americana', sans-serif !important;
+  font-size: clamp(0.9rem, 1.2vw, 2rem);
   letter-spacing: 1px;
   max-width: 900px;
   margin: auto;
@@ -93,7 +90,6 @@ const Line = styled.div`
 `
 
 const LinesWrapper = styled.div`
-  padding-top: 2vw;
   display: flex;
     flex-direction: column;
     gap: 0.2vw;
@@ -109,13 +105,4 @@ const ButtonWrapper = styled.div`
   }
 `
 
-const Title = styled.div`
-  font-family: 'Americana', sans-serif !important;
-  font-size: clamp(1rem, 1.4vw, 2rem);
-  text-transform: uppercase;
-
-  @media (max-width: 600px) {
-    font-size: 2vw;
-  }
-`
 

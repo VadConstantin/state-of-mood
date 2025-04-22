@@ -251,6 +251,7 @@ export interface IModuleTen extends EntrySkeletonType<ModuleTenFields> {}
 interface ModuleElevenFields {
   name: string
   type: string
+  displayButton: boolean
   line1: string
   line2?: string
   line3?: string
