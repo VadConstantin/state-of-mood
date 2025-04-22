@@ -1,23 +1,26 @@
+import { IModuleEleven } from "@/Types/contentful"
 import styled from "styled-components"
+import CaseCredits from "../Mini-Modules/Module11/CaseCredits"
 
-const ModuleEleven = () => {
+interface ModuleElevenProps {
+  data: IModuleEleven
+}
+
+const ModuleEleven:React.FC<ModuleElevenProps> = ({ data }) => {
+
+  const type = data.fields.type
+
+  if (type === 'Credits') return <CaseCredits data={data} />
+
   return(
-    <div>Module Eleven </div>
+    <Wrapper>
+      Couldn't find the module.
+    </Wrapper>
   )
 }
 
 export default ModuleEleven
 
 const Wrapper = styled.div`
-  padding: 50px 8vw;
   width: 100%;
-  display: flex;
-    flex-direction: column;
-    justify-content: center;
-  text-align: center;
-
-  @media (max-width: 600px) {
-    padding: 20px 5vw 20px 5vw;
-    text-align: start;
-  }
 `

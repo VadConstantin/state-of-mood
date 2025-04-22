@@ -11,6 +11,7 @@ import ModuleSeven from "@/Components/Modules/ModuleSeven";
 import ModuleEight from "@/Components/Modules/ModuleEight";
 import ModuleNine from "@/Components/Modules/ModuleNine";
 import ModuleTen from "@/Components/Modules/ModuleTen";
+import ModuleEleven from "@/Components/Modules/ModuleEleven";
 
 interface CaseStudySlugProps {
   caseStudyData: ICaseStudyPage
@@ -38,6 +39,7 @@ const Slug: React.FC<CaseStudySlugProps> = ({ caseStudyData, navData }) => {
           if ((module as any).sys.contentType.sys.id === "moduleEight") return <ModuleEight data={module as any}/>
           if ((module as any).sys.contentType.sys.id === "moduleNine") return <ModuleNine data={module as any}/>
           if ((module as any).sys.contentType.sys.id === "moduleTen") return <ModuleTen data={module as any}/>
+          if ((module as any).sys.contentType.sys.id === "moduleEleven") return <ModuleEleven data={module as any}/>
           
         })}
       </Wrapper>
