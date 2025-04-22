@@ -37,7 +37,6 @@ const Case1: React.FC<Case1Props> = ({ data }) => {
 export default Case1
 
 const Wrapper = styled.div`
-  width: 100%;
   padding: 50px 8vw;
   width: 100%;
   display: flex;

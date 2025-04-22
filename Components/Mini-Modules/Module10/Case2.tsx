@@ -10,8 +10,9 @@ interface Case2Props {
 
 const Case2: React.FC<Case2Props> = ({ data }) => {
 
-  const { firstLineTitle, secondLineTitle, images } = data.fields
+  const { firstLineTitle, secondLineTitle, images, description } = data.fields
   const firstPic = images[0]
+  const secondPic = images[1]
   
   return(
     <Wrapper>
@@ -21,8 +22,12 @@ const Case2: React.FC<Case2Props> = ({ data }) => {
       <SecondTitleSmall>
         {secondLineTitle}
       </SecondTitleSmall>
+      <Description>
+        {description}
+      </Description>
       <ImagesWrapper>
-
+        <CustomImage src={(firstPic.fields.file as any).url} />
+        <CustomImage src={(secondPic.fields.file as any).url} />
       </ImagesWrapper>
     </Wrapper>
   )
@@ -33,7 +38,6 @@ export default Case2
 const Wrapper = styled.div`
   width: 100%;
   padding: 50px 8vw;
-  width: 100%;
   display: flex;
     flex-direction: column;
     justify-content: center;
@@ -56,5 +60,27 @@ const ImagesWrapper = styled.div`
   @media (max-width: 600px) {
     padding-top: 20px;
     gap: 3vw;
+  }
+`
+
+const CustomImage = styled.img`
+  width: 100%;
+`
+
+const Description = styled.div`
+  padding-top: 20px;
+  max-width: 750px;
+  margin: auto;
+  line-height: clamp(1rem, 1.3vw, 2rem);
+  font-size: clamp(0.8rem, 0.8vw, 2rem);
+
+  @media (max-width: 800px) {
+    font-size: 1.5vw;
+    line-height: 1.8vw;
+  }
+
+  @media (max-width: 600px) {
+    font-size: 3vw;
+    line-height: 4vw;
   }
 `

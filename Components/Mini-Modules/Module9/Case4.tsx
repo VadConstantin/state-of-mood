@@ -50,7 +50,6 @@ export default Case4
 const Wrapper = styled.div`
   width: 100%;
   padding: 50px 8vw;
-  width: 100%;
   display: flex;
     flex-direction: column;
     justify-content: center;

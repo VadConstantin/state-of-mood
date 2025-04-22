@@ -1,5 +1,6 @@
 import { IModuleFour } from "@/Types/contentful";
 import styled from "styled-components";
+import WorkTogetherButton from "../WorkTogetherButton";
 
 interface ModuleFourProps {
   moduleFourData: IModuleFour
@@ -66,9 +67,7 @@ const ModuleFour:React.FC<ModuleFourProps> = ({ moduleFourData }) => {
           <Description>
             {firstPartDescription}
           </Description>
-          <WorkTogetherButton color={lineColor} href='mailto:contact@stateofmood.com'>
-            Let's work together
-          </WorkTogetherButton>
+          <WorkTogetherButton color={lineColor} text={"Let's work together"}/>
           <CaseStudyLink href={firstPartSeeCaseStudyLinkSlug}>
             See Case Study
           </CaseStudyLink>
@@ -96,9 +95,7 @@ const ModuleFour:React.FC<ModuleFourProps> = ({ moduleFourData }) => {
           <Description>
             {secondPartDescription}
           </Description>
-          <WorkTogetherButton color={lineColor} href='mailto:contact@stateofmood.com'>
-            Let's work together
-          </WorkTogetherButton>
+          <WorkTogetherButton color={lineColor} text={"let's work together"}/>
           <CaseStudyLink href={secondPartSeeCaseStudyLinkSlug}>
             See Case Study
           </CaseStudyLink>
@@ -242,27 +239,6 @@ const Description = styled.div`
   line-height: clamp(1rem, 1.3vw, 2rem);
   font-size: clamp(0.8rem, 0.8vw, 2rem);
   max-width: 300px;
-`
-const WorkTogetherButton = styled.a<{color: string}>`
-  font-family: 'Knockout', sans-serif !important;
-  text-transform: uppercase;
-  width: max-content;
-  border-radius: none;
-  border: ${(props) => `2px solid ${props.color}`};
-  padding: 1vw 1.5vw 1vw 1.5vw;
-  font-size: clamp(0.6rem, 0.8vw, 2rem);
-  font-weight: 900;
-  letter-spacing: 3px;
-
-  @media (max-width: 800px) {
-    border: ${(props) => `1px solid ${props.color}`};
-    padding: 1.6vw 2.5vw 1.6vw 2.5vw;
-  }
-
-  @media (max-width: 600px) {
-    border: ${(props) => `1px solid ${props.color}`};
-    padding: 2.5vw 3.2vw 2.5vw 3.2vw;
-  }
 `
 
 const CaseStudyLink = styled.a`
