@@ -1,4 +1,4 @@
-import { Asset, EntrySkeletonType } from 'contentful';
+import { Asset, Entry, EntrySkeletonType } from 'contentful';
 
 export interface NavigationFields {
   name: string
@@ -234,3 +234,15 @@ interface ModuleNineFields {
 }
 
 export interface IModuleNine extends EntrySkeletonType<ModuleNineFields> {}
+
+
+interface ModuleTenFields {
+  name: string
+  type: string
+  firstLineTitle: string
+  secondLineTitle: string
+  description?: string
+  images: Array<Asset>
+}
+
+export interface IModuleTen extends EntrySkeletonType<ModuleTenFields> {}
