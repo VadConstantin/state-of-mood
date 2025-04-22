@@ -262,3 +262,14 @@ interface ModuleElevenFields {
 }
 
 export interface IModuleEleven extends EntrySkeletonType<ModuleElevenFields> {}
+
+
+interface ModuleTwelveFields {
+  name: string
+  type: string
+  backgroundColor: string
+  firstLineTitle: string
+  secondLineTitle: string
+}
+
+export interface IModuleTwelve extends EntrySkeletonType<ModuleTwelveFields> {}
