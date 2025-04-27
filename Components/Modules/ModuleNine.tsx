@@ -15,6 +15,7 @@ const ModuleNine:React.FC<ModuleNineProps> = ({ data }) => {
 
   if(type === 'Case 1') return (<Case1 data={data}/>)
   if(type === 'Case 2') return (<Case2 data={data}/>)
+  if(type === 'Case 2bis') return (<Case2 data={data}/>)
   if(type === 'Case 3') return (<Case3 data={data}/>)
   if(type === 'Case 3bis') return (<Case3bis data={data}/>)
   if(type === 'Case 4') return (<Case4 data={data}/>)

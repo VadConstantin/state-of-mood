@@ -276,3 +276,17 @@ interface ModuleTwelveFields {
 }
 
 export interface IModuleTwelve extends EntrySkeletonType<ModuleTwelveFields> {}
+
+
+interface Module13Fields {
+  name: string
+  firstLineTitle: string
+  secondLineTitle: string
+  description: string
+  logos: Array<Asset>
+  firstLogoTitle?: string
+  secondLogoTitle?: string
+  image?: Asset
+}
+
+export interface IModule13 extends EntrySkeletonType<Module13Fields> {}

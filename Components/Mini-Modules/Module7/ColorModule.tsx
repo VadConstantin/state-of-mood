@@ -42,6 +42,11 @@ const Wrapper = styled.div<{bgColor: string}>`
     flex-direction: column;
     justify-content: center;
     text-align: center;
+
+  @media (max-width: 600px) {
+    text-align: start;
+    padding: 20px 5vw;
+  }
 `
 
 const ColorsWrapper = styled.div`

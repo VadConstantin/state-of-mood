@@ -4,13 +4,16 @@ import FirstTitle from "@/Components/FirstTitle";
 import SecondTitleSmall from "@/Components/SecondTitleSmall";
 import { IModuleNine } from "@/Types/contentful";
 
-interface Case2Props {
+interface Case2bisProps {
   data: IModuleNine
 }
 
-const Case2: React.FC<Case2Props> = ({ data }) => {
+const Case2bis: React.FC<Case2bisProps> = ({ data }) => {
 
   const { firstLineTitle, secondLineTitle, images } = data.fields
+  const firstPic = images[0]
+  const secondPic = images[1]
+  const thirdtPic = images[2]
   
   return(
     <Wrapper>
@@ -31,7 +34,7 @@ const Case2: React.FC<Case2Props> = ({ data }) => {
   )
 }
 
-export default Case2
+export default Case2bis
 
 const Wrapper = styled.div`
   width: 100%;

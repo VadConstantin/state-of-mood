@@ -13,12 +13,14 @@ const FontModule:React.FC<FontModuleProps> = ({ data }) => {
 
   return(
     <Wrapper bgColor={backgroundColor}> 
-      <FirstTitle>
-        {firstLineTitle}
-      </FirstTitle>
-      <SecondTitleSmall>
-        {secondLineTitle}
-      </SecondTitleSmall>
+      <Texts>
+        <FirstTitle>
+          {firstLineTitle}
+        </FirstTitle>
+        <SecondTitleSmall>
+          {secondLineTitle}
+        </SecondTitleSmall>
+      </Texts>
       <ImagesWrapper>
         {imagesForFontType.map((image, index: any) => {
           return(
@@ -40,6 +42,10 @@ const Wrapper = styled.div<{bgColor: string}>`
     flex-direction: column;
     justify-content: center;
     text-align: center;
+
+  @media (max-width: 600px) {
+    text-align: start;
+  }
 `
 
 const ImagesWrapper = styled.div`
@@ -53,3 +59,10 @@ const ImagesWrapper = styled.div`
 const CustomImage = styled.img`
   width: 50%;
 `
+
+const Texts = styled.div`
+  @media (max-width: 600px) {
+    padding: 0px 5vw;
+  }
+`
+  

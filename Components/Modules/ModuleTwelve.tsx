@@ -18,7 +18,7 @@ const ModuleTwelve:React.FC<ModuleTwelveProps> = ({ data }) => {
 
   return(
     <Wrapper>
-      Module Twelve
+      Couldn't find Module
     </Wrapper>
   )
 }
