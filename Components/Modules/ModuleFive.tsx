@@ -4,6 +4,7 @@ import Module5Case2 from "../Mini-Modules/Module5/Module5Case2";
 import Module5Case3 from "../Mini-Modules/Module5/Module5Case3";
 import Module5Case4 from "../Mini-Modules/Module5/Module5Case4";
 import Module5Case5 from "../Mini-Modules/Module5/Module5Case5";
+import Module5Case6 from "../Mini-Modules/Module5/Module5Case6";
 
 interface ModuleFiveProps {
   data : IModuleFive
@@ -17,6 +18,7 @@ const ModuleFive:React.FC<ModuleFiveProps> = ({ data }) => {
   if(type === 'Case 3') return <Module5Case3 data={data}/>
   if(type === 'Case 4') return <Module5Case4 data={data}/>
   if(type === 'Case 5') return <Module5Case5 data={data}/>
+  if(type === 'Case 6') return <Module5Case6 data={data}/>
   
   return(
     <div>
