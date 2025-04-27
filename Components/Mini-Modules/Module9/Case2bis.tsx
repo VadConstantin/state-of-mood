@@ -11,9 +11,10 @@ interface Case2bisProps {
 const Case2bis: React.FC<Case2bisProps> = ({ data }) => {
 
   const { firstLineTitle, secondLineTitle, images } = data.fields
+  const description = data.fields?.description || null
   const firstPic = images[0]
   const secondPic = images[1]
-  const thirdtPic = images[2]
+  const thirdPic = images[2]
   
   return(
     <Wrapper>
@@ -23,12 +24,14 @@ const Case2bis: React.FC<Case2bisProps> = ({ data }) => {
       <SecondTitleSmall>
         {secondLineTitle}
       </SecondTitleSmall>
+      {description && 
+      <Description>
+        {description}
+      </Description>}
       <ImagesWrapper>
-        {images.map((image, index) => {
-          return(
-            <CustomImage src={(image.fields.file as any).url} key={index}/>
-          )
-        })}
+        <FirstImage src={(firstPic.fields.file as any).url}/>
+        <SecondImage src={(secondPic.fields.file as any).url}/>
+        <ThirdImage src={(thirdPic.fields.file as any).url}/>
       </ImagesWrapper>
     </Wrapper>
   )
@@ -58,14 +61,39 @@ const ImagesWrapper = styled.div`
   width: 100%;
   display: flex;
     justify-content: space-between;
-    gap: 30px;
+    gap: 10px;
 
   @media (max-width: 600px) {
     padding-top: 20px;
-    gap: 3vw;
+    gap: 1vw;
   }
 `
 
-const CustomImage = styled.img`
-  width: 30%;
+const FirstImage = styled.img`
+  width: 25%;
+`
+const SecondImage = styled.img`
+  width: 35%;
+`
+const ThirdImage = styled.img`
+  width: 40%;
+`
+
+const Description = styled.div`
+  padding-top: 20px;
+  max-width: 750px;
+  margin: auto;
+  line-height: clamp(1rem, 1.3vw, 2rem);
+  font-size: clamp(0.8rem, 0.8vw, 2rem);
+
+  @media (max-width: 800px) {
+    font-size: 1.5vw;
+    line-height: 1.8vw;
+    max-width: 500px;
+  }
+
+  @media (max-width: 600px) {
+    font-size: 3vw;
+    line-height: 4vw;
+  }
 `
