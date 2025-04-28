@@ -1,0 +1,105 @@
+import { IModule15 } from '@/Types/contentful'
+import styled from 'styled-components'
+
+interface Case1Props {
+  data: IModule15
+}
+
+const Case1:React.FC<Case1Props> = ({ data }) => {
+
+  const { title, description, image } = data.fields
+  const description2ndParagraph = data.fields?.description2ndParagraph || null
+
+  return(
+    <Wrapper>
+      <TextsWrapper>
+        <Title>
+          {title}
+        </Title>
+        <Description>
+          {description}
+        </Description>
+        {description2ndParagraph && 
+          <Description>
+            {description2ndParagraph}
+          </Description>
+        }
+      </TextsWrapper>
+      <ImageWrapper>
+        <CustomImage src={(image.fields.file as any).url}/>
+      </ImageWrapper>
+    </Wrapper>
+  )
+}
+
+export default Case1
+
+const Wrapper = styled.div`
+  width: 100%;
+  padding: 50px 8vw;
+  display: flex;
+    justify-content: center;
+    gap: 5vw;
+  background-color: white;
+  color: black;
+  align-items: center;
+
+  @media (max-width: 600px) {
+    padding: 50px 5vw 20px 5vw;
+    text-align: start;
+    flex-wrap: wrap;
+    justify-content: start;
+  }
+`
+
+const Title = styled.div`
+  font-family: 'Knockout', sans-serif !important;
+  max-width: 850px;
+  letter-spacing: 2px;
+  font-weight: 100;
+  line-height: clamp(1rem, 1.6vw, 2rem);
+  font-size: clamp(0.8rem, 0.8vw, 2rem);
+  text-transform: uppercase;
+`
+
+const TextsWrapper = styled.div`
+  width: 50%;
+  display: flex;
+    flex-direction: column;
+    gap: 2vw;
+
+  @media (max-width: 600px) {
+    width: 100%;
+  }
+`
+
+const ImageWrapper = styled.div`
+  width: 50%;
+  display: flex;
+    justify-content: center;
+  
+  @media (max-width: 600px) {
+    width: 100%;
+  }
+`
+
+const Description = styled.div`
+  max-width:600px;
+  line-height: clamp(1rem, 1.3vw, 2rem);
+  font-size: clamp(0.8rem, 0.8vw, 2rem);
+
+  @media (max-width: 800px) {
+    font-size: 1.5vw;
+    line-height: 1.8vw;
+  }
+
+  @media (max-width: 600px) {
+    font-size: 3vw;
+    line-height: 4vw;
+    max-width: 100%;
+  }
+`
+
+const CustomImage = styled.img`
+  width: 100%;
+`

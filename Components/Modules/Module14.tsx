@@ -88,7 +88,7 @@ const Wrapper = styled.div`
   text-align: start;
 
   @media (max-width: 600px) {
-    padding: 20px 5vw 20px 5vw;
+    padding: 50px 5vw 20px 5vw;
     text-align: start;
   }
 `
@@ -103,11 +103,13 @@ const Description = styled.div`
   @media (max-width: 800px) {
     font-size: 1.5vw;
     line-height: 1.8vw;
+    margin: 0;
   }
 
   @media (max-width: 600px) {
     font-size: 3vw;
     line-height: 4vw;
+    margin: 0;
   }
 `
 

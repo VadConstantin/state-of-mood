@@ -16,6 +16,7 @@ import ModuleTwelve from "@/Components/Modules/ModuleTwelve";
 import Footer from "@/Components/Navigation/Footer";
 import Module13 from "@/Components/Modules/Module13";
 import Module14 from "@/Components/Modules/Module14";
+import Module15 from "@/Components/Modules/Module15";
 
 interface CaseStudySlugProps {
   caseStudyData: ICaseStudyPage
@@ -47,6 +48,7 @@ const Slug: React.FC<CaseStudySlugProps> = ({ caseStudyData, navData }) => {
           if ((module as any).sys.contentType.sys.id === "moduleTwelve") return <ModuleTwelve data={module as any}/>
           if ((module as any).sys.contentType.sys.id === "moduleThirteen") return <Module13 data={module as any}/>
           if ((module as any).sys.contentType.sys.id === "moduleFourteen") return <Module14 data={module as any}/>
+          if ((module as any).sys.contentType.sys.id === "moduleFifteen") return <Module15 data={module as any}/>
         })}
       </ModulesWrapper>
       <Footer />

@@ -312,3 +312,18 @@ interface Module14Fields {
 }
 
 export interface IModule14 extends EntrySkeletonType<Module14Fields> {}
+
+
+interface Module15Fields {
+  name: string
+  type: string
+  backgroundColor: string
+  textColor: string
+  title: string
+  description: string
+  description2ndParagraph?: string
+  description3rdParagraph?: string
+  image: Asset
+}
+
+export interface IModule15 extends EntrySkeletonType<Module15Fields> {}
