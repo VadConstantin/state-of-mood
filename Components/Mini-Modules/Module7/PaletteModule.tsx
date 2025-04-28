@@ -9,7 +9,8 @@ interface PaletteModuleProps {
 
 const PaletteModule:React.FC<PaletteModuleProps> = ({ data }) => {
 
-  const {firstLineTitle, secondLineTitle, imagesForPaletteType, backgroundColor } = data.fields
+  const {firstLineTitle, imagesForPaletteType, backgroundColor } = data.fields
+  const secondLineTitle = data.fields?.secondLineTitle || null
 
   return(
     <Wrapper bgColor={backgroundColor}> 
@@ -17,9 +18,11 @@ const PaletteModule:React.FC<PaletteModuleProps> = ({ data }) => {
         <FirstTitle>
           {firstLineTitle}
         </FirstTitle>
-        <SecondTitleSmall>
-          {secondLineTitle}
-        </SecondTitleSmall>
+        {secondLineTitle && 
+          <SecondTitleSmall>
+            {secondLineTitle}
+          </SecondTitleSmall>
+        }
       </Texts>
       <ImagesWrapper>
         {imagesForPaletteType.map((image, index: any) => {
@@ -65,5 +68,4 @@ const Texts = styled.div`
   @media (max-width: 600px) {
     text-align: start;
   }
-
 `

@@ -9,7 +9,8 @@ interface ColorModuleProps {
 
 const ColorModule:React.FC<ColorModuleProps> = ({ data }) => {
 
-  const { backgroundColor, firstLineTitle, secondLineTitle} = data.fields
+  const { backgroundColor, firstLineTitle } = data.fields
+  const secondLineTitle = data.fields?.secondLineTitle || null
   const colors = data.fields.colorsForColorType.split(',')
 
   return(
@@ -17,9 +18,11 @@ const ColorModule:React.FC<ColorModuleProps> = ({ data }) => {
       <FirstTitle>
         {firstLineTitle}
       </FirstTitle>
-      <SecondTitleSmall>
-        {secondLineTitle}
-      </SecondTitleSmall>
+      {secondLineTitle && 
+        <SecondTitleSmall>
+          {secondLineTitle}
+        </SecondTitleSmall>
+      }
       <ColorsWrapper>
         {colors.map((color, index) => {
           return(

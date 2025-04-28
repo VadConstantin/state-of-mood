@@ -9,7 +9,8 @@ interface FontModuleProps {
 
 const FontModule:React.FC<FontModuleProps> = ({ data }) => {
 
-  const {firstLineTitle, secondLineTitle, imagesForFontType, backgroundColor } = data.fields
+  const {firstLineTitle, imagesForFontType, backgroundColor } = data.fields
+  const secondLineTitle = data.fields?.secondLineTitle || null
 
   return(
     <Wrapper bgColor={backgroundColor}> 
@@ -17,9 +18,11 @@ const FontModule:React.FC<FontModuleProps> = ({ data }) => {
         <FirstTitle>
           {firstLineTitle}
         </FirstTitle>
-        <SecondTitleSmall>
-          {secondLineTitle}
-        </SecondTitleSmall>
+        {secondLineTitle && 
+          <SecondTitleSmall>
+            {secondLineTitle}
+          </SecondTitleSmall>
+        }
       </Texts>
       <ImagesWrapper>
         {imagesForFontType.map((image, index: any) => {

@@ -94,8 +94,13 @@ const Description = styled.div`
   line-height: clamp(1rem, 1.3vw, 2rem);
   font-size: clamp(0.8rem, 0.8vw, 2rem);
 
+  @media (max-width: 1000px) {
+    font-size: 1.3vw;
+    line-height: 1.8vw;
+  }
+
   @media (max-width: 800px) {
-    font-size: 1.5vw;
+    font-size: 1.3vw;
     line-height: 1.8vw;
   }
 
@@ -116,9 +121,12 @@ const Texts = styled.div`
     flex-direction: column;
     gap: 2vw;
 
-  
   @media (max-width: 800px) {
     gap: 5vw;
-    padding: 0 0vw;
+    padding: 0vw 5vw;
+  }
+
+  @media (max-width: 600px) {
+    padding: 0;
   }
 `

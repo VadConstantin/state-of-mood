@@ -196,10 +196,11 @@ export interface IModuleSix extends EntrySkeletonType<ModuleSixFields> {}
 
 interface ModuleSevenFields {
   name: string
-  type: "Font" | "Color" | "Palette"
+  type: "Font" | "Color" | "Palette" | "Palette Bis"
   backgroundColor: string
   firstLineTitle: string
-  secondLineTitle: string
+  secondLineTitle?: string
+  description?: string
   imagesForFontType: Array<Asset>
   colorsForColorType: string
   imagesForPaletteType: Array<Asset>
