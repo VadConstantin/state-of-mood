@@ -15,6 +15,7 @@ import ModuleEleven from "@/Components/Modules/ModuleEleven";
 import ModuleTwelve from "@/Components/Modules/ModuleTwelve";
 import Footer from "@/Components/Navigation/Footer";
 import Module13 from "@/Components/Modules/Module13";
+import Module14 from "@/Components/Modules/Module14";
 
 interface CaseStudySlugProps {
   caseStudyData: ICaseStudyPage
@@ -32,12 +33,12 @@ const Slug: React.FC<CaseStudySlugProps> = ({ caseStudyData, navData }) => {
   if (!isMounted) return null;
 
   return(
-    <>
+    <Wrapper>
       <NavBar navData={navData}/>
-      <Wrapper>
+      <ModulesWrapper>
         {caseStudyData.fields.modules.map((module) => {
-          if ((module as any).sys.contentType.sys.id === "moduleFive") return <ModuleFive data={module}/>
-          if ((module as any).sys.contentType.sys.id === "moduleSix") return <ModuleSix data={module}/>
+          if ((module as any).sys.contentType.sys.id === "moduleFive") return <ModuleFive data={module as any}/>
+          if ((module as any).sys.contentType.sys.id === "moduleSix") return <ModuleSix data={module as any}/>
           if ((module as any).sys.contentType.sys.id === "moduleSeven") return <ModuleSeven data={module as any}/>
           if ((module as any).sys.contentType.sys.id === "moduleEight") return <ModuleEight data={module as any}/>
           if ((module as any).sys.contentType.sys.id === "moduleNine") return <ModuleNine data={module as any}/>
@@ -45,10 +46,11 @@ const Slug: React.FC<CaseStudySlugProps> = ({ caseStudyData, navData }) => {
           if ((module as any).sys.contentType.sys.id === "moduleEleven") return <ModuleEleven data={module as any}/>
           if ((module as any).sys.contentType.sys.id === "moduleTwelve") return <ModuleTwelve data={module as any}/>
           if ((module as any).sys.contentType.sys.id === "moduleThirteen") return <Module13 data={module as any}/>
+          if ((module as any).sys.contentType.sys.id === "moduleFourteen") return <Module14 data={module as any}/>
         })}
-      </Wrapper>
+      </ModulesWrapper>
       <Footer />
-    </>
+    </Wrapper>
   )
 }
 
@@ -69,7 +71,11 @@ export const getServerSideProps: GetServerSideProps = async (context: any) => {
   )
 }
 
-const Wrapper = styled.div`
+const ModulesWrapper = styled.div`
   display: flex;
     flex-direction: column;
+`
+
+const Wrapper = styled.div`
+
 `

@@ -1,7 +1,6 @@
 import { IModule13 } from "@/Types/contentful"
 import styled from "styled-components"
 import FirstTitle from "../FirstTitle"
-import MiddleTitle from "../MiddleTitle"
 import SecondTitleSmall from "../SecondTitleSmall"
 
 interface Module13Props {
@@ -47,7 +46,6 @@ const Module13:React.FC<Module13Props> = ({ data }) => {
 }
 
 export default Module13
-
 
 const Wrapper = styled.div`
   margin-top: 30px;

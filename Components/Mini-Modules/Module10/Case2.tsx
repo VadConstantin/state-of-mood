@@ -10,7 +10,8 @@ interface Case2Props {
 
 const Case2: React.FC<Case2Props> = ({ data }) => {
 
-  const { firstLineTitle, secondLineTitle, images, description } = data.fields
+  const { firstLineTitle, secondLineTitle, images } = data.fields
+  const description = data.fields?.description || null 
   const firstPic = images[0]
   const secondPic = images[1]
   
@@ -22,9 +23,11 @@ const Case2: React.FC<Case2Props> = ({ data }) => {
       <SecondTitleSmall>
         {secondLineTitle}
       </SecondTitleSmall>
-      <Description>
-        {description}
-      </Description>
+      {description && 
+        <Description>
+          {description}
+        </Description>
+      }
       <ImagesWrapper>
         <CustomImage src={(firstPic.fields.file as any).url} />
         <CustomImage src={(secondPic.fields.file as any).url} />

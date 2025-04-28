@@ -269,9 +269,9 @@ interface ModuleTwelveFields {
   type: string
   backgroundColor: string
   fontColor: string
-  description: string
-  firstLineTitle: string
-  secondLineTitle: string
+  description?: string
+  firstLineTitle?: string
+  secondLineTitle?: string
   images: Array<Asset>
 }
 
@@ -290,3 +290,25 @@ interface Module13Fields {
 }
 
 export interface IModule13 extends EntrySkeletonType<Module13Fields> {}
+
+
+interface Module14Fields {
+  name: string
+  firstLineTitle: string
+  secondLineTitle: string
+  description?: string
+  image1: Asset
+  image1Caption: string
+  image2: Asset
+  image2Caption: string
+  image3: Asset
+  image3Caption: string
+  image4: Asset
+  image4Caption: string
+  image5: Asset
+  image5Caption: string
+  image6: Asset
+  image6Caption: string
+}
+
+export interface IModule14 extends EntrySkeletonType<Module14Fields> {}

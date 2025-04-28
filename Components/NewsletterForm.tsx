@@ -8,6 +8,7 @@ const NewsletterForm = () => {
 
   const handleSubmit = async (e: any) => {
     e.preventDefault()
+    setEmail('')
     const res = await fetch("/api/subscribe", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -24,6 +25,7 @@ const NewsletterForm = () => {
           Your email address
           <form onSubmit={handleSubmit}>
             <CustomInput type="email" value={email} onChange={(e: any) => {setEmail(e.target.value)}}/>
+            <CustomButton onClick={handleSubmit}> Submit </CustomButton>
           </form>
         </FormWrapper>
         :
@@ -44,6 +46,7 @@ const FormWrapper = styled.div`
   display: flex;;
     gap: 7px;
     flex-wrap: wrap;
+  align-items: center;
 
   @media (max-width: 600px) {
     font-size: 0.6rem;
@@ -81,5 +84,17 @@ const Success = styled.div`
   @media (max-width: 600px) {
     font-size: 0.6rem;
     padding-top: 5px;
+  }
+`
+
+const CustomButton = styled.button`
+  padding: 5px 10px;
+  background-color: white;
+  border-radius: 0;
+  border: solid 1px black;
+  margin-left: 10px;
+
+  @media (max-width: 600px) {
+    font-size: 0.6rem;
   }
 `

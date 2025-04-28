@@ -10,7 +10,9 @@ interface Case2Props {
 
 const Case2: React.FC<Case2Props> = ({ data }) => {
 
-  const { firstLineTitle, secondLineTitle, backgroundColor, images, fontColor } = data.fields
+  const { backgroundColor, images, fontColor } = data.fields
+  const firstLineTitle = data.fields?.firstLineTitle || null
+  const secondLineTitle = data.fields?.firstLineTitle || null
   const firstPic = images[0]
   const secondPic = images[1]
   const thirdPic = images[2]
@@ -18,12 +20,16 @@ const Case2: React.FC<Case2Props> = ({ data }) => {
   
   return(
     <Wrapper bgColor={backgroundColor} fontColor={fontColor}>
-      <FirstTitle>
-        {firstLineTitle}
-      </FirstTitle>
-      <SecondTitleSmall>
-        {secondLineTitle}
-      </SecondTitleSmall>
+      {firstLineTitle && 
+        <FirstTitle>
+          {firstLineTitle}
+        </FirstTitle>
+      }
+      {secondLineTitle && 
+        <SecondTitleSmall>
+          {secondLineTitle}
+        </SecondTitleSmall>
+      }
       <ImagesWrapper>
         <FirstImage src={(firstPic.fields.file as any).url} />
         <SecondImage src={(secondPic.fields.file as any).url} />
@@ -59,6 +65,7 @@ const Wrapper = styled.div<{bgColor: string, fontColor: string}>`
 
 const ImagesWrapper = styled.div`
   padding-top: 50px;
+  padding-bottom: 50px;
   position: relative;
   width: 100%;
   overflow: hidden;
@@ -68,6 +75,7 @@ const ImagesWrapper = styled.div`
 
   @media (max-width: 600px) {
     padding-top: 20px;
+    padding-bottom: 20px;
   }
 `
 
@@ -83,7 +91,6 @@ const ThirdImage = styled.img`
 
 const Description = styled.div`
   font-family: 'Knockout', sans-serif !important;
-  padding-top: 80px;
   max-width: 850px;
   margin: auto;
   letter-spacing: 2px;
@@ -96,7 +103,6 @@ const Description = styled.div`
     letter-spacing: 0.5px;
     font-size: 1.5vw;
     line-height: 3vw;
-    padding-top: 20px;
   }
 
   @media (max-width: 600px) {

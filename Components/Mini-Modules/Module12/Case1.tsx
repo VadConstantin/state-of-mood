@@ -10,18 +10,24 @@ interface Case1Props {
 
 const Case1: React.FC<Case1Props> = ({ data }) => {
 
-  const { firstLineTitle, secondLineTitle, backgroundColor, images, fontColor } = data.fields
+  const { backgroundColor, images, fontColor } = data.fields
+  const firstLineTitle = data.fields?.firstLineTitle || null
+  const secondLineTitle = data.fields?.firstLineTitle || null
   const firstPic = images[0]
   const description = data.fields?.description || null
   
   return(
     <Wrapper bgColor={backgroundColor} fontColor={fontColor}>
-      <FirstTitle>
-        {firstLineTitle}
-      </FirstTitle>
-      <SecondTitleSmall>
-        {secondLineTitle}
-      </SecondTitleSmall>
+      {firstLineTitle && 
+        <FirstTitle>
+          {firstLineTitle}
+        </FirstTitle>
+      }
+      {secondLineTitle && 
+        <SecondTitleSmall>
+          {secondLineTitle}
+        </SecondTitleSmall>
+      }
       <ImagesWrapper>
         <CustomImage src={(firstPic.fields.file as any).url} />
       </ImagesWrapper>
@@ -55,6 +61,7 @@ const Wrapper = styled.div<{bgColor: string, fontColor: string}>`
 
 const ImagesWrapper = styled.div`
   padding-top: 50px;
+  padding-bottom: 50px;
   position: relative;
   width: 100%;
   display: flex;

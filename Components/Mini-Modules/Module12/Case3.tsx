@@ -10,7 +10,9 @@ interface Case3Props {
 
 const Case3: React.FC<Case3Props> = ({ data }) => {
 
-  const { firstLineTitle, secondLineTitle, backgroundColor, images, fontColor } = data.fields
+  const { backgroundColor, images, fontColor } = data.fields
+  const firstLineTitle = data.fields?.firstLineTitle || null
+  const secondLineTitle = data.fields?.firstLineTitle || null
   const firstPic = images[0]
   const secondPic = images[1]
   const thirdPic = images[2]
@@ -19,12 +21,16 @@ const Case3: React.FC<Case3Props> = ({ data }) => {
   return(
     <Wrapper>
       <TopWrapper fontColor={fontColor}>
-        <FirstTitle>
-          {firstLineTitle}
-        </FirstTitle>
-        <SecondTitle>
-          {secondLineTitle}
-        </SecondTitle>
+        {firstLineTitle && 
+          <FirstTitle>
+            {firstLineTitle}
+          </FirstTitle>
+        }
+        {secondLineTitle && 
+          <SecondTitle>
+            {secondLineTitle}
+          </SecondTitle>
+        }
         {description && 
           <Description>
             {description}
