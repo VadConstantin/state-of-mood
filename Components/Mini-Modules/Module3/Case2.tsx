@@ -28,6 +28,7 @@ const Case2:React.FC<Case2Props> = ({ moduleThreeData }) => {
               <StudyCaseTitle>
                 {caseStudy.fields?.name}
               </StudyCaseTitle>
+              <LineFiller />
               <SlugLink href={"/case-study/"+caseStudy.fields?.slug}>
                 CASE STUDY
               </SlugLink>
@@ -49,12 +50,19 @@ const Wrapper = styled.div<{backgroundColor: string}>`
   background-color: ${({ backgroundColor }) => backgroundColor};
   color: white;
   display: flex;
-    flex-wrap: wrap;
+
   justify-content: space-around;
   padding: 100px 50px 100px 50px;
 
+  @media (max-width: 800px) {
+    flex-direction: column;
+    flex-wrap: wrap;
+    padding: 30px 8vw 30px 8vw;
+  }
+
   @media (max-width: 600px) {
     padding: 0 5vw 15vw 5vw;
+    align-items: start;
   }
 `
 
@@ -62,6 +70,10 @@ const CaseStudiesWrapper = styled.div`
   display: flex;
     flex-direction: column;
     gap: 2vw;
+
+    @media (max-width: 600px) {
+      gap: 4vw;
+    }
 `
 
 const CaseStudy = styled.div`
@@ -80,8 +92,14 @@ const TextsWrapper = styled.div`
     padding: 0px 20px 50px 20px;
   }
 
+  @media (max-width: 800px) {
+    width: 90%;
+    font-size: 1.7vw;
+  }
+
   @media (max-width: 600px) {
     padding: 50px 0;
+    font-size: 1.8vw;
   }
 `
 
@@ -104,8 +122,18 @@ const SecondLine = styled.div`
 const SlugLink = styled.a`
   color: white;
   font-family: 'Knockout', sans-serif !important;
+  text-decoration: underline;
+  text-underline-offset: 3px;
 `
 
 const StudyCaseTitle = styled.div`
   font-family: 'Knockout', sans-serif !important;
+`
+
+const LineFiller = styled.div`
+  flex: 1;
+  height: 1px;
+  background-color: white;
+  align-self: center;
+  margin: 0 10px;
 `
