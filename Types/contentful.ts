@@ -71,14 +71,16 @@ export interface IModuleTwo extends EntrySkeletonType<ModuleTwoFields> {}
 
 export interface ModuleThreeFields {
   name: string
+  type: string
   backgroundColor: string
   picture: Asset
-  tag: string
+  tag?: string
   titleFirstLine: string
   titleSecondLine?: string
-  description: string
-  linkTitle: string
-  linkSlug: string
+  description?: string
+  linkTitle?: string
+  linkSlug?: string
+  caseStudies: Array<ICaseStudyPage>
 }
 
 export interface IModuleThree extends EntrySkeletonType<ModuleThreeFields> {}
@@ -105,6 +107,7 @@ export interface WhatWeDoPageFields {
   bannerSecondTitle: string
   bannerDescription: string
   moduleFour: IModuleFour
+  modules: Array< IModuleFour | IModuleThree >
 }
 
 export interface IWhatWeDoPage extends EntrySkeletonType<WhatWeDoPageFields> {}
@@ -164,7 +167,17 @@ export interface IModuleFive extends EntrySkeletonType<ModuleFiveFieds> {}
 export interface CaseStudyPageFieds {
   name: string
   slug: string
-  modules: Array<IModuleFive>
+  modules: Array<IModuleFive | IModuleSix
+                             | IModuleSeven  
+                             | IModuleEight 
+                             | IModuleNine 
+                             | IModuleTen 
+                             | IModuleEleven
+                             | IModuleTwelve
+                             | IModule13
+                             | IModule14
+                             | IModule15
+                             >
 }
 
 export interface ICaseStudyPage extends EntrySkeletonType<CaseStudyPageFieds> {}

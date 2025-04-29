@@ -1,12 +1,13 @@
 import NavBar from "@/Components/Navigation/NavBar";
 import styled from "styled-components";
 import { GetServerSideProps } from "next";
-import { IModuleFour, INavigation, IWhatWeDoPage } from '@/Types/contentful';
+import { IModuleFour, IModuleThree, INavigation, IWhatWeDoPage } from '@/Types/contentful';
 import { Entry } from 'contentful';
 import { getNavigationData, getWhatWeDoPageData } from "@/Services/get_contentful_data";
 import { useEffect, useState } from "react";
 import Footer from "@/Components/Navigation/Footer";
 import ModuleFour from "@/Components/Modules/ModuleFour";
+import ModuleThree from "@/Components/Modules/ModuleThree";
 
 interface IndexProps {
   navData: Entry<INavigation>
@@ -14,6 +15,7 @@ interface IndexProps {
 }
 
 const Index:React.FC<IndexProps> = ({ navData, whatWeDoPageData }) => {
+
   const [isMounted, setIsMounted] = useState(false);
   useEffect(() => {
     setIsMounted(true);
@@ -23,6 +25,7 @@ const Index:React.FC<IndexProps> = ({ navData, whatWeDoPageData }) => {
 
   const imageUrl = (whatWeDoPageData.fields.bannerImage as any).fields.file.url
   const { bannerMainTitle, bannerSecondTitle, bannerRectangleColor, bannerTextColor, bannerDescription } = whatWeDoPageData.fields
+  const modules = whatWeDoPageData.fields?.modules || []
   
   return(
     <Wrapper>
@@ -42,7 +45,12 @@ const Index:React.FC<IndexProps> = ({ navData, whatWeDoPageData }) => {
           </TextsWrapper>
         </BannerRectangle>
       </BannerWrapper>
-      <ModuleFour moduleFourData={whatWeDoPageData.fields.moduleFour as any}/>
+      <ModulesWrapper>
+        {(modules as any).map((module: any, index: any) => {
+          if (module.sys.contentType.sys.id === "moduleFour") return <ModuleFour moduleFourData={module as IModuleFour} key={index}/>
+          if (module.sys.contentType.sys.id === "moduleThree") return <ModuleThree moduleThreeData={module as IModuleThree} key={index}/>
+        })}
+      </ModulesWrapper>
       <Footer />
     </Wrapper>
   )
@@ -145,4 +153,9 @@ const TextsWrapper = styled.div`
   @media (max-width: 800px) {
     padding: 0;
   }
+`
+
+const ModulesWrapper = styled.div`
+  display: flex;
+    flex-direction: column;
 `

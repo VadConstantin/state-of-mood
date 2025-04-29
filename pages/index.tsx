@@ -1,7 +1,7 @@
 import NavBar from "@/Components/Navigation/NavBar";
 import styled from "styled-components";
 import { GetServerSideProps } from "next";
-import { IHomePage, INavigation } from '@/Types/contentful';
+import { IHomePage, IModuleThree, INavigation } from '@/Types/contentful';
 import { Entry } from 'contentful';
 import { getHomePageData, getNavigationData } from "@/Services/get_contentful_data";
 import { useEffect, useState } from "react";
@@ -32,7 +32,7 @@ const Index:React.FC<HomePageProps> = ({ navData, homePageData }) => {
       <NavBar navData={navData}/>
       <ModuleOneCarousel modulesOneData={homePageData.fields.modulesOne}/>
       <ModuleTwo moduleTwoData={homePageData.fields.moduleTwo} />
-      <ModuleThree moduleThreeData={homePageData.fields.moduleThree}/>
+      <ModuleThree moduleThreeData={homePageData.fields.moduleThree as any}/>
       <Footer />
     </Wrapper>
   )

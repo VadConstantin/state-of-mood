@@ -113,7 +113,7 @@ const Wrapper = styled.div<{backgroundColor: string, color: string}>`
   color: ${({color}) => color};
 
   @media (max-width: 600px) {
-    padding: 50px 20px 50px 20px;
+    padding: 50px 5vw 50px 5vw;
   }
 `
 

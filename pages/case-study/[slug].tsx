@@ -1,4 +1,4 @@
-import { ICaseStudyPage, INavigation, } from "@/Types/contentful";
+import { ICaseStudyPage, IModuleEight, IModuleFive, IModuleNine, IModuleSeven, IModuleSix, IModuleTwo, INavigation, } from "@/Types/contentful";
 import { Entry } from 'contentful';
 import styled from "styled-components";
 import { useEffect, useState } from "react";
@@ -33,22 +33,31 @@ const Slug: React.FC<CaseStudySlugProps> = ({ caseStudyData, navData }) => {
 
   if (!isMounted) return null;
 
+  if (!caseStudyData.fields.modules) {
+    return(
+      <Wrapper>
+        <NavBar navData={navData}/>
+        <NoModules>{"No Modules uploaded :-("}</NoModules>
+      </Wrapper>
+    )
+  }
+
   return(
     <Wrapper>
       <NavBar navData={navData}/>
       <ModulesWrapper>
-        {caseStudyData.fields.modules.map((module) => {
-          if ((module as any).sys.contentType.sys.id === "moduleFive") return <ModuleFive data={module as any}/>
-          if ((module as any).sys.contentType.sys.id === "moduleSix") return <ModuleSix data={module as any}/>
-          if ((module as any).sys.contentType.sys.id === "moduleSeven") return <ModuleSeven data={module as any}/>
-          if ((module as any).sys.contentType.sys.id === "moduleEight") return <ModuleEight data={module as any}/>
-          if ((module as any).sys.contentType.sys.id === "moduleNine") return <ModuleNine data={module as any}/>
-          if ((module as any).sys.contentType.sys.id === "moduleTen") return <ModuleTen data={module as any}/>
-          if ((module as any).sys.contentType.sys.id === "moduleEleven") return <ModuleEleven data={module as any}/>
-          if ((module as any).sys.contentType.sys.id === "moduleTwelve") return <ModuleTwelve data={module as any}/>
-          if ((module as any).sys.contentType.sys.id === "moduleThirteen") return <Module13 data={module as any}/>
-          if ((module as any).sys.contentType.sys.id === "moduleFourteen") return <Module14 data={module as any}/>
-          if ((module as any).sys.contentType.sys.id === "moduleFifteen") return <Module15 data={module as any}/>
+        {caseStudyData.fields.modules.map((module, index) => {
+          if ((module as any).sys.contentType.sys.id === "moduleFive") return <ModuleFive data={module as IModuleFive} key={index}/>
+          if ((module as any).sys.contentType.sys.id === "moduleSix") return <ModuleSix data={module as IModuleSix} key={index}/>
+          if ((module as any).sys.contentType.sys.id === "moduleSeven") return <ModuleSeven data={module as IModuleSeven}key={index}/>
+          if ((module as any).sys.contentType.sys.id === "moduleEight") return <ModuleEight data={module as IModuleEight} key={index}/>
+          if ((module as any).sys.contentType.sys.id === "moduleNine") return <ModuleNine data={module as IModuleNine}key={index}/>
+          if ((module as any).sys.contentType.sys.id === "moduleTen") return <ModuleTen data={module as any} key={index}/>
+          if ((module as any).sys.contentType.sys.id === "moduleEleven") return <ModuleEleven data={module as any} key={index}/>
+          if ((module as any).sys.contentType.sys.id === "moduleTwelve") return <ModuleTwelve data={module as any} key={index}/>
+          if ((module as any).sys.contentType.sys.id === "moduleThirteen") return <Module13 data={module as any} key={index}/>
+          if ((module as any).sys.contentType.sys.id === "moduleFourteen") return <Module14 data={module as any} key={index}/>
+          if ((module as any).sys.contentType.sys.id === "moduleFifteen") return <Module15 data={module as any} key={index}/>
         })}
       </ModulesWrapper>
       <Footer />
@@ -80,4 +89,12 @@ const ModulesWrapper = styled.div`
 
 const Wrapper = styled.div`
 
+`
+
+const NoModules = styled.div`
+  padding: 50px 8vw 50px 8vw;
+
+  @media (max-width: 600px) {
+    padding: 30px 5vw 30px 5vw;
+  }
 `

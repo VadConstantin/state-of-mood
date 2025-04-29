@@ -9,7 +9,8 @@ import { INavLink,
         IWeeklySelectionModule, 
         IWhatWeDoPage, 
         IModuleFive,
-        ICaseStudyPage } from '../Types/contentful';
+        ICaseStudyPage, 
+        IModuleThree} from '../Types/contentful';
 
 const contentful = createClient({
   space: process.env.NEXT_PUBLIC_CONTENTFUL_SPACE_ID || '',
@@ -576,7 +577,7 @@ export const getNavigationData = async () => {
 export const getHomePageData = async ():Promise<Entry<IHomePage>> => {
   const entries = await contentful.getEntries<IHomePage>({
     content_type: 'homePage'
-  }as any)
+  } as any)
 
   await enrichModuleTwo(entries.items[0])
   return entries.items[0]
@@ -585,12 +586,11 @@ export const getHomePageData = async ():Promise<Entry<IHomePage>> => {
 export const getWhatWeDoPageData = async ():Promise<Entry<IWhatWeDoPage>> => {
   const entries = await contentful.getEntries<IWhatWeDoPage>({
     content_type: 'pageWhatWeDo'
-  }as any)
+  } as any)
 
+  await enrichModuleThree(entries.items[0])
   return entries.items[0]
 }
-
-
 
 export const getCaseStudyData = async (slug: string): Promise<Entry<ICaseStudyPage>> => {
   const entries = await contentful.getEntries<ICaseStudyPage>({
@@ -599,7 +599,33 @@ export const getCaseStudyData = async (slug: string): Promise<Entry<ICaseStudyPa
   } as any)
 
   return  entries.items[0]
-
 }
+
+export const enrichModuleThree = async (entry: Entry<IWhatWeDoPage>) => {
+  await Promise.all(
+    (entry.fields.modules as any).map( async (module: any, index: any) => {
+      if (module.sys.contentType.sys.id === 'moduleThree') {
+        if (module.fields.type === 'Case 2') {
+          if (module.fields.caseStudies) {
+            const idsToGet = module.fields.caseStudies.map((caseStudy: any) => caseStudy.sys.id )
+                
+            const caseStudiesInfo = await contentful.getEntries<ICaseStudyPage>({
+            content_type: 'pageCaseStudy',
+            'sys.id[in]': idsToGet.join(',')
+            })
+
+            caseStudiesInfo.items.sort((itemA, itemB) =>
+            idsToGet.indexOf(itemA.sys.id) < idsToGet.indexOf(itemB.sys.id) ? -1 : 1
+            );
+
+            ((entry.fields.modules[index] as any).fields).caseStudies = caseStudiesInfo.items
+
+          }
+        }
+      }
+    })
+  )
+}
+
 
 
