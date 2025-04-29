@@ -627,5 +627,13 @@ export const enrichModuleThree = async (entry: Entry<IWhatWeDoPage>) => {
   )
 }
 
+export const getCasesStudyData = async (): Promise<Array<Entry<ICaseStudyPage>>> => {
+  const entries = await contentful.getEntries<ICaseStudyPage>({
+    content_type: 'pageCaseStudy'
+  })
+
+  return entries.items
+}
+
 
 

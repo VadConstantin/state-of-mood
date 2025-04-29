@@ -167,6 +167,9 @@ export interface IModuleFive extends EntrySkeletonType<ModuleFiveFieds> {}
 export interface CaseStudyPageFieds {
   name: string
   slug: string
+  picture: Asset
+  color: string
+  textColor: string
   modules: Array<IModuleFive | IModuleSix
                              | IModuleSeven  
                              | IModuleEight 

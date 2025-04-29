@@ -29,7 +29,7 @@ const Case2:React.FC<Case2Props> = ({ moduleThreeData }) => {
                 {caseStudy.fields?.name}
               </StudyCaseTitle>
               <LineFiller />
-              <SlugLink href={"/case-study/"+caseStudy.fields?.slug}>
+              <SlugLink href={"/cases-study/" + caseStudy.fields?.slug}>
                 CASE STUDY
               </SlugLink>
             </CaseStudy>
@@ -67,12 +67,14 @@ const Wrapper = styled.div<{backgroundColor: string}>`
 `
 
 const CaseStudiesWrapper = styled.div`
+  padding-top: 50px;
   display: flex;
     flex-direction: column;
     gap: 2vw;
 
     @media (max-width: 600px) {
       gap: 4vw;
+      padding-top: 30px;
     }
 `
 
