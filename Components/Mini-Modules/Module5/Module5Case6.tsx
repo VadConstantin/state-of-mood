@@ -54,7 +54,7 @@ export default Module5Case6
 
 const Wrapper = styled.div`
   margin-top: 30px;
-  padding: 50px 0;
+  padding: 50px 0 20px;
   width: 100%;
   display: flex;
     flex-direction: column;

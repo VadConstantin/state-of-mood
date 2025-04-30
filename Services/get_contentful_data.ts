@@ -12,13 +12,13 @@ import { INavLink,
         ICaseStudyPage, 
         IModuleThree,
         IThoughtsOnDesignPage,
-        IArticlePage} from '../Types/contentful';
+        IArticlePage,
+        IMoodboardPage} from '../Types/contentful';
 
 const contentful = createClient({
   space: process.env.NEXT_PUBLIC_CONTENTFUL_SPACE_ID || '',
   accessToken: process.env.NEXT_PUBLIC_CONTENTFUL_ACCESS_TOKEN || '',
 })
-
 
 
 const enrichModuleTwo = async (entry: Entry<IHomePage>) => {
@@ -653,10 +653,17 @@ export const getArticlePageData = async (slug: string): Promise<Entry<IArticlePa
     'fields.slug': slug
   } as any)
 
-  console.log("hiiiiii ==>", entries.items[0]);
-  
-
   return entries.items[0]
+}
+
+
+export const getMoodboardPageData = async (slug: string): Promise<Entry<IMoodboardPage>> => {
+    const entries = await contentful.getEntries<IMoodboardPage>({
+        content_type: "pageMoodboard",
+        'fields.slug': slug
+    } as any)
+
+    return entries.items[0]
 }
 
 

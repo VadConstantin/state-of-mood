@@ -12,6 +12,7 @@ interface IndexProps {
   navData: Entry<INavigation>
 }
 
+// const Index:React.FC<IndexProps> = ({ casesStudy, navData }) => {
 const Index:React.FC<IndexProps> = ({ casesStudy, navData }) => {
 
   const [isMounted, setIsMounted] = useState(false);
@@ -47,7 +48,6 @@ const Index:React.FC<IndexProps> = ({ casesStudy, navData }) => {
 export default Index
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
-  const locale = context.locale;
   const navData = await getNavigationData()
   const homePageData = await getHomePageData()
   const casesStudy = await getCasesStudyData()

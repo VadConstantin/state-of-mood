@@ -17,10 +17,11 @@ const Module5Case3: React.FC<Props> = ({ data }) => {
   const description = data.fields.description
   const pictureHasBorderColor = data.fields.firstImageBackgroundColor || null
   const isTextBefore = data.fields.isTextBefore
+  const plainImages = data.fields.plainImages
   
   return(
     <Wrapper isTextBefore={isTextBefore as string}>
-      {pictureHasBorderColor ? 
+      {(pictureHasBorderColor && !plainImages) ? 
           <PictureBorder src={image.fields.file?.url as any} borderColor={pictureHasBorderColor}/> 
         : <Picture src={image.fields.file?.url as any} /> 
       }

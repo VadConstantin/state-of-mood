@@ -360,7 +360,7 @@ export interface IThoughtsOnDesignPage extends EntrySkeletonType<ThoughtsOnDesig
 interface ArticlePageFields {
   name: string
   linkTitleForFocusPage: string
-  tagForFocusPage: string
+  tagForFocusPage: "DESIGN" | "ILLUSTRATION" | "PHOTO" | "ART" | "GRAPHISM"
   pictureForFocusPage: Asset
   firstLineTitleForFocusPage: string
   secondLineTitleForFocusPage: string
@@ -382,3 +382,34 @@ interface ArticlePageFields {
 }
 
 export interface IArticlePage extends EntrySkeletonType<ArticlePageFields> {}
+
+
+interface MoodboardPageFields {
+  name: string
+  slug: string
+  tagForMoodsPage: "URBAN" | "LUXE" | "MATIÈRES" | "STYLE"
+  pictureForMoodsPage: Asset
+  firstLineTitleForMoodsPage: string
+  secondLineTitleForMoodsPage?: string
+  middleTitleForMoodsPage?: string
+  descriptionForMoodsPage?: string
+  firstSquareColorForMoodsPage: string
+  secondSquareColorForMoodsPage: string
+  modules: Array<
+  IModuleThree
+  | IModuleFour
+  | IModuleFive 
+  | IModuleSix
+  | IModuleSeven  
+  | IModuleEight 
+  | IModuleNine 
+  | IModuleTen 
+  | IModuleEleven
+  | IModuleTwelve
+  | IModule13
+  | IModule14
+  | IModule15
+  >
+}
+
+export interface IMoodboardPage extends EntrySkeletonType<MoodboardPageFields> {}

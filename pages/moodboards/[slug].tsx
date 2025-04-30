@@ -1,11 +1,12 @@
-import { getNavigationData, getArticlePageData } from '@/Services/get_contentful_data'
-import { IArticlePage, IModuleEight, IModuleFive, IModuleNine, IModuleSeven, IModuleSix, IModuleThree, INavigation, IModuleFour } from '@/Types/contentful'
+import NavBar from '@/Components/Navigation/NavBar'
+import { getMoodboardPageData, getNavigationData } from '@/Services/get_contentful_data'
+import { IMoodboardPage, INavigation, IModuleEight, IModuleFive, IModuleNine, IModuleSeven, IModuleSix, IModuleThree, IModuleFour } from '@/Types/contentful'
+import { Entry } from 'contentful'
 import { GetServerSideProps } from 'next'
-import styled from 'styled-components'
-import { Entry } from 'contentful';
 import { useEffect, useState } from 'react'
+import Footer from "@/Components/Navigation/Footer";
+import styled from 'styled-components'
 import ModuleFive from "@/Components/Modules/ModuleFive";
-import NavBar from "@/Components/Navigation/NavBar";
 import ModuleSix from "@/Components/Modules/ModuleSix";
 import ModuleSeven from "@/Components/Modules/ModuleSeven";
 import ModuleEight from "@/Components/Modules/ModuleEight";
@@ -13,20 +14,19 @@ import ModuleNine from "@/Components/Modules/ModuleNine";
 import ModuleTen from "@/Components/Modules/ModuleTen";
 import ModuleEleven from "@/Components/Modules/ModuleEleven";
 import ModuleTwelve from "@/Components/Modules/ModuleTwelve";
-import Footer from "@/Components/Navigation/Footer";
 import Module13 from "@/Components/Modules/Module13";
 import Module14 from "@/Components/Modules/Module14";
 import Module15 from "@/Components/Modules/Module15";
 import ModuleFour from '@/Components/Modules/ModuleFour';
 import ModuleThree from '@/Components/Modules/ModuleThree';
 
-
 interface SlugProps {
-  data: IArticlePage
+  data: IMoodboardPage
   navData: Entry<INavigation>
 }
 
 const Slug:React.FC<SlugProps> = ({ data, navData }) => {
+
   const [isMounted, setIsMounted] = useState(false);
 
   useEffect(() => {
@@ -34,16 +34,6 @@ const Slug:React.FC<SlugProps> = ({ data, navData }) => {
   }, []);
 
   if (!isMounted) return null;
-
-  if (!data?.fields.modules) {
-    return(
-      <Wrapper>
-        <NavBar navData={navData}/>
-        <NoModules>{"No Modules uploaded :-("}</NoModules>
-        <Footer bottomFixed/>
-      </Wrapper>
-    )
-  }
 
   return(
     <Wrapper>
@@ -68,23 +58,21 @@ const Slug:React.FC<SlugProps> = ({ data, navData }) => {
       <Footer />
     </Wrapper>
   )
-} 
+}
 
 export default Slug
 
-export const getServerSideProps: GetServerSideProps = async (context: any) => {
+export const getServerSideProps:GetServerSideProps = async (context: any) => {
+  const { slug } = context.params
+  const data = await getMoodboardPageData(slug)
   const navData = await getNavigationData()
-  const slug = context.params.slug
-  const data = await getArticlePageData(slug)
-  
-  return(
-    {
-      props: {
-        data,
-        navData
-      }
+
+  return {
+    props: {
+      data,
+      navData
     }
-  )
+  }
 }
 
 const ModulesWrapper = styled.div`
@@ -93,13 +81,5 @@ const ModulesWrapper = styled.div`
 `
 
 const Wrapper = styled.div`
-
-`
-
-const NoModules = styled.div`
-  padding: 50px 8vw 50px 8vw;
-
-  @media (max-width: 600px) {
-    padding: 30px 5vw 30px 5vw;
-  }
+  width: 100%;
 `
