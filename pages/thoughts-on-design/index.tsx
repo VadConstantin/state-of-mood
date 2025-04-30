@@ -9,6 +9,7 @@ import FirstTitle from "@/Components/FirstTitle";
 import SecondTitleSmall from "@/Components/SecondTitleSmall";
 import MiddleTitleSmall from "@/Components/MiddleTitleSmall";
 import ModuleThree from "@/Components/Modules/ModuleThree";
+import { motion, AnimatePresence } from "framer-motion";
 
 interface IndexProps {
   data: IThoughtsOnDesignPage
@@ -57,12 +58,24 @@ const Index:React.FC<IndexProps> = ({ data, navData }) => {
         </SearchWrapper>
       </TopWrapper>
       <ModulesWrapper>
-      {filteredModules.length > 0 ? (
-        filteredModules.map((module, index) => (
-          <ModuleThree moduleThreeData={module as IModuleThree} key={index}/>
-        ))
-      ) : <></>
-      }
+        <AnimatePresence mode="wait">
+          <motion.div key={searchText}>
+            {filteredModules.length > 0 ? (
+              filteredModules.map((module, index) => (
+                <motion.div
+                  key={index}
+                  initial={{ opacity: 0, y: 0 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: 0 }}
+                  transition={{ duration: 0.3, ease: "easeOut" }}
+                >
+                  <ModuleThree moduleThreeData={module as IModuleThree} key={index}/>
+                </motion.div>
+              ))
+            ) : <></>
+            }
+          </motion.div>
+        </AnimatePresence>
       </ModulesWrapper>
       <Footer bottomFixed={filteredModules.length < 1}/>
     </Wrapper>

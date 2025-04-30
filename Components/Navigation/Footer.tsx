@@ -64,7 +64,7 @@ const Wrapper = styled.div<{bFixed: boolean}>`
   }
   
   @media (max-width: 600px) {
-    padding: 5vw 5vw 15vw 5vw;
+    padding: 5vw 5vw 5vw 5vw;
     justify-content: space-around;
     gap: 5vw;
   }
@@ -101,8 +101,6 @@ const Title = styled.div`
   @media (max-width: 600px) {
     font-size: 0.5rem;
   }
-
-
 `
 
 const Links = styled.div`

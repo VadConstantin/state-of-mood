@@ -666,5 +666,14 @@ export const getMoodboardPageData = async (slug: string): Promise<Entry<IMoodboa
     return entries.items[0]
 }
 
+export const getAllMoodPages = async (): Promise<Array<Entry<IMoodboardPage>>> => {
+
+    const entries = await contentful.getEntries<IMoodboardPage>({
+        content_type: 'pageMoodboard'
+    })
+
+    return entries.items
+}
+
 
 

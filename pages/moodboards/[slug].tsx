@@ -1,6 +1,6 @@
 import NavBar from '@/Components/Navigation/NavBar'
 import { getMoodboardPageData, getNavigationData } from '@/Services/get_contentful_data'
-import { IMoodboardPage, INavigation, IModuleEight, IModuleFive, IModuleNine, IModuleSeven, IModuleSix, IModuleThree, IModuleFour } from '@/Types/contentful'
+import { IMoodboardPage, INavigation, IModuleEight, IModuleFive, IModuleNine, IModuleSeven, IModuleSix, IModuleThree, IModuleFour, IModuleTen, IModuleEleven, IModuleTwelve, IModule13, IModule14, IModule15 } from '@/Types/contentful'
 import { Entry } from 'contentful'
 import { GetServerSideProps } from 'next'
 import { useEffect, useState } from 'react'
@@ -47,12 +47,12 @@ const Slug:React.FC<SlugProps> = ({ data, navData }) => {
           if ((module as any).sys.contentType.sys.id === "moduleSeven") return <ModuleSeven data={module as IModuleSeven}key={index}/>
           if ((module as any).sys.contentType.sys.id === "moduleEight") return <ModuleEight data={module as IModuleEight} key={index}/>
           if ((module as any).sys.contentType.sys.id === "moduleNine") return <ModuleNine data={module as IModuleNine}key={index}/>
-          if ((module as any).sys.contentType.sys.id === "moduleTen") return <ModuleTen data={module as any} key={index}/>
-          if ((module as any).sys.contentType.sys.id === "moduleEleven") return <ModuleEleven data={module as any} key={index}/>
-          if ((module as any).sys.contentType.sys.id === "moduleTwelve") return <ModuleTwelve data={module as any} key={index}/>
-          if ((module as any).sys.contentType.sys.id === "moduleThirteen") return <Module13 data={module as any} key={index}/>
-          if ((module as any).sys.contentType.sys.id === "moduleFourteen") return <Module14 data={module as any} key={index}/>
-          if ((module as any).sys.contentType.sys.id === "moduleFifteen") return <Module15 data={module as any} key={index}/>
+          if ((module as any).sys.contentType.sys.id === "moduleTen") return <ModuleTen data={module as IModuleTen} key={index}/>
+          if ((module as any).sys.contentType.sys.id === "moduleEleven") return <ModuleEleven data={module as IModuleEleven} key={index}/>
+          if ((module as any).sys.contentType.sys.id === "moduleTwelve") return <ModuleTwelve data={module as IModuleTwelve} key={index}/>
+          if ((module as any).sys.contentType.sys.id === "moduleThirteen") return <Module13 data={module as IModule13} key={index}/>
+          if ((module as any).sys.contentType.sys.id === "moduleFourteen") return <Module14 data={module as IModule14} key={index}/>
+          if ((module as any).sys.contentType.sys.id === "moduleFifteen") return <Module15 data={module as IModule15} key={index}/>
         })}
       </ModulesWrapper>
       <Footer />
