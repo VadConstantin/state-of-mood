@@ -53,7 +53,7 @@ const Index:React.FC<IndexProps> = ({ data, navData }) => {
           <form>
             <CustomInput type="text" value={searchText} onChange={(e: any) => {handleChange(e)}} placeholder="SEARCH" aria-label="Search modules"/>
           </form>
-          <SearchIcon src="/search-icon.png" alt="Search Icon" />
+          <SearchIcon src="/search-icon.png" alt="Search Icon"/>
         </SearchWrapper>
       </TopWrapper>
       <ModulesWrapper>
@@ -152,8 +152,6 @@ const CustomInput = styled.input`
       letter-spacing: 2px;
     }
   }
-
-
 `
 
 const SearchIcon = styled.img`
