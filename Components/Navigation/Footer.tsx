@@ -1,9 +1,13 @@
 import styled from "styled-components";
 import NewsletterForm from "../NewsletterForm";
 
-const Footer = () => {
+interface FooterProps {
+  bottomFixed?: boolean
+}
+
+const Footer:React.FC<FooterProps> = ({ bottomFixed }) => {
   return(
-    <Wrapper>
+    <Wrapper bFixed={bottomFixed as boolean}>
       <About>
         <Title>
           About
@@ -44,7 +48,9 @@ const Footer = () => {
 
 export default Footer
 
-const Wrapper = styled.div`
+const Wrapper = styled.div<{bFixed: boolean}>`
+  position: ${(props) => props.bFixed ? 'fixed' : 'auto'};
+  bottom: 0;
   width: 100%;
   padding: 50px 5vw 50px 5vw;
   background-color: white;
@@ -57,7 +63,6 @@ const Wrapper = styled.div`
     gap: 5vw;
   }
   
-
   @media (max-width: 600px) {
     padding: 5vw 5vw 15vw 5vw;
     justify-content: space-around;

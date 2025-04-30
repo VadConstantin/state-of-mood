@@ -344,3 +344,14 @@ interface Module15Fields {
 }
 
 export interface IModule15 extends EntrySkeletonType<Module15Fields> {}
+
+
+interface ThoughtsOnDesignPageFields {
+  name: string
+  firstLineTitle: string
+  secondLineTitle?: string
+  middleTitle?: string
+  modules?: Array<IModuleThree>
+}
+
+export interface IThoughtsOnDesignPage extends EntrySkeletonType<ThoughtsOnDesignPageFields> {}

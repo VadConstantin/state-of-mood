@@ -10,7 +10,8 @@ import { INavLink,
         IWhatWeDoPage, 
         IModuleFive,
         ICaseStudyPage, 
-        IModuleThree} from '../Types/contentful';
+        IModuleThree,
+        IThoughtsOnDesignPage} from '../Types/contentful';
 
 const contentful = createClient({
   space: process.env.NEXT_PUBLIC_CONTENTFUL_SPACE_ID || '',
@@ -633,6 +634,15 @@ export const getCasesStudyData = async (): Promise<Array<Entry<ICaseStudyPage>>>
   })
 
   return entries.items
+}
+
+
+export const getThoughtsOnDesignData = async (): Promise<Entry<IThoughtsOnDesignPage>> => {
+  const entries = await contentful.getEntries<IThoughtsOnDesignPage>({
+    content_type: 'pageThoughtsOnDesign'
+  })
+
+  return entries.items[0]
 }
 
 
