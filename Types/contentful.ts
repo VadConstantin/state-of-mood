@@ -355,3 +355,25 @@ interface ThoughtsOnDesignPageFields {
 }
 
 export interface IThoughtsOnDesignPage extends EntrySkeletonType<ThoughtsOnDesignPageFields> {}
+
+
+interface ArticlePageFields {
+  name: string
+  modules: Array<
+  IModuleThree
+  | IModuleFour
+  | IModuleFive 
+  | IModuleSix
+  | IModuleSeven  
+  | IModuleEight 
+  | IModuleNine 
+  | IModuleTen 
+  | IModuleEleven
+  | IModuleTwelve
+  | IModule13
+  | IModule14
+  | IModule15
+  >
+}
+
+export interface IArticlePage extends EntrySkeletonType<ArticlePageFields> {}
