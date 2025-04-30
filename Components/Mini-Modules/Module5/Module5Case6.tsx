@@ -10,7 +10,7 @@ interface Case6Props {
 
 const Module5Case6: React.FC<Case6Props> = ({ data }) => {
 
-  const { firstLineTitle, secondLineTitle, textColor} = data.fields
+  const { firstLineTitle, secondLineTitle, textColor, plainImages} = data.fields
   const image1 = data.fields.images[0]
   const image2 = data.fields.images[1]
   const description = data.fields?.description || null
@@ -33,10 +33,18 @@ const Module5Case6: React.FC<Case6Props> = ({ data }) => {
         }
       </TopWrapper>
       <BottomWrapper>
-        <ImagesWrapper>
-          <Picture1 src={image1.fields.file?.url as any} borderColor={borderColorImage1 as any}/>
-          <Picture2 src={image2.fields.file?.url as any} borderColor={borderColorImage2 as any}/>
-        </ImagesWrapper>
+        {!plainImages && 
+          <ImagesWrapper>
+            <Picture1 src={image1.fields.file?.url as any} borderColor={borderColorImage1 as any}/>
+            <Picture2 src={image2.fields.file?.url as any} borderColor={borderColorImage2 as any}/>
+          </ImagesWrapper>
+        }
+        {plainImages && 
+          <ImagesWrapper>
+            <Picture1Plain src={image1.fields.file?.url as any}/>
+            <Picture2Plain src={image2.fields.file?.url as any}/>
+          </ImagesWrapper>
+        }
       </BottomWrapper>
     </Wrapper>
   )
@@ -110,6 +118,24 @@ const Picture2 = styled.img<{borderColor: string}>`
   @media (max-width: 600px) {
     width: 100%;
     padding: 10vw;
+  }
+`
+
+const Picture1Plain = styled.img`
+  width: 50%;
+  height: auto;
+
+  @media (max-width: 600px) {
+    width: 100%;
+  }
+`
+
+const Picture2Plain = styled.img`
+  width: 50%;
+  height: auto;
+
+  @media (max-width: 600px) {
+    width: 100%;
   }
 `
 

@@ -653,6 +653,9 @@ export const getArticlePageData = async (slug: string): Promise<Entry<IArticlePa
     'fields.slug': slug
   } as any)
 
+  console.log("hiiiiii ==>", entries.items[0]);
+  
+
   return entries.items[0]
 }
 

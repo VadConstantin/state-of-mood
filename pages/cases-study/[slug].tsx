@@ -33,11 +33,12 @@ const Slug: React.FC<CaseStudySlugProps> = ({ caseStudyData, navData }) => {
 
   if (!isMounted) return null;
 
-  if (!caseStudyData.fields.modules) {
+  if (!caseStudyData?.fields.modules) {
     return(
       <Wrapper>
         <NavBar navData={navData}/>
         <NoModules>{"No Modules uploaded :-("}</NoModules>
+        <Footer />
       </Wrapper>
     )
   }

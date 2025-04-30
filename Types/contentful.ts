@@ -359,6 +359,11 @@ export interface IThoughtsOnDesignPage extends EntrySkeletonType<ThoughtsOnDesig
 
 interface ArticlePageFields {
   name: string
+  linkTitleForFocusPage: string
+  tagForFocusPage: string
+  pictureForFocusPage: Asset
+  firstLineTitleForFocusPage: string
+  secondLineTitleForFocusPage: string
   modules: Array<
   IModuleThree
   | IModuleFour

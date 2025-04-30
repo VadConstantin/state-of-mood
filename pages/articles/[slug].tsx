@@ -27,8 +27,9 @@ interface SlugProps {
 }
 
 const Slug:React.FC<SlugProps> = ({ data, navData }) => {
-
   const [isMounted, setIsMounted] = useState(false);
+
+  console.log("data ------>", data)
 
   useEffect(() => {
     setIsMounted(true);
@@ -36,11 +37,12 @@ const Slug:React.FC<SlugProps> = ({ data, navData }) => {
 
   if (!isMounted) return null;
 
-  if (!data.fields.modules) {
+  if (!data?.fields.modules) {
     return(
       <Wrapper>
         <NavBar navData={navData}/>
         <NoModules>{"No Modules uploaded :-("}</NoModules>
+        <Footer bottomFixed/>
       </Wrapper>
     )
   }
@@ -75,12 +77,12 @@ export default Slug
 export const getServerSideProps: GetServerSideProps = async (context: any) => {
   const navData = await getNavigationData()
   const slug = context.params.slug
-  const articlePageData = await getArticlePageData(slug)
+  const data = await getArticlePageData(slug)
   
   return(
     {
       props: {
-        articlePageData,
+        data,
         navData
       }
     }
