@@ -86,7 +86,9 @@ const TextsPart = styled.div<{backgroundColor: string, textColor: string}>`
   background-color: ${(props) => props.backgroundColor};
   width: 50%;
   color: ${(props) => props.color};
-  align-content: center;
+  display: flex;
+    justify-content: center;
+    align-items: center;
   padding: 50px;
 
   @media (max-width: 600px) {

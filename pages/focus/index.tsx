@@ -59,27 +59,52 @@ const Index:React.FC<IndexProps> = ({ data, navData }) => {
           </Tag>
         </TagsWrapper>
       </TopWrapper>
-
       <ArticlesWrapper>
-        <AnimatePresence mode="wait">
-          <motion.div key={selectedTag} style={{ width: '100%'}}>
-          {filteredArticles.map((article, index) => {
-            return(
-              <motion.div
-              key={index}
-              initial={{ opacity: 0, y: 0 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: 0 }}
-              transition={{ duration: 0.3, ease: "easeOut" }}
-              >
-                <Article fullWidth={index === 0 || index === 3} image={article.fields.pictureForFocusPage.fields.file?.url as any}>
-                helloooooooooooo
-                </Article>
-              </motion.div>
+        {filteredArticles.map((article, index) => {
+          if (index === 4) {
+            // Groupes les articles 4 et 5 (indices 4 et 5) dans ArticleStack
+            const article5 = filteredArticles[4];
+            const article6 = filteredArticles[5];
+
+            return (
+              <>
+                <ArticleStack key="stack-5">
+                  <Article image={(article5 as any).fields.pictureForFocusPage.fields.file.url} fullWidth>
+                  </Article>
+                  <Article image={(article6 as any).fields.pictureForFocusPage.fields.file.url} fullWidth>
+                  </Article>
+                </ArticleStack>
+              </>
             )
-          })}
-          </motion.div>
-        </AnimatePresence>
+          }
+
+          if (index === 6) {
+            // Article normal à droite du stack
+            return (
+              <Article
+                key="6"
+                image={(filteredArticles[6] as any).fields.pictureForFocusPage.fields.file.url}
+              >
+
+              </Article>
+            )
+          }
+
+          // Skip 5 because it's handled in the stack
+          if (index === 5) return null;
+
+          // Tous les autres articles
+          return (
+            <Article
+              key={index}
+              fullWidth={index === 0 || index === 3}
+              image={(article as any).fields.pictureForFocusPage.fields.file.url}
+            >
+             
+            </Article>
+          );
+        })}
+
       </ArticlesWrapper>
       <Footer bottomFixed={data.fields.articles.length < 1}/>
     </Wrapper>
@@ -107,6 +132,10 @@ const TopWrapper = styled.div`
     flex-direction: column;
     justify-content: center;
   text-align: center;
+
+  @media (max-width: 1000px) {
+    padding: 40px 5vw 40px 5vw;
+  }
 
   @media (max-width: 600px) {
     padding: 20px 5vw 20px 5vw;
@@ -185,19 +214,25 @@ const Tag = styled.div<{bold?: boolean}>`
 `
 
 const ArticlesWrapper = styled.div`
-  padding: 50px 8vw 50px 8vw;
+  padding: 30px 8vw 30px 8vw;
   width: 100%;
   display: flex;
   flex-wrap: wrap;
-    gap: 5vw;
+    gap: 3vw;
   justify-content: space-between;
+
+  @media (max-width: 1000px) {
+    padding: 20px 5vw 20px 5vw;
+  }
+
+  @media (max-width: 600px) {
+    padding: 20px 5vw 20px 5vw;
+  }
 `
 
-
-
 const Article = styled.div<{ fullWidth?: boolean; image: string }>`
-  width: ${(props) => (props.fullWidth ? '100%' : 'calc(50% - 15px)')};
-  height: 600px;
+  width: ${(props) => (props.fullWidth ? '100%' : '48%')};
+  height: ${(props) => (props.fullWidth ? '60vw' : '50vw')};
   background-image: url(${(props) => `https:${props.image}`});
   background-size: cover;
   background-position: center;
@@ -208,15 +243,18 @@ const Article = styled.div<{ fullWidth?: boolean; image: string }>`
   align-items: center;
 `
 
+const ArticleStack = styled.div`
+  width: 48%;
+  display: flex;
+  flex-direction: column;
+  gap: 3vw;
+  height: 50vw;
 
+  & img {
+    width: 100%;
+  }
+`
 
-// const Article = styled.div<{fullWidth?: boolean, image: string }>`
-//   width: ${(props) => props.fullWidth ? '100%' : '50%'};
-//   background-image: url(${(props) => `https:${props.image}`});
-//   background-size: cover;
-//   background-position: center;
-//   height: 600px;
-// `
 
 
 

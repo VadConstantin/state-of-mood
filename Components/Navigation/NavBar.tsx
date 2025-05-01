@@ -2,6 +2,7 @@ import { INavigation } from '@/Types/contentful';
 import { Entry } from 'contentful';
 import styled from "styled-components";
 import { useState } from "react";
+import Link from "next/link"; 
 
 interface NavBarProps {
   navData: Entry<INavigation>
@@ -64,9 +65,11 @@ const NavBar:React.FC<NavBarProps> = ({ navData }) => {
                 <SubCategoriesWrapper>
                   {cat.fields.links.map((link: any, i: number)=> {
                     return ( 
-                      <SubCategory href={"/"+link.fields.slug} key={i}>
-                        {link.fields.name}
-                      </SubCategory>
+                      <Link href={`/${link.fields.slug}`} key={i} passHref legacyBehavior>
+                        <SubCategory>
+                          {link.fields.name}
+                        </SubCategory>
+                      </Link>
                     )
                   })}
                 </SubCategoriesWrapper>

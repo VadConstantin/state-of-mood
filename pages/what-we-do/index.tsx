@@ -80,7 +80,10 @@ const BannerWrapper = styled.div<{bgImage: string}>`
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  align-content: center;
+  
+  display: flex;
+    justify-content: center;
+    align-items: center;
 
   @media (max-width: 800px) {
     height: 100vw;
