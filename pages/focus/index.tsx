@@ -7,7 +7,7 @@ import NavBar from "@/Components/Navigation/NavBar";
 import { IArticlePage, INavigation, IFocusPage } from "@/Types/contentful";
 import { Entry } from "contentful";
 import { getNavigationData, getPageFocusData } from "@/Services/get_contentful_data";
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 
 interface IndexProps {
   data: IFocusPage
@@ -21,6 +21,10 @@ const Index:React.FC<IndexProps> = ({ data, navData }) => {
 
   const articles = data.fields?.articles || []
 
+  const filteredArticles = useMemo(() => {
+    return ((articles).filter((article: IArticlePage) => article.fields.tagForFocusPage.includes(selectedTag)))
+  }, [data, selectedTag])
+
   useEffect(() => {
     setIsMounted(true);
   }, []);
@@ -33,13 +37,15 @@ const Index:React.FC<IndexProps> = ({ data, navData }) => {
     return acc;
   }, []);
 
+  
+
   return(
     <Wrapper>
       <NavBar navData={navData}/>
       <TopWrapper>
         <FirstTitle>FOCUS</FirstTitle>
         <SecondTitleSmall>Boards</SecondTitleSmall>
-        <MiddleTitle>CURATION OF ARTISTs AND DEsiGNERs TALENT</MiddleTitle>
+        <MiddleTitle>CURATION OF ARTISTs AND DESIGNERs TALENT</MiddleTitle>
         <TagsWrapper>
           {tags.map((tag, index) => {
             return(
@@ -53,6 +59,28 @@ const Index:React.FC<IndexProps> = ({ data, navData }) => {
           </Tag>
         </TagsWrapper>
       </TopWrapper>
+
+      <ArticlesWrapper>
+        <AnimatePresence mode="wait">
+          <motion.div key={selectedTag} style={{ width: '100%'}}>
+          {filteredArticles.map((article, index) => {
+            return(
+              <motion.div
+              key={index}
+              initial={{ opacity: 0, y: 0 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: 0 }}
+              transition={{ duration: 0.3, ease: "easeOut" }}
+              >
+                <Article fullWidth={index === 0 || index === 3} image={article.fields.pictureForFocusPage.fields.file?.url as any}>
+                helloooooooooooo
+                </Article>
+              </motion.div>
+            )
+          })}
+          </motion.div>
+        </AnimatePresence>
+      </ArticlesWrapper>
       <Footer bottomFixed={data.fields.articles.length < 1}/>
     </Wrapper>
   )
@@ -155,3 +183,44 @@ const Tag = styled.div<{bold?: boolean}>`
 
   cursor: pointer;
 `
+
+const ArticlesWrapper = styled.div`
+  padding: 50px 8vw 50px 8vw;
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+    gap: 5vw;
+  justify-content: space-between;
+`
+
+
+
+const Article = styled.div<{ fullWidth?: boolean; image: string }>`
+  width: ${(props) => (props.fullWidth ? '100%' : 'calc(50% - 15px)')};
+  height: 600px;
+  background-image: url(${(props) => `https:${props.image}`});
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`
+
+
+
+// const Article = styled.div<{fullWidth?: boolean, image: string }>`
+//   width: ${(props) => props.fullWidth ? '100%' : '50%'};
+//   background-image: url(${(props) => `https:${props.image}`});
+//   background-size: cover;
+//   background-position: center;
+//   height: 600px;
+// `
+
+
+
+
+
+
+
