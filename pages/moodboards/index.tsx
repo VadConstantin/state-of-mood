@@ -171,9 +171,8 @@ const MiddleTitle = styled.div`
 const TagsWrapper = styled.div`
   padding-top: 50px;
   margin: auto;
-  max-width: 500px;
   display: flex;
-    gap: 5vw;
+    gap: 4vw;
 
   @media (max-width: 800px) {
     padding-top: 40px;

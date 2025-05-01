@@ -93,7 +93,6 @@ const TextsPart = styled.div<{backgroundColor: string, textColor: string}>`
     width: 100%;
     min-height: 300px;
     padding: 50px 5vw;
-    
   }
 `
 
@@ -141,7 +140,6 @@ const SecondLineTitle = styled.div`
   @media (max-width: 800px) {
     font-size: 4vw;
   }
-
 
   @media (max-width: 600px) {
     font-size: 6vw;

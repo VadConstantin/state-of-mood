@@ -360,7 +360,7 @@ export interface IThoughtsOnDesignPage extends EntrySkeletonType<ThoughtsOnDesig
 interface ArticlePageFields {
   name: string
   linkTitleForFocusPage: string
-  tagForFocusPage: "DESIGN" | "ILLUSTRATION" | "PHOTO" | "ART" | "GRAPHISM"
+  tagForFocusPage: "DESIGN" | "ILLUSTRATION" | "PHOTO" | "ART" | "GRAPHISM"
   pictureForFocusPage: Asset
   firstLineTitleForFocusPage: string
   secondLineTitleForFocusPage: string
@@ -413,3 +413,11 @@ interface MoodboardPageFields {
 }
 
 export interface IMoodboardPage extends EntrySkeletonType<MoodboardPageFields> {}
+
+
+interface FocusPageFields {
+  name: string
+  articles: Array<IArticlePage>
+}
+
+export interface IFocusPage extends EntrySkeletonType<FocusPageFields> {}

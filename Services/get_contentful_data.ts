@@ -13,7 +13,8 @@ import { INavLink,
         IModuleThree,
         IThoughtsOnDesignPage,
         IArticlePage,
-        IMoodboardPage} from '../Types/contentful';
+        IMoodboardPage,
+        IFocusPage} from '../Types/contentful';
 
 const contentful = createClient({
   space: process.env.NEXT_PUBLIC_CONTENTFUL_SPACE_ID || '',
@@ -673,6 +674,22 @@ export const getAllMoodPages = async (): Promise<Array<Entry<IMoodboardPage>>> =
     })
 
     return entries.items
+}
+
+// export const getAllArticles = async (): Promise<Array<Entry<IArticlePage>>> => {
+//     const entries = await contentful.getEntries<IArticlePage>({
+//         content_type: 'pageArticle'
+//     })
+
+//     return entries.items
+// }
+
+export const getPageFocusData = async (): Promise<Entry<IFocusPage>> => {
+    const entries = await contentful.getEntries<IFocusPage>({
+        content_type: 'pageFocus'
+    })
+
+    return entries.items[0]
 }
 
 
