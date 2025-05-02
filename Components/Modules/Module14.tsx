@@ -79,13 +79,12 @@ const Module14:React.FC<Module14Props> = ({ data }) => {
 export default Module14
 
 const Wrapper = styled.div`
-  width: 100%;
   padding: 50px 8vw;
   width: 100%;
   display: flex;
     flex-direction: column;
     justify-content: center;
-  text-align: start;
+  text-align: center;
 
   @media (max-width: 600px) {
     padding: 50px 5vw 20px 5vw;

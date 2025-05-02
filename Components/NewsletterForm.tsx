@@ -93,6 +93,7 @@ const CustomButton = styled.button`
   border-radius: 0;
   border: solid 1px black;
   margin-left: 10px;
+  cursor: pointer;
 
   @media (max-width: 600px) {
     font-size: 0.6rem;

@@ -36,8 +36,6 @@ const Index:React.FC<IndexProps> = ({ data, navData }) => {
     return acc;
   }, []);
 
-  
-
   return(
     <Wrapper>
       <NavBar navData={navData}/>
@@ -67,9 +65,37 @@ const Index:React.FC<IndexProps> = ({ data, navData }) => {
             return (
               <>
                 <ArticleStack key="stack-5">
-                  <Article image={(article5 as any).fields.pictureForFocusPage.fields.file.url} fullWidth href={"/articles/"+article5.fields.slug}>
+                  <Article image={(article5 as any).fields.pictureForFocusPage.fields.file.url} fullWidth>
+                    <SmallTexts>
+                      <SmallTextsTag>
+                        {article5.fields.tagForFocusPage}
+                      </SmallTextsTag>
+                      <SmallTextsFirstTitle>
+                        {article5.fields.firstLineTitleForFocusPage}
+                      </SmallTextsFirstTitle>
+                      <SmallTextsSecondTitle>
+                        {article5.fields.secondLineTitleForFocusPage}
+                      </SmallTextsSecondTitle>
+                      <SmallTextsLink href={"/articles/"+article5.fields.slug}>
+                        {article5.fields.linkTitleForFocusPage}
+                      </SmallTextsLink>
+                    </SmallTexts>
                   </Article>
-                  <Article image={(article6 as any).fields.pictureForFocusPage.fields.file.url} fullWidth href={"/articles/"+article6.fields.slug}>
+                  <Article image={(article6 as any).fields.pictureForFocusPage.fields.file.url} fullWidth>
+                    <SmallTexts>
+                      <SmallTextsTag>
+                        {article6.fields.tagForFocusPage}
+                      </SmallTextsTag>
+                      <SmallTextsFirstTitle>
+                        {article6.fields.firstLineTitleForFocusPage}
+                      </SmallTextsFirstTitle>
+                      <SmallTextsSecondTitle>
+                        {article6.fields.secondLineTitleForFocusPage}
+                      </SmallTextsSecondTitle>
+                      <SmallTextsLink href={"/articles/"+article6.fields.slug}>
+                        {article6.fields.linkTitleForFocusPage}
+                      </SmallTextsLink>
+                    </SmallTexts>
                   </Article>
                 </ArticleStack>
               </>
@@ -81,9 +107,21 @@ const Index:React.FC<IndexProps> = ({ data, navData }) => {
               <Article
                 key="6"
                 image={(filteredArticles[6] as any).fields.pictureForFocusPage.fields.file.url}
-                href={"/articles/"+filteredArticles[6].fields.slug}
               >
-
+                <MediumTexts>
+                  <MediumTextsTag>
+                    {article.fields.tagForFocusPage}
+                  </MediumTextsTag>
+                  <MediumTextsFirstTitle>
+                    {article.fields.firstLineTitleForFocusPage}
+                  </MediumTextsFirstTitle>
+                  <MediumTextsSecondTitle>
+                    {article.fields.secondLineTitleForFocusPage}
+                  </MediumTextsSecondTitle>
+                  <MediumTextsLink href={"/articles/"+article.fields.slug}>
+                    {article.fields.linkTitleForFocusPage}
+                  </MediumTextsLink>
+                </MediumTexts>
               </Article>
             )
           }
@@ -96,7 +134,6 @@ const Index:React.FC<IndexProps> = ({ data, navData }) => {
               key={index}
               fullWidth
               image={(article as any).fields.pictureForFocusPage.fields.file.url}
-              href={"/articles/"+article.fields.slug}
             >
              <BigTexts>
                 <BigTextsTag>
@@ -120,9 +157,21 @@ const Index:React.FC<IndexProps> = ({ data, navData }) => {
             <Article
               key={index}
               image={(article as any).fields.pictureForFocusPage.fields.file.url}
-              href={"/articles/"+article.fields.slug}
             >
-
+              <MediumTexts>
+                <MediumTextsTag>
+                  {article.fields.tagForFocusPage}
+                </MediumTextsTag>
+                <MediumTextsFirstTitle>
+                  {article.fields.firstLineTitleForFocusPage}
+                </MediumTextsFirstTitle>
+                <MediumTextsSecondTitle>
+                  {article.fields.secondLineTitleForFocusPage}
+                </MediumTextsSecondTitle>
+                <MediumTextsLink href={"/articles/"+article.fields.slug}>
+                  {article.fields.linkTitleForFocusPage}
+                </MediumTextsLink>
+              </MediumTexts>
             </Article>
           );
         })}
@@ -251,9 +300,9 @@ const ArticlesWrapper = styled.div`
   }
 `
 
-const Article = styled.a<{ fullWidth?: boolean; image: string }>`
+const Article = styled.div<{ fullWidth?: boolean; image: string }>`
   width: ${(props) => (props.fullWidth ? '100%' : '48%')};
-  height: ${(props) => (props.fullWidth ? '60vw' : '50vw')};
+  height: 50vw;
   background-image: url(${(props) => `https:${props.image}`});
   background-size: cover;
   background-position: center;
@@ -328,6 +377,140 @@ const BigTextsTag = styled.div`
 
 const BigTextsLink = styled.a`
   font-size: 1.5vw;
+  text-decoration: underline;
+  text-underline-offset: 0.3vw;
+  font-family: 'Knockout', sans-serif !important;
+
+  @media (max-width: 800px) {
+    font-size: 2vw;
+  }
+
+  @media (max-width: 600px) {
+    font-size: 2.5vw;
+  }
+`
+
+const MediumTexts = styled.div`
+  position: absolute;
+  bottom: 3vw;
+  left: 3vw;
+  display: flex;
+    flex-direction: column;
+    gap: 0.5vw;
+`
+
+const MediumTextsFirstTitle = styled.div`
+  font-family: 'Knockout', sans-serif !important;
+  font-size: clamp(1rem, 2vw, 3.5rem);
+  text-transform: uppercase;
+
+  @media (max-width: 600px) {
+    font-size: 2.3vw;
+  }
+`
+
+const MediumTextsSecondTitle = styled.div`
+  font-family: 'Americana', sans-serif !important;
+  font-size: clamp(1rem, 1.6vw, 3rem);
+  text-transform: uppercase;
+  padding-bottom: 1.2vw;
+
+  @media (max-width: 600px) {
+    font-size: 1.8vw;
+  }
+`
+
+const MediumTextsTag = styled.div`
+  font-size: 0.8vw;
+  font-family: 'Knockout', sans-serif !important;
+  text-transform: uppercase;
+
+  @media (max-width: 1000px) {
+    font-size: 1vw;
+  }
+
+  @media (max-width: 800px) {
+    font-size: 1.3vw;
+  }
+
+  @media (max-width: 600px) {
+    font-size: 1.5vw;
+  }
+`
+
+const MediumTextsLink = styled.a`
+  font-size: 1vw;
+  text-decoration: underline;
+  text-underline-offset: 0.3vw;
+  font-family: 'Knockout', sans-serif !important;
+
+  @media (max-width: 800px) {
+    font-size: 2vw;
+  }
+
+  @media (max-width: 600px) {
+    font-size: 2.5vw;
+  }
+`
+
+const SmallTexts = styled.div`
+  position: absolute;
+  bottom: 3vw;
+  left: 3vw;
+  display: flex;
+    flex-direction: column;
+    gap: 0.3vw;
+`
+
+const SmallTextsFirstTitle = styled.div`
+  font-family: 'Knockout', sans-serif !important;
+  font-size: 2vw;
+  text-transform: uppercase;
+
+  @media (max-width: 800px) {
+    font-size: 1.8vw;
+  }
+
+  @media (max-width: 600px) {
+    font-size: 1.8vw;
+  }
+`
+
+const SmallTextsSecondTitle = styled.div`
+  font-family: 'Americana', sans-serif !important;
+  font-size: 1.8vw;
+  text-transform: uppercase;
+  padding-bottom: 0.6vw;
+
+  @media (max-width: 800px) {
+    font-size: 1.5vw;
+  }
+
+  @media (max-width: 600px) {
+    font-size: 1.6vw;
+  }
+`
+
+const SmallTextsTag = styled.div`
+  font-size: 0.8vw;
+  font-family: 'Knockout', sans-serif !important;
+  text-transform: uppercase;
+
+  @media (max-width: 1000px) {
+    font-size: 1vw;
+  }
+
+  @media (max-width: 800px) {
+    font-size: 1.3vw;
+  }
+
+  @media (max-width: 600px) {
+    font-size: 1.5vw;
+  }
+`
+
+const SmallTextsLink = styled.a`
+  font-size: 1vw;
   text-decoration: underline;
   text-underline-offset: 0.3vw;
   font-family: 'Knockout', sans-serif !important;

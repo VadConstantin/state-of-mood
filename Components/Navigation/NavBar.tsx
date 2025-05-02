@@ -37,8 +37,6 @@ const NavBar:React.FC<NavBarProps> = ({ navData }) => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  console.log("isVisible ====>", isVisible)
-
   return(
     <DesktopWrapper>
       <Top isDropdown={isDropDownVisible} isVisible={isVisible}>
