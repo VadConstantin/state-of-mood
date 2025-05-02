@@ -693,4 +693,9 @@ export const getPageFocusData = async (): Promise<Entry<IFocusPage>> => {
 }
 
 
+export const getPortfolioData = async () => {
+    return []
+}
+
+
 
