@@ -1,7 +1,7 @@
 import { INavigation } from '@/Types/contentful';
 import { Entry } from 'contentful';
 import styled from "styled-components";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Link from "next/link"; 
 
 interface NavBarProps {
@@ -13,6 +13,7 @@ const NavBar:React.FC<NavBarProps> = ({ navData }) => {
   const logoUrl = (logo as any)?.fields?.file?.url;
 
   const [isDropDownVisible, setIsDropDownVisible] = useState<boolean>(false)
+  const [isVisible, setIsVisible] = useState(true);
 
   const navCategories = navData.fields.navCategories
 
@@ -21,9 +22,26 @@ const NavBar:React.FC<NavBarProps> = ({ navData }) => {
     setIsDropDownVisible(v => !v)
   }
 
+  useEffect(() => {
+    let lastScrollY = window.scrollY;
+    const handleScroll = () => {
+      const currentScrollY = window.scrollY;
+      if (currentScrollY > lastScrollY && currentScrollY > 120) {
+        setIsVisible(false);
+      } else {
+        setIsVisible(true);
+      }
+      lastScrollY = currentScrollY;
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  console.log("isVisible ====>", isVisible)
+
   return(
     <DesktopWrapper>
-      <Top isDropdown={isDropDownVisible}>
+      <Top isDropdown={isDropDownVisible} isVisible={isVisible}>
         <TopMenu>
           <MenuLink href="/" onClick={handleClickDropdown} isDropdown={isDropDownVisible}>
             MENU
@@ -49,7 +67,7 @@ const NavBar:React.FC<NavBarProps> = ({ navData }) => {
           }
         </TopMenu>
       </Top>
-      <Dropdown isDropdown={isDropDownVisible}>
+      <Dropdown isDropdown={isDropDownVisible} isVisible={isVisible}>
         <DropdownLinksWrapper>
           {(navCategories as any).map((cat:any, i: any) => {
             return(
@@ -95,7 +113,7 @@ const NavBar:React.FC<NavBarProps> = ({ navData }) => {
 export default NavBar
 
 
-const Top = styled.div<{isDropdown: boolean}>`
+const Top = styled.div<{isDropdown: boolean, isVisible: boolean}>`
   height: 120px;
   display: flex;
   justify-content: space-between;
@@ -103,10 +121,11 @@ const Top = styled.div<{isDropdown: boolean}>`
   padding: 0 90px;
   position: fixed;
   width: 100%;
-  top: 0;
+  top: ${({ isVisible }) => (isVisible ? '0' : '-120px')};
   z-index: 1010;
   background-color: white;
   box-shadow: ${({isDropdown}) => (isDropdown ? 'none' : '0 2px 6px rgba(0, 0, 0, 0.01)' )};
+  transition: top 0.3s ease-in-out;
 
   @media (max-width: 600px) {
     padding: 0 20px;
@@ -211,25 +230,26 @@ const CustomLinkLogo = styled.img`
   width: 30px;
 `
 
-const Dropdown = styled.div<{ isDropdown: boolean }>`
+const Dropdown = styled.div<{ isDropdown: boolean; isVisible: boolean }>`
   width: 100%;
   height: 500px;
   background-color: white;
   position: fixed;
-  top: 120px;
   left: 0;
   z-index: 1000;
 
-  transform: ${({ isDropdown }) => (isDropdown ? "translateY(0)" : "translateY(-100%)")};
-  transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
+  transform: ${({ isDropdown, isVisible }) => !isVisible ? "translateY(-200%)" : isDropdown ? "translateY(0)" : "translateY(-100%)"};
+
+  transition: transform 0.4s ease-in-out;
   pointer-events: ${({ isDropdown }) => (isDropdown ? "auto" : "none")};
 
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
 
   @media (max-width: 600px) {
-    height: calc(100vh - 120px); 
+    height: calc(100vh - 120px);
   }
 `;
+
 
 const Cross = styled.img`
   width: 30px;

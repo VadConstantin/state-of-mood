@@ -2,7 +2,6 @@ import styled from "styled-components"
 import Footer from "@/Components/Navigation/Footer";
 import FirstTitle from "@/Components/FirstTitle";
 import SecondTitleSmall from "@/Components/SecondTitleSmall";
-import { motion, AnimatePresence } from "framer-motion";
 import NavBar from "@/Components/Navigation/NavBar";
 import { IArticlePage, INavigation, IFocusPage } from "@/Types/contentful";
 import { Entry } from "contentful";
@@ -62,16 +61,15 @@ const Index:React.FC<IndexProps> = ({ data, navData }) => {
       <ArticlesWrapper>
         {filteredArticles.map((article, index) => {
           if (index === 4) {
-            // Groupes les articles 4 et 5 (indices 4 et 5) dans ArticleStack
             const article5 = filteredArticles[4];
             const article6 = filteredArticles[5];
 
             return (
               <>
                 <ArticleStack key="stack-5">
-                  <Article image={(article5 as any).fields.pictureForFocusPage.fields.file.url} fullWidth>
+                  <Article image={(article5 as any).fields.pictureForFocusPage.fields.file.url} fullWidth href={"/articles/"+article5.fields.slug}>
                   </Article>
-                  <Article image={(article6 as any).fields.pictureForFocusPage.fields.file.url} fullWidth>
+                  <Article image={(article6 as any).fields.pictureForFocusPage.fields.file.url} fullWidth href={"/articles/"+article6.fields.slug}>
                   </Article>
                 </ArticleStack>
               </>
@@ -79,32 +77,55 @@ const Index:React.FC<IndexProps> = ({ data, navData }) => {
           }
 
           if (index === 6) {
-            // Article normal à droite du stack
             return (
               <Article
                 key="6"
                 image={(filteredArticles[6] as any).fields.pictureForFocusPage.fields.file.url}
+                href={"/articles/"+filteredArticles[6].fields.slug}
               >
 
               </Article>
             )
           }
 
-          // Skip 5 because it's handled in the stack
           if (index === 5) return null;
 
-          // Tous les autres articles
+          if (index === 0 || index === 3) {
+            return(
+              <Article
+              key={index}
+              fullWidth
+              image={(article as any).fields.pictureForFocusPage.fields.file.url}
+              href={"/articles/"+article.fields.slug}
+            >
+             <BigTexts>
+                <BigTextsTag>
+                  {article.fields.tagForFocusPage}
+                </BigTextsTag>
+                <BigTextsFirstTitle>
+                  {article.fields.firstLineTitleForFocusPage}
+                </BigTextsFirstTitle>
+                <BigTextsSecondTitle>
+                  {article.fields.secondLineTitleForFocusPage}
+                </BigTextsSecondTitle>
+                <BigTextsLink href={"/articles/"+article.fields.slug}>
+                  {article.fields.linkTitleForFocusPage}
+                </BigTextsLink>
+             </BigTexts>
+            </Article>
+            )
+          }
+
           return (
             <Article
               key={index}
-              fullWidth={index === 0 || index === 3}
               image={(article as any).fields.pictureForFocusPage.fields.file.url}
+              href={"/articles/"+article.fields.slug}
             >
-             
+
             </Article>
           );
         })}
-
       </ArticlesWrapper>
       <Footer bottomFixed={data.fields.articles.length < 1}/>
     </Wrapper>
@@ -230,17 +251,19 @@ const ArticlesWrapper = styled.div`
   }
 `
 
-const Article = styled.div<{ fullWidth?: boolean; image: string }>`
+const Article = styled.a<{ fullWidth?: boolean; image: string }>`
   width: ${(props) => (props.fullWidth ? '100%' : '48%')};
   height: ${(props) => (props.fullWidth ? '60vw' : '50vw')};
   background-image: url(${(props) => `https:${props.image}`});
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
+  position: relative;
 
   display: flex;
   justify-content: center;
   align-items: center;
+  color: white;
 `
 
 const ArticleStack = styled.div`
@@ -254,6 +277,71 @@ const ArticleStack = styled.div`
     width: 100%;
   }
 `
+
+const BigTexts = styled.div`
+  position: absolute;
+  bottom: 3vw;
+  left: 3vw;
+  display: flex;
+    flex-direction: column;
+    gap: 0.8vw;
+`
+
+const BigTextsFirstTitle = styled.div`
+  font-family: 'Knockout', sans-serif !important;
+  font-size: clamp(1rem, 3.5vw, 5rem);
+  text-transform: uppercase;
+
+  @media (max-width: 600px) {
+    font-size: 4vw;
+  }
+`
+
+const BigTextsSecondTitle = styled.div`
+  font-family: 'Americana', sans-serif !important;
+  font-size: clamp(1rem, 2.3vw, 3rem);
+  text-transform: uppercase;
+  padding-bottom: 1.5vw;
+
+  @media (max-width: 600px) {
+    font-size: 3vw;
+  }
+`
+
+const BigTextsTag = styled.div`
+  font-size: 0.8vw;
+  font-family: 'Knockout', sans-serif !important;
+  text-transform: uppercase;
+
+  @media (max-width: 1000px) {
+    font-size: 1vw;
+  }
+
+  @media (max-width: 800px) {
+    font-size: 1.3vw;
+  }
+
+  @media (max-width: 600px) {
+    font-size: 1.5vw;
+  }
+`
+
+const BigTextsLink = styled.a`
+  font-size: 1.5vw;
+  text-decoration: underline;
+  text-underline-offset: 0.3vw;
+  font-family: 'Knockout', sans-serif !important;
+
+  @media (max-width: 800px) {
+    font-size: 2vw;
+  }
+
+  @media (max-width: 600px) {
+    font-size: 2.5vw;
+  }
+`
+
+
 
 
 

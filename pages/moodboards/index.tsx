@@ -242,6 +242,7 @@ const CustomImage = styled.img<{borderColor: string}>`
 `
 
 const TextsPart = styled.div<{bgColor: string}>`
+  padding: 50px;
   background-color: ${(props) => props.bgColor};
   width: 50%;
   color: ${(props) => props.color};
@@ -249,7 +250,6 @@ const TextsPart = styled.div<{bgColor: string}>`
     justify-content: center;
     align-items: center;
     align-content: center;
-  padding: 50px;
 
   @media (max-width: 600px) {
     padding: 5vw 5vw;

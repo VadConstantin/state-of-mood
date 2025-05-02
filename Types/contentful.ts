@@ -364,6 +364,7 @@ interface ArticlePageFields {
   pictureForFocusPage: Asset
   firstLineTitleForFocusPage: string
   secondLineTitleForFocusPage: string
+  slug: string
   modules: Array<
   IModuleThree
   | IModuleFour
