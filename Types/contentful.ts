@@ -170,6 +170,9 @@ export interface CaseStudyPageFieds {
   picture: Asset
   color: string
   textColor: string
+  tagForPortfolioPage: string
+  firstLineTitleForPortfolioPage: string
+  secondLineTitleForPortfolioPage: string
   modules: Array<IModuleFive | IModuleSix
                              | IModuleSeven  
                              | IModuleEight 
@@ -422,3 +425,15 @@ interface FocusPageFields {
 }
 
 export interface IFocusPage extends EntrySkeletonType<FocusPageFields> {}
+
+
+interface PortfolioPageFields {
+  name: string
+  firstLineTitle: string
+  secondLineTitle: string
+  middleTitle: string
+  modules: Array<ICaseStudyPage>
+  images: Array<Asset>
+}
+
+export interface IPortfolioPage extends EntrySkeletonType<PortfolioPageFields> {}

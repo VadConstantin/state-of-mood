@@ -242,7 +242,7 @@ const MiddleTitle = styled.div`
     margin: 0;
     max-width: 200px;
   }
-  `
+`
 
 const TagsWrapper = styled.div`
   padding-top: 50px;

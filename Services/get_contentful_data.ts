@@ -14,7 +14,8 @@ import { INavLink,
         IThoughtsOnDesignPage,
         IArticlePage,
         IMoodboardPage,
-        IFocusPage} from '../Types/contentful';
+        IFocusPage,
+        IPortfolioPage} from '../Types/contentful';
 
 const contentful = createClient({
   space: process.env.NEXT_PUBLIC_CONTENTFUL_SPACE_ID || '',
@@ -693,8 +694,12 @@ export const getPageFocusData = async (): Promise<Entry<IFocusPage>> => {
 }
 
 
-export const getPortfolioData = async () => {
-    return []
+export const getPortfolioData = async (): Promise<Entry<IPortfolioPage>> => {
+    const entries = await contentful.getEntries<IPortfolioPage>({
+        content_type: 'pagePortfolio'
+    })
+
+    return entries.items[0]
 }
 
 
