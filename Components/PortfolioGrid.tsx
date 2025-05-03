@@ -87,6 +87,7 @@ const Wrapper = styled.div`
 `;
 
 const ImageCard = styled.div<{ isVisible: boolean, clickable: boolean }>`
+  display: inline-block;
   position: relative;
   break-inside: avoid;
   margin-bottom: 3vw;

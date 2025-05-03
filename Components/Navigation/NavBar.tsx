@@ -212,7 +212,6 @@ const SocialLinksPhone = styled.div<{isDropdown: boolean}>`
   display: flex;
     justify-content: space-between;
     gap: 10px;
-  padding-top: 50px;
 
   @media (min-width: 600px) {
     opacity: 0;
@@ -262,13 +261,14 @@ const Cross = styled.img`
 const DropdownLinksWrapper = styled.div`
   display: flex;
     flex-direction: column;
-    gap: 20px;
+    gap: 25px;
   align-items: center;
   padding-top: 50px;
   width: 100%;
 
   @media (max-width: 600px) {
-    padding-top: 120px;
+    padding-top: 30px;
+    gap: 50px;
   }
 `
 
@@ -278,13 +278,16 @@ const DropdownLinkTitle = styled.div`
   font-family: 'Knockout', sans-serif !important;
   text-transform: uppercase;
   display: inline-block;
-
 `
 
 const SubCategoriesWrapper = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 15px;
+
+  @media (max-width: 600px) {
+    gap: 20px;
+  }
 `
 
 const SubCategory = styled.a`
