@@ -445,11 +445,11 @@ const MediumTextsLink = styled.a`
   font-family: 'Knockout', sans-serif !important;
 
   @media (max-width: 800px) {
-    font-size: 2vw;
+    font-size: 2.3vw;
   }
 
   @media (max-width: 600px) {
-    font-size: 2.5vw;
+    font-size: 3.5vw;
   }
 `
 

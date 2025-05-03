@@ -78,7 +78,7 @@ const NavBar:React.FC<NavBarProps> = ({ navData }) => {
                     {cat.fields.name}
                   </DropdownLinkTitle>
                 </span>
-                <SubCategoriesWrapper>
+                <SubCategoriesWrapper onClick={handleClickDropdown}>
                   {cat.fields.links.map((link: any, i: number)=> {
                     return ( 
                       <Link href={`/${link.fields.slug}`} key={i} passHref legacyBehavior>
