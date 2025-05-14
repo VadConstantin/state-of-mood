@@ -12,7 +12,7 @@ const Case1: React.FC<Case1Props> = ({ data }) => {
 
   const { backgroundColor, images, fontColor } = data.fields
   const firstLineTitle = data.fields?.firstLineTitle || null
-  const secondLineTitle = data.fields?.firstLineTitle || null
+  const secondLineTitle = data.fields?.secondLineTitle || null
   const firstPic = images[0]
   const description = data.fields?.description || null
   
