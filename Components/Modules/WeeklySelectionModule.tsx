@@ -6,7 +6,9 @@ interface WeeklySelectionModuleProps {
 
 const WeeklySelectionModule:React.FC<WeeklySelectionModuleProps> = ({ weeklyModuleData }) => {
 
-  const { description, picture, slug, tag, title } = weeklyModuleData.fields
+  const { picture, slug, tag, title } = weeklyModuleData.fields
+  const description = weeklyModuleData.fields?.description || ''
+
   return(
     <Wrapper>
       <a href={slug}>

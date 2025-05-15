@@ -658,6 +658,31 @@ export const getArticlePageData = async (slug: string): Promise<Entry<IArticlePa
   return entries.items[0]
 }
 
+const enrichModuleTwoGeneric = async (entry: any) => {
+    await Promise.all(
+        (entry.fields.modules as any).map( async (module: any, index: any) => {
+            if (module.sys?.contentType?.sys?.id === 'moduleTwo') {
+                if (module.fields?.weeklySelectionModules) {
+                  const idsToGet = module.fields.weeklySelectionModules.map(
+                    (weeklyModule: any) => weeklyModule.sys.id
+                  );
+            
+                  const weeklyModulesInfo = await contentful.getEntries<IWeeklySelectionModule>({
+                    content_type: 'weeklySelectionModule',
+                    'sys.id[in]': idsToGet.join(',')
+                  });
+            
+                  weeklyModulesInfo.items.sort((itemA, itemB) =>
+                    idsToGet.indexOf(itemA.sys.id) < idsToGet.indexOf(itemB.sys.id) ? -1 : 1
+                  );
+            
+                  module.fields.weeklySelectionModules = weeklyModulesInfo.items;
+                }
+              }
+        })
+      )
+  };
+
 
 export const getMoodboardPageData = async (slug: string): Promise<Entry<IMoodboardPage>> => {
     const entries = await contentful.getEntries<IMoodboardPage>({
@@ -665,6 +690,7 @@ export const getMoodboardPageData = async (slug: string): Promise<Entry<IMoodboa
         'fields.slug': slug
     } as any)
 
+    await enrichModuleTwoGeneric(entries.items[0])
     return entries.items[0]
 }
 

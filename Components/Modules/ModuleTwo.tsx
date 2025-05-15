@@ -1,15 +1,20 @@
+import { IModuleTwo } from "@/Types/contentful";
 import styled from "styled-components";
 import FirstTitle from "../FirstTitle";
 import SecondTitle from "../SecondTitle";
 import WeeklySelectionModule from './WeeklySelectionModule';
 
 interface ModuleTwoProps {
-  moduleTwoData: any
+  moduleTwoData: IModuleTwo
 }
 
 const ModuleTwo:React.FC<ModuleTwoProps> = ({ moduleTwoData }) => {
 
-  const { description, titleFirstLine, titleSecondLine, weeklySelectionModules, backgroundColor } = moduleTwoData.fields
+  const { weeklySelectionModules, backgroundColor } = moduleTwoData.fields
+
+  const description =  moduleTwoData.fields?.description || ''
+  const titleFirstLine = moduleTwoData.fields?.titleFirstLine || ''
+  const titleSecondLine = moduleTwoData.fields?.titleSecondLine || ''
 
   return(
     <Wrapper color={backgroundColor}>
