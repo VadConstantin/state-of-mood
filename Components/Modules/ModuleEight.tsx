@@ -9,9 +9,12 @@ interface ModuleEightProps {
 
 const ModuleEight:React.FC<ModuleEightProps> = ({ data }) => {
 
-  const { firstLineTitle, secondLineTitle, description } = data.fields
+  const { firstLineTitle, secondLineTitle } = data.fields
+  const description = data.fields?.description || ''
   const images = data.fields.images || []
   const keyWord1 = data.fields.keyWord1 || ''
+
+  const isImages = !!data.fields.images
 
   const keyWordsArray = [
     data.fields.keyWord1,
@@ -22,7 +25,7 @@ const ModuleEight:React.FC<ModuleEightProps> = ({ data }) => {
   ].filter((kw) => kw && kw.trim() !== '');
 
   return(
-    <Wrapper>
+    <Wrapper isImages={isImages}>
       <TextsWrapper>
         <Title>
           <FirstTitle>
@@ -32,16 +35,16 @@ const ModuleEight:React.FC<ModuleEightProps> = ({ data }) => {
             {secondLineTitle}
           </SecondTitle>
         </Title>
-        <Description>
+        {description && <Description>
           {description}
-        </Description>
-        <ImagesWrapper>
+        </Description>}
+        {images.length > 0 && <ImagesWrapper>
           {images.map((image, index) => {
             return(
               <CustomImage key={index} src={image.fields.file?.url as any}/>
             )
           })}
-        </ImagesWrapper>
+        </ImagesWrapper>}
         {keyWord1 && 
           <KeyWordsWrapper>
             <KeyWordsTitle>
@@ -65,9 +68,10 @@ const ModuleEight:React.FC<ModuleEightProps> = ({ data }) => {
 
 export default ModuleEight
 
-const Wrapper = styled.div`
+const Wrapper = styled.div<{isImages: boolean}>`
   width: 100%;
   padding: 60px 50px 100px 50px;
+  padding: ${(props) => props.isImages ? '60px 50px 100px 50px' : '60px 50px 60px 50px'};
   text-align: center;
 
   @media (max-width: 600px) {
@@ -85,7 +89,6 @@ const TextsWrapper = styled.div`
 `
 
 const Title = styled.div`
-  padding-bottom: 35px;
 
   @media (max-width: 600px) {
     padding-bottom: 25px;
@@ -93,6 +96,7 @@ const Title = styled.div`
 `
 
 const Description = styled.div`
+  padding-top: 35px;
   max-width: 750px;
   margin: auto;
   line-height: clamp(1rem, 1.3vw, 2rem);

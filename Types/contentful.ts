@@ -232,7 +232,7 @@ interface ModuleEightFields {
   name: string;
   firstLineTitle: string
   secondLineTitle: string
-  description: string
+  description?: string
   images: Array<Asset>
   keyWord1?: string
   keyWord2?: string

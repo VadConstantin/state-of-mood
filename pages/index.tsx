@@ -27,7 +27,7 @@ const Index:React.FC<HomePageProps> = ({ navData, homePageData }) => {
   return(
     <Wrapper>
       <NavBar navData={navData}/>
-      <ModuleOneCarousel modulesOneData={homePageData.fields.modulesOne}/>
+      <ModuleOneCarousel modulesOneData={homePageData.fields.modulesOne} />
       <ModuleTwo moduleTwoData={homePageData.fields.moduleTwo as any} />
       <ModuleThree moduleThreeData={homePageData.fields.moduleThree as any}/>
       <Footer />
