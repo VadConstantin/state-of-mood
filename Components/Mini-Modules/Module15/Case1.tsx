@@ -7,11 +7,11 @@ interface Case1Props {
 
 const Case1:React.FC<Case1Props> = ({ data }) => {
 
-  const { title, description, image } = data.fields
+  const { title, description, image, marginBottom, marginTop } = data.fields
   const description2ndParagraph = data.fields?.description2ndParagraph || null
 
   return(
-    <Wrapper>
+    <Wrapper marginTop={marginTop} marginBottom={marginBottom}>
       <TextsWrapper>
         <Title>
           {title}
@@ -34,9 +34,11 @@ const Case1:React.FC<Case1Props> = ({ data }) => {
 
 export default Case1
 
-const Wrapper = styled.div`
+const Wrapper = styled.div<{marginTop: string, marginBottom: string}>`
+  margin-top: ${(props) => props.marginTop + "px"};
+  margin-bottom: ${(props) => props.marginBottom + "px"};
   width: 100%;
-  padding: 50px 8vw;
+  padding: 0px 8vw;
   display: flex;
     justify-content: center;
     gap: 5vw;
@@ -45,10 +47,12 @@ const Wrapper = styled.div`
   align-items: center;
 
   @media (max-width: 600px) {
-    padding: 50px 5vw 20px 5vw;
+    padding: 0px 5vw 0px 5vw;
     text-align: start;
     flex-wrap: wrap;
     justify-content: start;
+    margin-top: ${(props) => (parseInt(props.marginTop, 10) / 2) + "px"};
+    margin-bottom: ${(props) => (parseInt(props.marginBottom, 10) / 2) + "px"};
   }
 `
 

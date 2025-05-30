@@ -7,12 +7,12 @@ interface Case2Props {
 
 const Case2:React.FC<Case2Props> = ({ data }) => {
 
-  const { title, description, image, textColor, backgroundColor } = data.fields
+  const { title, description, image, textColor, backgroundColor, marginBottom, marginTop } = data.fields
   const description2ndParagraph = data.fields?.description2ndParagraph || null
   const description3rdParagraph = data.fields?.description3rdParagraph || null
 
   return(
-    <Wrapper textColor={textColor} bgColor={backgroundColor}>
+    <Wrapper textColor={textColor} bgColor={backgroundColor} marginTop={marginTop} marginBottom={marginBottom}>
       <ImageWrapper>
         <CustomImage src={(image.fields.file as any).url}/>
       </ImageWrapper>
@@ -42,7 +42,9 @@ const Case2:React.FC<Case2Props> = ({ data }) => {
 
 export default Case2
 
-const Wrapper = styled.div<{textColor: string, bgColor: string}>`
+const Wrapper = styled.div<{textColor: string, bgColor: string, marginTop: string, marginBottom: string}>`
+  margin-top: ${(props) => props.marginTop + "px"};
+  margin-bottom: ${(props) => props.marginBottom + "px"};
   width: 100%;
   padding: 0;
   display: flex;
@@ -53,7 +55,9 @@ const Wrapper = styled.div<{textColor: string, bgColor: string}>`
   align-items: center;
 
   @media (max-width: 600px) {
-    padding: 50px 5vw 50px 5vw;
+    margin-top: ${(props) => (parseInt(props.marginTop, 10) / 2) + "px"};
+    margin-bottom: ${(props) => (parseInt(props.marginBottom, 10) / 2) + "px"};
+    padding: 0px 5vw 0px 5vw;
     text-align: start;
     flex-wrap: wrap;
     justify-content: start;

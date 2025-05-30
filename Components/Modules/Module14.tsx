@@ -30,7 +30,7 @@ const Module14:React.FC<Module14Props> = ({ data }) => {
     const description = data.fields?.description || null
 
   return(
-    <Wrapper>
+    <Wrapper marginTop={marginTop} marginBottom={marginBottom}>
       <FirstTitle>
         {firstLineTitle}
       </FirstTitle>
@@ -80,8 +80,10 @@ const Module14:React.FC<Module14Props> = ({ data }) => {
 
 export default Module14
 
-const Wrapper = styled.div`
-  padding: 50px 8vw;
+const Wrapper = styled.div<{marginTop: string, marginBottom: string}>`
+  margin-top: ${(props) => props.marginTop + "px"};
+  margin-bottom: ${(props) => props.marginBottom + "px"};
+  padding: 0px 8vw;
   width: 100%;
   display: flex;
     flex-direction: column;
@@ -89,7 +91,9 @@ const Wrapper = styled.div`
   text-align: center;
 
   @media (max-width: 600px) {
-    padding: 50px 5vw 20px 5vw;
+    margin-top: ${(props) => (parseInt(props.marginTop, 10) / 2) + "px"};
+    margin-bottom: ${(props) => (parseInt(props.marginBottom, 10) / 2) + "px"};
+    padding: 0px 5vw 0px 5vw;
     text-align: start;
   }
 `

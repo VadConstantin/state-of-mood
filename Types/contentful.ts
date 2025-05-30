@@ -372,6 +372,8 @@ interface Module15Fields {
   description2ndParagraph?: string
   description3rdParagraph?: string
   image: Asset
+  marginTop: string
+  marginBottom: string
 }
 
 export interface IModule15 extends EntrySkeletonType<Module15Fields> {}
