@@ -7,11 +7,11 @@ interface PaletteBisModuleProps {
 
 const PaletteBisModule:React.FC<PaletteBisModuleProps> = ({ data }) => {
 
-  const {firstLineTitle, imagesForPaletteType } = data.fields
+  const { firstLineTitle, imagesForPaletteType, marginBottom, marginTop } = data.fields
   const description = data.fields?.description || null
   
   return(
-    <Wrapper> 
+    <Wrapper marginTop={marginTop} marginBottom={marginBottom}> 
     <Texts>
       <Title>
         {firstLineTitle}
@@ -35,9 +35,11 @@ const PaletteBisModule:React.FC<PaletteBisModuleProps> = ({ data }) => {
 
 export default PaletteBisModule
 
-const Wrapper = styled.div`
+const Wrapper = styled.div<{marginTop: string, marginBottom: string}>`
+  margin-top: ${(props) => props.marginTop + "px"};
+  margin-bottom: ${(props) => props.marginBottom + "px"};
   width: 100%;
-  padding: 50px 8vw;
+  padding: 0px 8vw;
   width: 100%;
   background-color: white;
   display: flex;
@@ -46,7 +48,9 @@ const Wrapper = styled.div`
     text-align: center;
 
   @media (max-width: 600px) {
-    padding: 50px 5vw;
+    padding: 0px 5vw;
+    margin-top: ${(props) => (parseInt(props.marginTop, 10) / 2) + "px"};
+    margin-bottom: ${(props) => (parseInt(props.marginBottom, 10) / 2) + "px"};
   }
 `
 

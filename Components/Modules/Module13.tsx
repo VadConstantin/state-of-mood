@@ -78,6 +78,7 @@ const Description = styled.div`
   @media (max-width: 600px) {
     font-size: 3vw;
     line-height: 4vw;
+    margin: 0;
   }
 `
 

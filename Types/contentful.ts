@@ -218,6 +218,8 @@ interface ModuleSixFields {
   picture7: Asset
   picture8: Asset
   picture9: Asset
+  marginTop: string
+  marginBottom: string
 }
 
 export interface IModuleSix extends EntrySkeletonType<ModuleSixFields> {}
@@ -233,6 +235,8 @@ interface ModuleSevenFields {
   imagesForFontType: Array<Asset>
   colorsForColorType: string
   imagesForPaletteType: Array<Asset>
+  marginTop: string
+  marginBottom: string
 }
 
 export interface IModuleSeven extends EntrySkeletonType<ModuleSevenFields> {}

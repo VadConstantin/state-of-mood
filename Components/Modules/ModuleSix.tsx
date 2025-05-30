@@ -18,7 +18,9 @@ const ModuleSix:React.FC<ModuleSixProps> = ({ data }) => {
           picture6,
           picture7,
           picture8,
-          picture9
+          picture9,
+          marginTop,
+          marginBottom
         } = data.fields
 
   const keyWord1 = data.fields.keyWord1 || ''
@@ -32,7 +34,7 @@ const ModuleSix:React.FC<ModuleSixProps> = ({ data }) => {
   ].filter((kw) => kw && kw.trim() !== '');
   
   return(
-    <Wrapper> 
+    <Wrapper marginTop={marginTop} marginBottom={marginBottom}> 
       <TextsWrapper>
         <Title>
           <FirstTitle>
@@ -85,13 +87,17 @@ const ModuleSix:React.FC<ModuleSixProps> = ({ data }) => {
 
 export default ModuleSix
 
-const Wrapper = styled.div`
+const Wrapper = styled.div<{marginTop: string, marginBottom: string}>`
   width: 100%;
   background-color: ${({color}) => color};
-  padding: 60px 50px 100px 50px;
+  padding: 0px 50px 0px 50px;
+  margin-top: ${(props) => props.marginTop + "px"};
+  margin-bottom: ${(props) => props.marginBottom + "px"};
 
   @media (max-width: 600px) {
-    padding: 50px 5vw 15vw 5vw;
+    padding: 0px 5vw 0vw 5vw;
+    margin-top: ${(props) => (parseInt(props.marginTop, 10) / 2) + "px"};
+    margin-bottom: ${(props) => (parseInt(props.marginBottom, 10) / 2) + "px"};
   }
 `
 

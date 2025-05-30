@@ -9,11 +9,11 @@ interface PaletteModuleProps {
 
 const PaletteModule:React.FC<PaletteModuleProps> = ({ data }) => {
 
-  const {firstLineTitle, imagesForPaletteType, backgroundColor } = data.fields
+  const { firstLineTitle, imagesForPaletteType, backgroundColor, marginBottom, marginTop } = data.fields
   const secondLineTitle = data.fields?.secondLineTitle || null
 
   return(
-    <Wrapper bgColor={backgroundColor}> 
+    <Wrapper bgColor={backgroundColor} marginTop={marginTop} marginBottom={marginBottom}> 
       <Texts>
         <FirstTitle>
           {firstLineTitle}
@@ -37,9 +37,11 @@ const PaletteModule:React.FC<PaletteModuleProps> = ({ data }) => {
 
 export default PaletteModule
 
-const Wrapper = styled.div<{bgColor: string}>`
+const Wrapper = styled.div<{bgColor: string, marginTop: string, marginBottom: string}>`
+  margin-top: ${(props) => props.marginTop + "px"};
+  margin-bottom: ${(props) => props.marginBottom + "px"};
   width: 100%;
-  padding: 50px 30px;
+  padding: 0px 30px;
   width: 100%;
   display: flex;
     flex-direction: column;
@@ -47,7 +49,9 @@ const Wrapper = styled.div<{bgColor: string}>`
     text-align: center;
 
   @media (max-width: 600px) {
-    padding: 50px 5vw;
+    padding: 0px 5vw;
+    margin-top: ${(props) => (parseInt(props.marginTop, 10) / 2) + "px"};
+    margin-bottom: ${(props) => (parseInt(props.marginBottom, 10) / 2) + "px"};
   }
 `
 

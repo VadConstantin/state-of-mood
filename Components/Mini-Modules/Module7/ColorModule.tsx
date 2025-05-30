@@ -9,12 +9,12 @@ interface ColorModuleProps {
 
 const ColorModule:React.FC<ColorModuleProps> = ({ data }) => {
 
-  const { backgroundColor, firstLineTitle } = data.fields
+  const { backgroundColor, firstLineTitle, marginBottom, marginTop } = data.fields
   const secondLineTitle = data.fields?.secondLineTitle || null
   const colors = data.fields.colorsForColorType.split(',')
 
   return(
-    <Wrapper bgColor={backgroundColor}> 
+    <Wrapper bgColor={backgroundColor} marginTop={marginTop} marginBottom={marginBottom}> 
       <FirstTitle>
         {firstLineTitle}
       </FirstTitle>
@@ -37,7 +37,9 @@ const ColorModule:React.FC<ColorModuleProps> = ({ data }) => {
 
 export default ColorModule
 
-const Wrapper = styled.div<{bgColor: string}>`
+const Wrapper = styled.div<{bgColor: string, marginTop: string, marginBottom: string}>`
+  margin-top: ${(props) => props.marginTop + "px"};
+  margin-bottom: ${(props) => props.marginBottom + "px"};
   padding: 50px;
   width: 100%;
   background-color: ${(props) => props.bgColor};
@@ -49,6 +51,8 @@ const Wrapper = styled.div<{bgColor: string}>`
   @media (max-width: 600px) {
     text-align: start;
     padding: 20px 5vw;
+    margin-top: ${(props) => (parseInt(props.marginTop, 10) / 2) + "px"};
+    margin-bottom: ${(props) => (parseInt(props.marginBottom, 10) / 2) + "px"};
   }
 `
 

@@ -9,11 +9,11 @@ interface FontModuleProps {
 
 const FontModule:React.FC<FontModuleProps> = ({ data }) => {
 
-  const {firstLineTitle, imagesForFontType, backgroundColor } = data.fields
+  const { firstLineTitle, imagesForFontType, backgroundColor, marginBottom, marginTop } = data.fields
   const secondLineTitle = data.fields?.secondLineTitle || null
 
   return(
-    <Wrapper bgColor={backgroundColor}> 
+    <Wrapper bgColor={backgroundColor} marginTop={marginTop} marginBottom={marginBottom}> 
       <Texts>
         <FirstTitle>
           {firstLineTitle}
@@ -37,9 +37,11 @@ const FontModule:React.FC<FontModuleProps> = ({ data }) => {
 
 export default FontModule
 
-const Wrapper = styled.div<{bgColor: string}>`
+const Wrapper = styled.div<{bgColor: string, marginTop: string, marginBottom: string}>`
+  margin-top: ${(props) => props.marginTop + "px"};
+  margin-bottom: ${(props) => props.marginBottom + "px"};
   width: 100%;
-  padding: 50px 0;
+  padding: 0px 0;
   width: 100%;
   display: flex;
     flex-direction: column;
@@ -48,6 +50,8 @@ const Wrapper = styled.div<{bgColor: string}>`
 
   @media (max-width: 600px) {
     text-align: start;
+    margin-top: ${(props) => (parseInt(props.marginTop, 10) / 2) + "px"};
+    margin-bottom: ${(props) => (parseInt(props.marginBottom, 10) / 2) + "px"};
   }
 `
 
