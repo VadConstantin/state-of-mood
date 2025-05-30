@@ -9,9 +9,9 @@ interface ModuleConvertTheMoodProps {
 }
 
 const ModuleConvertTheMood:React.FC<ModuleConvertTheMoodProps> = ({ data }) => {
-  const {title, secondTitle, description, textColor, backgroundColor, bannerColor, buttonsColor, } = data.fields
+  const { title, secondTitle, description, textColor, backgroundColor, bannerColor, buttonsColor, marginBottom, marginTop } = data.fields
   return(
-    <Wrapper bgColor={backgroundColor} fontColor={textColor}>
+    <Wrapper bgColor={backgroundColor} fontColor={textColor} marginTop={marginTop} marginBottom={marginBottom}>
       <Title>
         <FirstTitle>
           {title}
@@ -45,8 +45,9 @@ const ModuleConvertTheMood:React.FC<ModuleConvertTheMoodProps> = ({ data }) => {
 
 export default ModuleConvertTheMood
 
-const Wrapper = styled.div<{bgColor: string, fontColor: string}>`
-  margin-top: 30px;
+const Wrapper = styled.div<{bgColor: string, fontColor: string, marginTop: string, marginBottom: string}>`
+  margin-top: ${(props) => props.marginTop + "px"};
+  margin-bottom: ${(props) => props.marginBottom + "px"};
   width: 100%;
   display: flex;
     flex-direction: column;
@@ -54,6 +55,11 @@ const Wrapper = styled.div<{bgColor: string, fontColor: string}>`
   text-align: center;
   background-color: ${(props) => props.bgColor};
   color: ${(props) => props.fontColor};
+
+  @media (max-width: 600px) {
+    margin-top: ${(props) => (parseInt(props.marginTop, 10) / 2) + "px"};
+    margin-bottom: ${(props) => (parseInt(props.marginBottom, 10) / 2) + "px"};
+  }
 `
 
 const Title = styled.div`

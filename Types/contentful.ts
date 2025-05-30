@@ -479,6 +479,8 @@ interface moduleConvertTheMoodFields {
   bannerColor: string
   textColor: string
   buttonsColor: string
+  marginTop: string
+  marginBottom: string
 }
 
 export interface ImoduleConvertTheMood extends EntrySkeletonType<moduleConvertTheMoodFields> {}
