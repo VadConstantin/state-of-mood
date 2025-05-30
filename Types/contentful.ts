@@ -253,6 +253,8 @@ interface ModuleEightFields {
   keyWord3?: string
   keyWord4?: string
   keyWord5?: string
+  marginTop: string
+  marginBottom: string
 }
 
 export interface IModuleEight extends EntrySkeletonType<ModuleEightFields> {}
@@ -265,6 +267,8 @@ interface ModuleNineFields {
   secondLineTitle?: string
   description?: string
   images: Array<Asset>
+  marginTop: string
+  marginBottom: string
 }
 
 export interface IModuleNine extends EntrySkeletonType<ModuleNineFields> {}
@@ -277,6 +281,8 @@ interface ModuleTenFields {
   secondLineTitle: string
   description?: string
   images: Array<Asset>
+  marginTop: string
+  marginBottom: string
 }
 
 export interface IModuleTen extends EntrySkeletonType<ModuleTenFields> {}
@@ -293,6 +299,8 @@ interface ModuleElevenFields {
   line5?: string
   line6?: string
   line7?: string
+  marginTop: string
+  marginBottom: string
 }
 
 export interface IModuleEleven extends EntrySkeletonType<ModuleElevenFields> {}
@@ -307,6 +315,8 @@ interface ModuleTwelveFields {
   firstLineTitle?: string
   secondLineTitle?: string
   images: Array<Asset>
+  marginTop: string
+  marginBottom: string
 }
 
 export interface IModuleTwelve extends EntrySkeletonType<ModuleTwelveFields> {}
@@ -321,6 +331,8 @@ interface Module13Fields {
   firstLogoTitle?: string
   secondLogoTitle?: string
   image?: Asset
+  marginTop: string
+  marginBottom: string
 }
 
 export interface IModule13 extends EntrySkeletonType<Module13Fields> {}
@@ -343,6 +355,8 @@ interface Module14Fields {
   image5Caption: string
   image6: Asset
   image6Caption: string
+  marginTop: string
+  marginBottom: string
 }
 
 export interface IModule14 extends EntrySkeletonType<Module14Fields> {}

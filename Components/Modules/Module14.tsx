@@ -23,7 +23,9 @@ const Module14:React.FC<Module14Props> = ({ data }) => {
     image3Caption,
     image4Caption,
     image5Caption,
-    image6Caption } = data.fields
+    image6Caption,
+    marginBottom,
+    marginTop } = data.fields
 
     const description = data.fields?.description || null
 

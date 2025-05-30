@@ -9,11 +9,11 @@ interface Module13Props {
 
 const Module13:React.FC<Module13Props> = ({ data }) => {
 
-  const { firstLogoTitle, secondLogoTitle, logos, firstLineTitle, secondLineTitle, description } = data.fields
+  const { firstLogoTitle, secondLogoTitle, logos, firstLineTitle, secondLineTitle, description, marginBottom, marginTop } = data.fields
   const image = data.fields?.image || null
 
   return(
-    <Wrapper>
+    <Wrapper marginTop={marginTop} marginBottom={marginBottom}>
       <FirstTitle>
         {firstLineTitle}
       </FirstTitle>
@@ -47,9 +47,10 @@ const Module13:React.FC<Module13Props> = ({ data }) => {
 
 export default Module13
 
-const Wrapper = styled.div`
-  margin-top: 30px;
-  padding: 50px 0;
+const Wrapper = styled.div<{marginTop: string, marginBottom: string}>`
+  margin-top: ${(props) => props.marginTop + "px"};
+  margin-bottom: ${(props) => props.marginBottom + "px"};
+  padding: 0px 0;
   width: 100%;
   display: flex;
     flex-direction: column;
@@ -58,7 +59,9 @@ const Wrapper = styled.div`
 
   @media (max-width: 600px) {
     text-align: start;
-    padding: 20px 5vw;
+    padding: 0px 5vw;
+    margin-top: ${(props) => (parseInt(props.marginTop, 10) / 2) + "px"};
+    margin-bottom: ${(props) => (parseInt(props.marginBottom, 10) / 2) + "px"};
   }
 `
 

@@ -77,7 +77,7 @@ const TopWrapper = styled.div<{textColor: string}>`
 `
 
 const BottomWrapper = styled.div`
-  padding: 30px 0;
+  padding: 30px 0 0 0;
   margin-top: 50px;
 
   @media (max-width: 600px) {

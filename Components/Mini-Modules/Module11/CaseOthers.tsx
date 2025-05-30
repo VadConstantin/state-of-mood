@@ -8,7 +8,7 @@ interface CaseOthersProps {
 
 const CaseOthers:React.FC<CaseOthersProps> = ({ data }) => {
 
-  const { line1, displayButton } = data.fields
+  const { line1, displayButton, marginBottom, marginTop } = data.fields
   const line2 = data.fields?.line2 || ''
   const line3 = data.fields?.line3 || ''
   const line4 = data.fields?.line4 || ''
@@ -17,7 +17,7 @@ const CaseOthers:React.FC<CaseOthersProps> = ({ data }) => {
   const line7 = data.fields?.line7 || ''
 
   return(
-    <Wrapper>
+    <Wrapper marginTop={marginTop} marginBottom={marginBottom}>
       <LinesWrapper>
         <Line>
           {line1}
@@ -57,8 +57,10 @@ const CaseOthers:React.FC<CaseOthersProps> = ({ data }) => {
 export default CaseOthers
 
 
-const Wrapper = styled.div`
-  padding: 50px 8vw;
+const Wrapper = styled.div<{marginTop: string, marginBottom: string}>`
+  margin-top: ${(props) => props.marginTop + "px"};
+  margin-bottom: ${(props) => props.marginBottom + "px"};
+  padding: 0px 8vw;
   width: 100%;
   display: flex;
     flex-direction: column;
@@ -66,7 +68,9 @@ const Wrapper = styled.div`
   text-align: center;
 
   @media (max-width: 600px) {
-    padding: 20px 5vw 20px 5vw;
+    margin-top: ${(props) => (parseInt(props.marginTop, 10) / 2) + "px"};
+    margin-bottom: ${(props) => (parseInt(props.marginBottom, 10) / 2) + "px"};
+    padding: 0px 5vw 0px 5vw;
     text-align: start;
   }
 `

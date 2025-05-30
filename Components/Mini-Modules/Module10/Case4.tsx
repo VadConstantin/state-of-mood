@@ -10,7 +10,7 @@ interface Case4Props {
 
 const Case4: React.FC<Case4Props> = ({ data }) => {
 
-  const { firstLineTitle, secondLineTitle, images } = data.fields
+  const { firstLineTitle, secondLineTitle, images, marginBottom, marginTop } = data.fields
   const description = data.fields?.description || null 
   const firstPic = images[0]
   const secondPic = images[1]
@@ -18,7 +18,7 @@ const Case4: React.FC<Case4Props> = ({ data }) => {
   const fourthPic = images[3]
   
   return(
-    <Wrapper>
+    <Wrapper marginTop={marginTop} marginBottom={marginBottom}>
       <FirstTitle>
         {firstLineTitle}
       </FirstTitle>
@@ -42,16 +42,20 @@ const Case4: React.FC<Case4Props> = ({ data }) => {
 
 export default Case4
 
-const Wrapper = styled.div`
+const Wrapper = styled.div<{marginTop: string, marginBottom: string}>`
+  margin-top: ${(props) => props.marginTop + "px"};
+  margin-bottom: ${(props) => props.marginBottom + "px"};
   width: 100%;
-  padding: 50px 8vw;
+  padding: 0px 8vw;
   display: flex;
     flex-direction: column;
     justify-content: center;
   text-align: center;
 
   @media (max-width: 600px) {
-    padding: 20px 5vw 20px 5vw;
+    margin-top: ${(props) => (parseInt(props.marginTop, 10) / 2) + "px"};
+    margin-bottom: ${(props) => (parseInt(props.marginBottom, 10) / 2) + "px"};
+    padding: 0px 5vw 0px 5vw;
     text-align: start;
   }
 `

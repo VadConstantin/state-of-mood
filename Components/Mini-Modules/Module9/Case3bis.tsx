@@ -10,10 +10,10 @@ interface Case3bisProps {
 
 const Case3bis: React.FC<Case3bisProps> = ({ data }) => {
 
-  const { firstLineTitle, secondLineTitle, images, description } = data.fields
+  const { firstLineTitle, secondLineTitle, images, description, marginBottom, marginTop } = data.fields
   
   return(
-    <Wrapper>
+    <Wrapper marginTop={marginTop} marginBottom={marginBottom}>
       {firstLineTitle && 
         <FirstTitle>
           {firstLineTitle}
@@ -38,16 +38,20 @@ const Case3bis: React.FC<Case3bisProps> = ({ data }) => {
 
 export default Case3bis
 
-const Wrapper = styled.div`
+const Wrapper = styled.div<{marginTop: string, marginBottom: string}>`
+  margin-top: ${(props) => props.marginTop + "px"};
+  margin-bottom: ${(props) => props.marginBottom + "px"};
   width: 100%;
-  padding: 50px 8vw;
+  padding: 0px 8vw;
   display: flex;
     flex-direction: column;
     justify-content: center;
   text-align: center;
 
   @media (max-width: 600px) {
-    padding: 20px 5vw 20px 5vw;
+    margin-top: ${(props) => (parseInt(props.marginTop, 10) / 2) + "px"};
+    margin-bottom: ${(props) => (parseInt(props.marginBottom, 10) / 2) + "px"};
+    padding: 0px 5vw 0px 5vw;
     text-align: start;
   }
 `

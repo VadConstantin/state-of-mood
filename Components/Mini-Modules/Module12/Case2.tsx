@@ -10,7 +10,7 @@ interface Case2Props {
 
 const Case2: React.FC<Case2Props> = ({ data }) => {
 
-  const { backgroundColor, images, fontColor } = data.fields
+  const { backgroundColor, images, fontColor, marginBottom, marginTop } = data.fields
   const firstLineTitle = data.fields?.firstLineTitle || null
   const secondLineTitle = data.fields?.firstLineTitle || null
   const firstPic = images[0]
@@ -19,7 +19,7 @@ const Case2: React.FC<Case2Props> = ({ data }) => {
   const description = data.fields?.description || null
   
   return(
-    <Wrapper bgColor={backgroundColor} fontColor={fontColor}>
+    <Wrapper bgColor={backgroundColor} fontColor={fontColor} marginTop={marginTop} marginBottom={marginBottom}>
       {firstLineTitle && 
         <FirstTitle>
           {firstLineTitle}
@@ -46,8 +46,9 @@ const Case2: React.FC<Case2Props> = ({ data }) => {
 
 export default Case2
 
-const Wrapper = styled.div<{bgColor: string, fontColor: string}>`
-  margin-top: 30px;
+const Wrapper = styled.div<{bgColor: string, fontColor: string, marginTop: string, marginBottom: string}>`
+  margin-top: ${(props) => props.marginTop + "px"};
+  margin-bottom: ${(props) => props.marginBottom + "px"};
   padding: 50px 8vw;
   width: 100%;
   display: flex;
@@ -58,6 +59,8 @@ const Wrapper = styled.div<{bgColor: string, fontColor: string}>`
   color: ${(props) => props.fontColor};
 
   @media (max-width: 600px) {
+    margin-top: ${(props) => (parseInt(props.marginTop, 10) / 2) + "px"};
+    margin-bottom: ${(props) => (parseInt(props.marginBottom, 10) / 2) + "px"};
     padding: 20px 5vw 20px 5vw;
     text-align: start;
   }

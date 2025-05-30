@@ -10,14 +10,14 @@ interface Case3Props {
 
 const Case3: React.FC<Case3Props> = ({ data }) => {
 
-  const { firstLineTitle, secondLineTitle ,images } = data.fields
+  const { firstLineTitle, secondLineTitle ,images, marginBottom, marginTop } = data.fields
   const description = data.fields?.description || null 
   const firstPic = images[0]
   const secondPic = images[1] || null
   const thirdPic = images[2] || null
   
   return(
-    <Wrapper>
+    <Wrapper marginTop={marginTop} marginBottom={marginBottom}>
       <FirstTitle>
         {firstLineTitle}
       </FirstTitle>
@@ -40,9 +40,10 @@ const Case3: React.FC<Case3Props> = ({ data }) => {
 
 export default Case3
 
-const Wrapper = styled.div`
-  width: 100%;
-  padding: 50px 8vw;
+const Wrapper = styled.div<{marginTop: string, marginBottom: string}>`
+  margin-top: ${(props) => props.marginTop + "px"};
+  margin-bottom: ${(props) => props.marginBottom + "px"};
+  padding: 0px 8vw;
   width: 100%;
   display: flex;
     flex-direction: column;
@@ -50,7 +51,9 @@ const Wrapper = styled.div`
   text-align: center;
 
   @media (max-width: 600px) {
-    padding: 20px 5vw 20px 5vw;
+    margin-top: ${(props) => (parseInt(props.marginTop, 10) / 2) + "px"};
+    margin-bottom: ${(props) => (parseInt(props.marginBottom, 10) / 2) + "px"};
+    padding: 0px 5vw 0px 5vw;
     text-align: start;
   }
 `

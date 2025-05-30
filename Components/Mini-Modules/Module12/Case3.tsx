@@ -10,7 +10,7 @@ interface Case3Props {
 
 const Case3: React.FC<Case3Props> = ({ data }) => {
 
-  const { backgroundColor, images, fontColor } = data.fields
+  const { backgroundColor, images, fontColor, marginBottom, marginTop } = data.fields
   const firstLineTitle = data.fields?.firstLineTitle || null
   const secondLineTitle = data.fields?.secondLineTitle || null
   const firstPic = images[0]
@@ -19,7 +19,7 @@ const Case3: React.FC<Case3Props> = ({ data }) => {
   const description = data.fields?.description || null
   
   return(
-    <Wrapper>
+    <Wrapper marginTop={marginTop} marginBottom={marginBottom}>
       <TopWrapper fontColor={fontColor}>
         {firstLineTitle && 
           <FirstTitle>
@@ -50,9 +50,9 @@ const Case3: React.FC<Case3Props> = ({ data }) => {
 
 export default Case3
 
-const Wrapper = styled.div`
-  margin-top: 30px;
-  padding: 50px 0;
+const Wrapper = styled.div<{marginTop: string, marginBottom: string}>`
+  margin-top: ${(props) => props.marginTop + "px"};
+  margin-bottom: ${(props) => props.marginBottom + "px"};
   width: 100%;
   display: flex;
     flex-direction: column;
@@ -60,8 +60,9 @@ const Wrapper = styled.div`
   text-align: center;
 
   @media (max-width: 600px) {
+    margin-top: ${(props) => (parseInt(props.marginTop, 10) / 2) + "px"};
+    margin-bottom: ${(props) => (parseInt(props.marginBottom, 10) / 2) + "px"};
     text-align: start;
-    padding: 20px 0;
   }
 `
 

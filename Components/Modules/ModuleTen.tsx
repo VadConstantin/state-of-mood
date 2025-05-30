@@ -12,10 +12,10 @@ const ModuleTen:React.FC<ModuleTenProps> = ({ data }) => {
 
   const type = data.fields.type
 
-  if(type === 'Case 1') return <Case1 data={data}/>
-  if(type === 'Case 2') return <Case2 data={data}/>
-  if(type === 'Case 3') return (<Case3 data={data}/>)
-  if(type === 'Case 4') return (<Case4 data={data}/>)
+  if(type === 'Case 1') return <Case1 data={data as any}/>
+  if(type === 'Case 2') return <Case2 data={data as any}/>
+  if(type === 'Case 3') return (<Case3 data={data as any}/>)
+  if(type === 'Case 4') return (<Case4 data={data as any}/>)
 
   return(
     <>

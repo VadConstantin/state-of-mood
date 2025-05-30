@@ -9,7 +9,7 @@ interface ModuleEightProps {
 
 const ModuleEight:React.FC<ModuleEightProps> = ({ data }) => {
 
-  const { firstLineTitle, secondLineTitle } = data.fields
+  const { firstLineTitle, secondLineTitle, marginBottom, marginTop } = data.fields
   const description = data.fields?.description || ''
   const images = data.fields.images || []
   const keyWord1 = data.fields.keyWord1 || ''
@@ -25,7 +25,7 @@ const ModuleEight:React.FC<ModuleEightProps> = ({ data }) => {
   ].filter((kw) => kw && kw.trim() !== '');
 
   return(
-    <Wrapper isImages={isImages}>
+    <Wrapper isImages={isImages} marginTop={marginTop} marginBottom={marginBottom}>
       <TextsWrapper>
         <Title>
           <FirstTitle>
@@ -68,14 +68,17 @@ const ModuleEight:React.FC<ModuleEightProps> = ({ data }) => {
 
 export default ModuleEight
 
-const Wrapper = styled.div<{isImages: boolean}>`
+const Wrapper = styled.div<{isImages: boolean, marginTop: string, marginBottom: string}>`
   width: 100%;
-  padding: 60px 50px 100px 50px;
-  padding: ${(props) => props.isImages ? '60px 50px 100px 50px' : '60px 50px 60px 50px'};
+  padding: 0px 50px 0px 50px;
   text-align: center;
+  margin-top: ${(props) => props.marginTop + "px"};
+  margin-bottom: ${(props) => props.marginBottom + "px"};
 
   @media (max-width: 600px) {
-    padding: 50px 5vw 50px 5vw;
+    padding: 0px 5vw 0px 5vw;
+    margin-top: ${(props) => (parseInt(props.marginTop, 10) / 2) + "px"};
+    margin-bottom: ${(props) => (parseInt(props.marginBottom, 10) / 2) + "px"};
   }
 `
 
@@ -89,7 +92,6 @@ const TextsWrapper = styled.div`
 `
 
 const Title = styled.div`
-
   @media (max-width: 600px) {
     padding-bottom: 25px;
   }
