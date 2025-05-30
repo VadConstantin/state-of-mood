@@ -683,7 +683,6 @@ const enrichModuleTwoGeneric = async (entry: any) => {
       )
   };
 
-
 export const getMoodboardPageData = async (slug: string): Promise<Entry<IMoodboardPage>> => {
     const entries = await contentful.getEntries<IMoodboardPage>({
         content_type: "pageMoodboard",
@@ -703,13 +702,6 @@ export const getAllMoodPages = async (): Promise<Array<Entry<IMoodboardPage>>> =
     return entries.items
 }
 
-// export const getAllArticles = async (): Promise<Array<Entry<IArticlePage>>> => {
-//     const entries = await contentful.getEntries<IArticlePage>({
-//         content_type: 'pageArticle'
-//     })
-
-//     return entries.items
-// }
 
 export const getPageFocusData = async (): Promise<Entry<IFocusPage>> => {
     const entries = await contentful.getEntries<IFocusPage>({

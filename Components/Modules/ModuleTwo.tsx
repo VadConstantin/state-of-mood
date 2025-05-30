@@ -77,6 +77,11 @@ const Description = styled.div`
   max-width: 750px;
   margin: auto;
   line-height: 20px;
+
+  @media (max-width: 600px) {
+    margin: 0;
+    padding: 0 5vw 15vw 5vw;
+  }
 `
 
 const WeeklyModulesWrapper = styled.div`

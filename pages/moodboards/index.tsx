@@ -67,12 +67,10 @@ const Index:React.FC<IndexProps> = ({ data, navData }) => {
                 exit={{ opacity: 0, y: 0 }}
                 transition={{ duration: 0.3, ease: "easeOut" }}
               >
-                <Page key={index} reverse={index % 2 === 1}>
-                  <CustomLink href={"/moodboards/" + page.fields.slug}>
-                    <CustomImage src={ (page.fields.pictureForMoodsPage.fields.file as any).url} 
+                <Page key={index} reverse={index % 2 === 1} href={"/moodboards/" + page.fields.slug}>
+                  <CustomImage src={ (page.fields.pictureForMoodsPage.fields.file as any).url} 
                                         borderColor={page.fields.firstSquareColorForMoodsPage}
                                       />
-                  </CustomLink>
                   <TextsPart bgColor={page.fields.secondSquareColorForMoodsPage}>
                     <Texts>
                       <TextsTag>
@@ -213,7 +211,8 @@ const PagesWrapper = styled.div`
     flex-wrap: wrap;
 `
 
-const Page = styled.div<{reverse?: boolean}>`
+const Page = styled.a<{reverse?: boolean}>`
+  text-decoration: none;
   width: 100%;
   position: relative;
   cursor: pointer;
@@ -224,12 +223,12 @@ const Page = styled.div<{reverse?: boolean}>`
 `
 
 const CustomLink = styled.a`
-  text-decoration: none;
-  width: 50%;
+
 `
 
 const CustomImage = styled.img<{borderColor: string}>`
-  width: 100%;
+  text-decoration: none;
+  width: 50%;
   height: auto;
   padding: 8vw;
   background-color: ${(props) => props.borderColor};

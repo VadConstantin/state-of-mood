@@ -413,6 +413,7 @@ interface MoodboardPageFields {
   | IModule13
   | IModule14
   | IModule15
+  | ImoduleConvertTheMood
   >
 }
 
@@ -437,3 +438,17 @@ interface PortfolioPageFields {
 }
 
 export interface IPortfolioPage extends EntrySkeletonType<PortfolioPageFields> {}
+
+
+interface moduleConvertTheMoodFields {
+  name: string
+  title: string
+  secondTitle: string
+  description: string
+  backgroundColor: string
+  bannerColor: string
+  textColor: string
+  buttonsColor: string
+}
+
+export interface ImoduleConvertTheMood extends EntrySkeletonType<moduleConvertTheMoodFields> {}
