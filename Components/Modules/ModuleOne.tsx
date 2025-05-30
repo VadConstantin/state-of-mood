@@ -14,11 +14,13 @@ const ModuleOne:React.FC<ModuleOneProps> = ({ moduleOneData }) => {
           firstPicture,
           secondPicture,
           linkSlug,
-          stampForSecondPicture
+          stampForSecondPicture,
+          marginTop,
+          marginBottom
          } = moduleOneData.fields
 
   return(
-    <Wrapper color={backgroundColor}>
+    <Wrapper color={backgroundColor} marginTop={marginTop} marginBottom={marginBottom}>
       <PicturesWrapper>
         <FirstPicAndText>
           <FirstPicture src={firstPicture.fields.file.url} alt="picture" />
@@ -50,9 +52,11 @@ const ModuleOne:React.FC<ModuleOneProps> = ({ moduleOneData }) => {
 
 export default ModuleOne
 
-const Wrapper = styled.div<{color: string}>`
+const Wrapper = styled.div<{color: string, marginTop: string, marginBottom: string}>`
   background-color: ${({color}) => color };
   width: 100%;
+  margin-top: ${(props) => props.marginTop + "px"};
+  margin-bottom: ${(props) => props.marginBottom + "px"};
 `
 
 const PicturesWrapper = styled.div`

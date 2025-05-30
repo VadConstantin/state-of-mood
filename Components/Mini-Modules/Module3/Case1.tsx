@@ -7,7 +7,7 @@ interface Case1Props {
 
 const Case1:React.FC<Case1Props> = ({ moduleThreeData }) => {
 
-  const { backgroundColor, titleFirstLine, titleSecondLine } = moduleThreeData.fields
+  const { backgroundColor, titleFirstLine, titleSecondLine, marginBottom, marginTop } = moduleThreeData.fields
   const tag = moduleThreeData.fields?.tag || null
   const picture = moduleThreeData.fields?.picture || null
   const description = moduleThreeData.fields?.description || null
@@ -15,7 +15,7 @@ const Case1:React.FC<Case1Props> = ({ moduleThreeData }) => {
   const linkSlug = moduleThreeData.fields?.linkSlug || null
 
   return(
-    <Wrapper backgroundColor={backgroundColor}>
+    <Wrapper backgroundColor={backgroundColor} marginTop={marginTop} marginBottom={marginBottom}>
       <TextsWrapper>
         {tag && 
           <Tag>
@@ -48,7 +48,7 @@ const Case1:React.FC<Case1Props> = ({ moduleThreeData }) => {
 
 export default Case1
 
-const Wrapper = styled.div<{backgroundColor: string}>`
+const Wrapper = styled.div<{backgroundColor: string, marginTop: string, marginBottom: string}>`
   width: 100%;
   align-items: center;
   background-color: ${({ backgroundColor }) => backgroundColor};
@@ -57,6 +57,8 @@ const Wrapper = styled.div<{backgroundColor: string}>`
     flex-wrap: wrap;
   justify-content: space-around;
   padding: 100px 50px 100px 50px;
+  margin-top: ${(props) => props.marginTop + "px"};
+  margin-bottom: ${(props) => props.marginBottom + "px"};
 
   @media (max-width: 600px) {
     padding: 0 5vw 15vw 5vw;

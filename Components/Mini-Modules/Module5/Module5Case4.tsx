@@ -12,9 +12,11 @@ const Module5Case4: React.FC<Props> = ({ data }) => {
 
   const borderColorImage1 = data.fields.firstImageBackgroundColor
   const borderColorImage2 = data.fields.secondImageBackgroundColor
+
+  const { marginBottom, marginTop } = data.fields
   
   return(
-    <Wrapper>
+    <Wrapper marginTop={marginTop} marginBottom={marginBottom}>
       <Picture1 src={image1.fields.file?.url as any} borderColor={borderColorImage1 as any}/>
       <Picture2 src={image2.fields.file?.url as any} borderColor={borderColorImage2 as any}/>
     </Wrapper>
@@ -23,11 +25,15 @@ const Module5Case4: React.FC<Props> = ({ data }) => {
 
 export default Module5Case4
 
-const Wrapper = styled.div`
+const Wrapper = styled.div<{marginTop: string, marginBottom: string}>`
   display: flex;
+  margin-top: ${(props) => props.marginTop + "px"};
+  margin-bottom: ${(props) => props.marginBottom + "px"};
 
   @media (max-width: 600px) {
     flex-wrap: wrap;
+    margin-top: ${(props) => (parseInt(props.marginTop, 10) / 2) + "px"};
+    margin-bottom: ${(props) => (parseInt(props.marginBottom, 10) / 2) + "px"};
   }
 `
 

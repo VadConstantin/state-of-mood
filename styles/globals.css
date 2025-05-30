@@ -28,7 +28,7 @@ body {
 }
 
 @media (prefers-color-scheme: dark) {
-  body {
+  body, input, textarea, select {
     background-color: white;
     color: black;
   }

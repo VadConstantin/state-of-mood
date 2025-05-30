@@ -10,7 +10,7 @@ interface Case6Props {
 
 const Module5Case6: React.FC<Case6Props> = ({ data }) => {
 
-  const { firstLineTitle, secondLineTitle, textColor, plainImages} = data.fields
+  const { firstLineTitle, secondLineTitle, textColor, plainImages, marginBottom, marginTop } = data.fields
   const image1 = data.fields.images[0]
   const image2 = data.fields.images[1]
   const description = data.fields?.description || null
@@ -18,7 +18,7 @@ const Module5Case6: React.FC<Case6Props> = ({ data }) => {
   const borderColorImage2 = data.fields.secondImageBackgroundColor
   
   return(
-    <Wrapper>
+    <Wrapper marginTop={marginTop} marginBottom={marginBottom}>
       <TopWrapper textColor={textColor as any}>
         <FirstTitle>
           {firstLineTitle}
@@ -52,9 +52,9 @@ const Module5Case6: React.FC<Case6Props> = ({ data }) => {
 
 export default Module5Case6
 
-const Wrapper = styled.div`
-  margin-top: 30px;
-  padding: 50px 0 20px;
+const Wrapper = styled.div<{marginTop: string, marginBottom: string}>`
+  margin-top: ${(props) => props.marginTop + "px"};
+  margin-bottom: ${(props) => props.marginBottom + "px"};
   width: 100%;
   display: flex;
     flex-direction: column;
@@ -63,7 +63,8 @@ const Wrapper = styled.div`
 
   @media (max-width: 600px) {
     text-align: start;
-    padding: 20px 0;
+    margin-top: ${(props) => (parseInt(props.marginTop, 10) / 2) + "px"};
+    margin-bottom: ${(props) => (parseInt(props.marginBottom, 10) / 2) + "px"};
   }
 `
 

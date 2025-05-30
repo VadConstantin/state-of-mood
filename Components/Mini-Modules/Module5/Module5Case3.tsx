@@ -18,9 +18,10 @@ const Module5Case3: React.FC<Props> = ({ data }) => {
   const pictureHasBorderColor = data.fields.firstImageBackgroundColor || null
   const isTextBefore = data.fields.isTextBefore
   const plainImages = data.fields.plainImages
+  const { marginBottom, marginTop } = data.fields
   
   return(
-    <Wrapper isTextBefore={isTextBefore as string}>
+    <Wrapper isTextBefore={isTextBefore as string} marginTop={marginTop} marginBottom={marginBottom}>
       {(pictureHasBorderColor && !plainImages) ? 
           <PictureBorder src={image.fields.file?.url as any} borderColor={pictureHasBorderColor}/> 
         : <Picture src={image.fields.file?.url as any} /> 
@@ -52,12 +53,16 @@ const Module5Case3: React.FC<Props> = ({ data }) => {
 
 export default Module5Case3
 
-const Wrapper = styled.div<{isTextBefore: string}>`
+const Wrapper = styled.div<{isTextBefore: string, marginTop: string, marginBottom: string}>`
   display: flex;
   flex-direction: ${(props) => props.isTextBefore === "yes" ? 'row-reverse' : 'row'};
+  margin-top: ${(props) => props.marginTop + "px"};
+  margin-bottom: ${(props) => props.marginBottom + "px"};
 
   @media (max-width: 600px) {
     flex-wrap: wrap;
+    margin-top: ${(props) => (parseInt(props.marginTop, 10) / 2) + "px"};
+    margin-bottom: ${(props) => (parseInt(props.marginBottom, 10) / 2) + "px"};
   }
 `
 

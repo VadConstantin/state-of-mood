@@ -38,6 +38,8 @@ export interface ModuleOneFields {
   secondPicture: Asset
   linkSlug: string
   stampForSecondPicture?: Asset
+  marginTop: string
+  marginBottom: string
 }
 
 export interface IModuleOne extends EntrySkeletonType<ModuleOneFields> {}
@@ -63,6 +65,8 @@ export interface ModuleTwoFields {
   description: string
   backgroundColor: string
   weeklySelectionModules: Array<IWeeklySelectionModule>
+  marginTop: string
+  marginBottom: string
 }
 
 export interface IModuleTwo extends EntrySkeletonType<ModuleTwoFields> {}
@@ -81,6 +85,8 @@ export interface ModuleThreeFields {
   linkTitle?: string
   linkSlug?: string
   caseStudies: Array<ICaseStudyPage>
+  marginTop: string
+  marginBottom: string
 }
 
 export interface IModuleThree extends EntrySkeletonType<ModuleThreeFields> {}
@@ -137,6 +143,8 @@ export interface ModuleFourFields {
   secondPartDescription: string
   secondPartWorkTogetherLinkSlug: string
   secondPartSeeCaseStudyLinkSlug: string
+  marginTop: string
+  marginBottom: string
 }
 
 export interface IModuleFour extends EntrySkeletonType<ModuleFourFields> {}
@@ -158,6 +166,8 @@ export interface ModuleFiveFieds {
   secondLineTitle?: string
   middleTitle?: string
   description?: string
+  marginTop: string
+  marginBottom: string
 }
 
 export interface IModuleFive extends EntrySkeletonType<ModuleFiveFieds> {}

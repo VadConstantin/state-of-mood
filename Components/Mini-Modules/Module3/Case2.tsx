@@ -7,11 +7,11 @@ interface Case2Props {
 
 const Case2:React.FC<Case2Props> = ({ moduleThreeData }) => {
 
-  const { backgroundColor, titleFirstLine, titleSecondLine } = moduleThreeData.fields
+  const { backgroundColor, titleFirstLine, titleSecondLine, marginBottom, marginTop } = moduleThreeData.fields
   const picture = moduleThreeData.fields?.picture || null
 
   return(
-    <Wrapper backgroundColor={backgroundColor}>
+    <Wrapper backgroundColor={backgroundColor} marginTop={marginTop} marginBottom={marginBottom}>
       <TextsWrapper >
         <FirstLine>
           {titleFirstLine}
@@ -44,15 +44,16 @@ const Case2:React.FC<Case2Props> = ({ moduleThreeData }) => {
 
 export default Case2
 
-const Wrapper = styled.div<{backgroundColor: string}>`
+const Wrapper = styled.div<{backgroundColor: string, marginTop: string, marginBottom: string}>`
   width: 100%;
   align-items: center;
   background-color: ${({ backgroundColor }) => backgroundColor};
   color: white;
   display: flex;
-
-  justify-content: space-around;
+    justify-content: space-around;
   padding: 100px 50px 100px 50px;
+  margin-top: ${(props) => props.marginTop + "px"};
+  margin-bottom: ${(props) => props.marginBottom + "px"};
 
   @media (max-width: 800px) {
     flex-direction: column;

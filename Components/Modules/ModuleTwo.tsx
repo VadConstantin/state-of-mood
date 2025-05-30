@@ -10,14 +10,14 @@ interface ModuleTwoProps {
 
 const ModuleTwo:React.FC<ModuleTwoProps> = ({ moduleTwoData }) => {
 
-  const { weeklySelectionModules, backgroundColor } = moduleTwoData.fields
+  const { weeklySelectionModules, backgroundColor, marginBottom, marginTop } = moduleTwoData.fields
 
   const description =  moduleTwoData.fields?.description || ''
   const titleFirstLine = moduleTwoData.fields?.titleFirstLine || ''
   const titleSecondLine = moduleTwoData.fields?.titleSecondLine || ''
 
   return(
-    <Wrapper color={backgroundColor}>
+    <Wrapper color={backgroundColor} marginTop={marginTop} marginBottom={marginBottom}>
       <TextsWrapper>
         <Title>
           <FirstTitle>
@@ -46,9 +46,11 @@ const ModuleTwo:React.FC<ModuleTwoProps> = ({ moduleTwoData }) => {
 
 export default ModuleTwo
 
-const Wrapper = styled.div<{color: string}>`
+const Wrapper = styled.div<{color: string, marginTop: string, marginBottom: string}>`
   width: 100%;
   background-color: ${({color}) => color};
+  margin-top: ${(props) => props.marginTop + "px"};
+  margin-bottom: ${(props) => props.marginBottom + "px"};
 `
 
 const TextsWrapper = styled.div`

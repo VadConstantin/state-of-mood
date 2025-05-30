@@ -32,10 +32,12 @@ const ModuleFour:React.FC<ModuleFourProps> = ({ moduleFourData }) => {
           secondPartTags,
           secondPartDescription,
           secondPartWorkTogetherLinkSlug,
-          secondPartSeeCaseStudyLinkSlug
+          secondPartSeeCaseStudyLinkSlug,
+          marginBottom,
+          marginTop
         } = moduleFourData.fields
   return(
-    <Wrapper backgroundColor={backgroundColor} color={textColor}>
+    <Wrapper backgroundColor={backgroundColor} color={textColor} marginTop={marginTop} marginBottom={marginBottom}>
       <FirstTexts>
         <LeftText>
           {leftText}
@@ -107,13 +109,17 @@ const ModuleFour:React.FC<ModuleFourProps> = ({ moduleFourData }) => {
 }
 export default ModuleFour
 
-const Wrapper = styled.div<{backgroundColor: string, color: string}>`
-  padding: 100px 10vw 100px 10vw;
+const Wrapper = styled.div<{backgroundColor: string, color: string, marginTop: string, marginBottom: string}>`
+  padding: 00px 10vw 0px 10vw;
   background-color: ${(props) => props.backgroundColor};
   color: ${({color}) => color};
+  margin-top: ${(props) => props.marginTop + "px"};
+  margin-bottom: ${(props) => props.marginBottom + "px"};
 
   @media (max-width: 600px) {
-    padding: 50px 5vw 50px 5vw;
+    padding: 0px 5vw 0px 5vw;
+    margin-top: ${(props) => (parseInt(props.marginTop, 10) / 2) + "px"};
+    margin-bottom: ${(props) => (parseInt(props.marginBottom, 10) / 2) + "px"};
   }
 `
 
