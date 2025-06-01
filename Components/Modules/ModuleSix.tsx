@@ -19,9 +19,48 @@ const ModuleSix:React.FC<ModuleSixProps> = ({ data }) => {
           picture7,
           picture8,
           picture9,
+          picture10, 
+          picture11,
+          picture12,
           marginTop,
           marginBottom
         } = data.fields
+
+  const allPictures = [
+    picture1,
+    picture2,
+    picture3,
+    picture4,
+    picture5,
+    picture6,
+    picture7,
+    picture8,
+    picture9,
+    picture10,
+    picture11,
+    picture12,
+  ].filter(Boolean)
+
+  function splitIntoBalancedColumns<T>(pictures: T[], columnCount: number): T[][] {
+    const total = pictures.length;
+    const baseSize = Math.floor(total / columnCount);
+    const remainder = total % columnCount;
+  
+    const columns: T[][] = []
+    let index = 0
+  
+    for (let i = 0; i < columnCount; i++) {
+      const extra = i === columnCount - 1 ? remainder : 0
+      const count = baseSize + (i < columnCount - 1 ? 0 : extra)
+      columns.push(pictures.slice(index, index + count))
+      index += count
+    }
+  
+    return columns;
+  }
+  
+  
+  const columns = splitIntoBalancedColumns(allPictures, 3);
 
   const keyWord1 = data.fields.keyWord1 || ''
 
@@ -65,21 +104,13 @@ const ModuleSix:React.FC<ModuleSixProps> = ({ data }) => {
           </KeyWordsWrapper>}
       </TextsWrapper>
       <PicturesWrapper>
-        <Row>
-          <Picture1 src={picture1.fields.file.url}/>
-          <Picture1 src={picture2.fields.file.url}/>
-          <Picture1 src={picture3.fields.file.url}/>   
-        </Row>
-        <Row>
-          <Picture1 src={picture4.fields.file.url}/>
-          <Picture1 src={picture5.fields.file.url}/>
-          <Picture1 src={picture6.fields.file.url}/>   
-        </Row>
-        <Row>
-          <Picture1 src={picture7.fields.file.url}/>
-          <Picture1 src={picture8.fields.file.url}/>
-          <Picture1 src={picture9.fields.file.url}/>   
-        </Row>
+        {columns.map((column, i) => (
+          <Row key={i}>
+            {column.map((pic, j) => (
+              <Picture1 key={j} src={pic.fields.file.url} />
+            ))}
+          </Row>
+        ))}
       </PicturesWrapper>
     </Wrapper>
   )
@@ -197,7 +228,6 @@ const Row = styled.div`
   width: 30%;
   display: flex;
     flex-direction: column;
-
     gap: 3vw;
 `
 

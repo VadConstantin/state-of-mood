@@ -215,9 +215,12 @@ interface ModuleSixFields {
   picture4: Asset
   picture5: Asset
   picture6: Asset
-  picture7: Asset
-  picture8: Asset
-  picture9: Asset
+  picture7?: Asset
+  picture8?: Asset
+  picture9?: Asset
+  picture10?: Asset
+  picture11?: Asset
+  picture12?: Asset
   marginTop: string
   marginBottom: string
 }
