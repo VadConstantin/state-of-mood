@@ -105,7 +105,7 @@ const ThirdImage = styled.img`
 `
 
 const Description = styled.div`
-  font-family: 'Knockout', sans-serif !important;
+  font-family: 'KnockoutHTF', sans-serif !important;
   padding-top: 40px;
   max-width: 850px;
   margin: auto;
@@ -123,8 +123,8 @@ const Description = styled.div`
   }
 
   @media (max-width: 600px) {
-    font-size: 1.5vw;
-    line-height: 4vw;
+    font-size: 2vw;
+    line-height: 3vw;
   }
 `
 

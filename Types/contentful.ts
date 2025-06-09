@@ -268,6 +268,7 @@ interface ModuleNineFields {
   type: string
   firstLineTitle?: string
   secondLineTitle?: string
+  caption?: string
   description?: string
   images: Array<Asset>
   marginTop: string
@@ -374,6 +375,10 @@ interface Module15Fields {
   description: string
   description2ndParagraph?: string
   description3rdParagraph?: string
+  description4thParagraph?: string
+  description5thParagraph?: string
+  description6thParagraph?: string
+  description7thParagraph?: string
   image: Asset
   marginTop: string
   marginBottom: string

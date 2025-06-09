@@ -79,9 +79,9 @@ const Wrapper = styled.div<{marginTop: string, marginBottom: string}>`
 `
 
 const Line = styled.div`
-  font-family: 'Knockout', sans-serif !important;
-  font-size: clamp(0.5rem, 0.7vw, 2rem);
-  letter-spacing: 1px;
+  font-family: 'KnockoutHTF', sans-serif !important;
+  font-size: clamp(0.7rem, 0.8vw, 2rem);
+  letter-spacing: 2px;
   max-width: 900px;
   margin: auto;
   text-transform: uppercase;

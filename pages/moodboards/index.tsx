@@ -140,14 +140,14 @@ const Wrapper = styled.div`
 `
 
 const MiddleTitle = styled.div`
-  font-family: 'Knockout', sans-serif !important;
+  font-family: 'KnockoutHTF', sans-serif !important;
   padding-top: 20px;
   max-width: 280px;
   margin: auto;
   letter-spacing: 2px;
   font-weight: 100;
-  line-height: clamp(1rem, 1.4vw, 2rem);
-  font-size: clamp(0.6rem, 0.5vw, 1rem);
+  line-height: 25px;
+  font-size: clamp(0.8rem, 0.8vw, 1rem);
   text-transform: uppercase;
 
   @media (max-width: 800px) {
@@ -324,10 +324,10 @@ const Description = styled.div`
 `
 
 const TextsMiddleTitle = styled.div`
-  font-family: 'Knockout', sans-serif !important;
+  font-family: 'KnockoutHTF', sans-serif !important;
   text-transform: uppercase;
   font-size: clamp(0.8rem, 0.9rem, 1.5rem);
-  letter-spacing: -0.5px;
+  letter-spacing: 2.5px;
   padding-top: 20px;
 
   @media (max-width: 800px) {

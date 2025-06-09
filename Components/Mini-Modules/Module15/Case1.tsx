@@ -9,6 +9,12 @@ const Case1:React.FC<Case1Props> = ({ data }) => {
 
   const { title, description, image, marginBottom, marginTop } = data.fields
   const description2ndParagraph = data.fields?.description2ndParagraph || null
+  const description3rdParagraph = data.fields?.description3rdParagraph || null
+  const description4thParagraph = data.fields?.description4thParagraph || null
+  const description5thParagraph = data.fields?.description5thParagraph || null
+  const description6thParagraph = data.fields?.description6thParagraph || null
+  const description7thParagraph = data.fields?.description7thParagraph || null
+
 
   return(
     <Wrapper marginTop={marginTop} marginBottom={marginBottom}>
@@ -22,6 +28,31 @@ const Case1:React.FC<Case1Props> = ({ data }) => {
         {description2ndParagraph && 
           <Description>
             {description2ndParagraph}
+          </Description>
+        }
+        {description3rdParagraph && 
+          <Description>
+            {description3rdParagraph}
+          </Description>
+        }
+        {description4thParagraph && 
+          <Description>
+            {description4thParagraph}
+          </Description>
+        }
+        {description5thParagraph && 
+          <Description>
+            {description5thParagraph}
+          </Description>
+        }
+        {description6thParagraph && 
+          <Description>
+            {description6thParagraph}
+          </Description>
+        }
+        {description7thParagraph && 
+          <Description>
+            {description7thParagraph}
           </Description>
         }
       </TextsWrapper>
@@ -57,12 +88,12 @@ const Wrapper = styled.div<{marginTop: string, marginBottom: string}>`
 `
 
 const Title = styled.div`
-  font-family: 'Knockout', sans-serif !important;
+  font-family: 'KnockoutHTF', sans-serif !important;
   max-width: 850px;
   letter-spacing: 2px;
   font-weight: 100;
   line-height: clamp(1rem, 1.6vw, 2rem);
-  font-size: clamp(0.8rem, 0.8vw, 2rem);
+  font-size: clamp(0.8rem, 0.9vw, 2rem);
   text-transform: uppercase;
 `
 

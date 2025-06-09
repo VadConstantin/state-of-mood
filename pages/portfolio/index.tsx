@@ -127,29 +127,30 @@ const TopWrapper = styled.div`
 ` 
 
 const MiddleTitle = styled.div`
-  font-family: 'Knockout', sans-serif !important;
+  font-family: 'KnockoutHTF', sans-serif !important;
   padding-top: 20px;
-  max-width: 400px;
+  max-width: 290px;
   margin: auto;
   letter-spacing: 2px;
   font-weight: 100;
-  line-height: clamp(1rem, 1.4vw, 2rem);
-  font-size: clamp(0.6rem, 0.5vw, 1rem);
+  line-height: 30px;
+  font-size: clamp(1rem, 1vw, 1rem);
   text-transform: uppercase;
 
   @media (max-width: 800px) {
-    letter-spacing: 0.5px;
-    font-size: 1.2vw;
-    line-height: 2vw;
+    letter-spacing: 2px;
+    font-size: 0.8rem;
+    line-height: 20px;
     padding-top: 20px;
   }
 
   @media (max-width: 600px) {
+    letter-spacing: 1.5px;
     padding-top: 10px;
-    font-size: 1.5vw;
-    line-height: 2.7vw;
+    font-size: 2vw;
+    line-height: 15px;
     margin: 0;
-    max-width: 200px;
+    max-width: 250px;
   }
 `
 

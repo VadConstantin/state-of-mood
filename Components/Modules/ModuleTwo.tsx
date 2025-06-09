@@ -73,9 +73,9 @@ const Title = styled.div`
 `
 
 const Description = styled.div`
-  font-family: 'Knockout', sans-serif !important;
-  font-size: clamp(0.5rem, 0.7vw, 2rem);
-  letter-spacing: 1px;
+  font-family: 'KnockoutHTF', sans-serif !important;
+  font-size: 0.8rem;
+  letter-spacing: 2px;
   max-width: 750px;
   margin: auto;
   line-height: 20px;

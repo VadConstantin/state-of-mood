@@ -152,16 +152,22 @@ const Title = styled.div`
 `
 
 const Description = styled.div`
-  font-family: 'Knockout', sans-serif !important;
-  font-size: clamp(0.5rem, 0.7vw, 2rem);
-  letter-spacing: 1px;
-  max-width: 750px;
+  font-family: 'KnockoutHTF', sans-serif !important;
+  font-size: 0.9rem;
+  letter-spacing: 2.5px;
+  max-width: 900px;
   margin: auto;
-  line-height: 25px;
+  line-height: 30px;
   padding-bottom: 3vw;
 
+  @media (max-width: 1000px) {
+    font-size: 1.5vw;
+    letter-spacing: 2px;
+    line-height: 25px;
+  }
+
   @media (max-width: 600px) {
-    line-height: 4vw;
+    line-height: 3vw;
     letter-spacing: 0.1px;
     font-size: 2vw;
   }

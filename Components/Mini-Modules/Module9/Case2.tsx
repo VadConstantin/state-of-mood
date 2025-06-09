@@ -11,6 +11,8 @@ interface Case2Props {
 const Case2: React.FC<Case2Props> = ({ data }) => {
 
   const { firstLineTitle, secondLineTitle, images, marginBottom, marginTop } = data.fields
+
+  const lessThan3Images: boolean = images.length < 3
   
   return(
     <Wrapper marginTop={marginTop} marginBottom={marginBottom}>
@@ -20,10 +22,10 @@ const Case2: React.FC<Case2Props> = ({ data }) => {
       <SecondTitleSmall>
         {secondLineTitle}
       </SecondTitleSmall>
-      <ImagesWrapper>
+      <ImagesWrapper lessThan3Images={lessThan3Images}>
         {images.map((image, index) => {
           return(
-            <CustomImage src={(image.fields.file as any).url} key={index}/>
+            <CustomImage src={(image.fields.file as any).url} key={index} lessThan3Images={lessThan3Images}/>
           )
         })}
       </ImagesWrapper>
@@ -52,21 +54,22 @@ const Wrapper = styled.div<{marginTop: string, marginBottom: string}>`
   }
 `
 
-const ImagesWrapper = styled.div`
+const ImagesWrapper = styled.div<{lessThan3Images: boolean}>`
   overflow: hidden;
   padding-top: 50px;
   position: relative;
   width: 100%;
   display: flex;
-    justify-content: space-between;
+    justify-content: ${(props) => props.lessThan3Images ? 'center' : 'space-between'};
     gap: 30px;
 
   @media (max-width: 600px) {
+    justify-content: ${(props) => props.lessThan3Images ? 'start' : 'space-between'};
     padding-top: 20px;
     gap: 3vw;
   }
 `
 
-const CustomImage = styled.img`
-  width: 30%;
+const CustomImage = styled.img<{lessThan3Images: boolean}>`
+  width: ${(props) => props.lessThan3Images ? '49%' : '30%'};
 `

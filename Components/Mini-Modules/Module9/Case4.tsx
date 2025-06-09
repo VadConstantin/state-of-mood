@@ -88,11 +88,12 @@ const ImagesWrapper = styled.div`
   position: relative;
   width: 100%;
   display: flex;
-    gap: 1.5vw;
+    gap: 20px;
     justify-content: space-between;
 
   @media (max-width: 600px) {
     padding-top: 20px;
+    gap: 2vw;
   }
 `
 
@@ -100,14 +101,22 @@ const FirstRow = styled.div`
   width: 25%;
   display: flex;
     flex-direction: column;
-    gap: 1vw;
+    gap: 20px;
+
+  @media (max-width: 600px) {
+    gap: 2vw;
+  }
 `
 
 const SecondRow = styled.div`
   width: 31%;
   display: flex;
     flex-direction: column;
-    gap: 1vw;
+    gap: 20px;
+
+  @media (max-width: 600px) {
+    gap: 2vw;
+  }
 `
 
 const ThirdRow = styled.div`

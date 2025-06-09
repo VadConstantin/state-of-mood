@@ -218,13 +218,14 @@ const SecondLineTitle = styled.div`
 `
 
 const MiddleTitle = styled.div`
-  font-family: 'Knockout', sans-serif !important;
+  font-family: 'KnockoutHTF', sans-serif !important;
   text-transform: uppercase;
-  font-size: clamp(0.8vw, 0.8vw, 1.5rem);
+  font-size: 1rem;
   padding-bottom: 0.5vw;
+  letter-spacing: 2px;
 
   @media (max-width: 800px) {
-    font-size: 0.5rem;
+    font-size: 0.8rem;
   }
 `
 

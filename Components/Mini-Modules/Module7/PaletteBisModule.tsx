@@ -61,13 +61,13 @@ const Texts = styled.div`
 `
 
 const Title = styled.div`
-  font-family: 'Knockout', sans-serif !important;
+  font-family: 'KnockoutHTF', sans-serif !important;
   max-width: 850px;
   margin: auto;
   letter-spacing: 2px;
   font-weight: 100;
   line-height: clamp(1rem, 1.6vw, 2rem);
-  font-size: clamp(0.8rem, 0.8vw, 2rem);
+  font-size: clamp(1rem, 1vw, 2rem);
   text-transform: uppercase;
 
   @media (max-width: 600px) {

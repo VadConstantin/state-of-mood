@@ -129,12 +129,12 @@ const SecondTitle = styled.div`
 `
 
 const Description = styled.div`
-  font-family: 'Knockout', sans-serif !important;
-  font-size: clamp(0.7rem, 0.8rem, 2rem);
+  font-family: 'KnockoutHTF', sans-serif !important;
+  font-size: 1rem;
   display: flex;
     justify-content: center;
-  letter-spacing: 1px;
-  line-height: 25px;
+  letter-spacing: 2px;
+  line-height: 30px;
   max-width: 400px;
   margin: auto;
 

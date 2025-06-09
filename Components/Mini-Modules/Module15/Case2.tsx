@@ -10,6 +10,10 @@ const Case2:React.FC<Case2Props> = ({ data }) => {
   const { title, description, image, textColor, backgroundColor, marginBottom, marginTop } = data.fields
   const description2ndParagraph = data.fields?.description2ndParagraph || null
   const description3rdParagraph = data.fields?.description3rdParagraph || null
+  const description4thParagraph = data.fields?.description4thParagraph || null
+  const description5thParagraph = data.fields?.description5thParagraph || null
+  const description6thParagraph = data.fields?.description6thParagraph || null
+  const description7thParagraph = data.fields?.description7thParagraph || null
 
   return(
     <Wrapper textColor={textColor} bgColor={backgroundColor} marginTop={marginTop} marginBottom={marginBottom}>
@@ -32,6 +36,26 @@ const Case2:React.FC<Case2Props> = ({ data }) => {
           {description3rdParagraph && 
             <Description>
               {description3rdParagraph}
+            </Description>
+          }
+          {description4thParagraph && 
+          <Description>
+            {description4thParagraph}
+          </Description>
+          }
+          {description5thParagraph && 
+            <Description>
+              {description5thParagraph}
+            </Description>
+          }
+          {description6thParagraph && 
+            <Description>
+              {description6thParagraph}
+            </Description>
+          }
+          {description7thParagraph && 
+            <Description>
+              {description7thParagraph}
             </Description>
           }
         </Texts>
@@ -66,7 +90,7 @@ const Wrapper = styled.div<{textColor: string, bgColor: string, marginTop: strin
 `
 
 const Title = styled.div`
-  font-family: 'Knockout', sans-serif !important;
+  font-family: 'KnockoutHTF', sans-serif !important;
   max-width: 850px;
   letter-spacing: 2px;
   font-weight: 100;
@@ -120,6 +144,8 @@ const CustomImage = styled.img`
 `
 
 const Texts = styled.div`
+  margin-top: 50px;
+  margin-bottom: 50px;
   padding: 0 7vw;
   display: flex;
     flex-direction: column;

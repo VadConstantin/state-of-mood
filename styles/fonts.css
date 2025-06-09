@@ -11,3 +11,10 @@
   font-weight: normal;
   font-style: normal;
 }
+
+@font-face {
+  font-family: 'KnockoutHTF';
+  src: url('/fonts/Knockout-HTF31-JuniorMiddlewt.otf') format('opentype');
+  font-weight: 16;
+  font-style: normal;
+}

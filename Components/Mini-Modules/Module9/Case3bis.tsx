@@ -11,6 +11,7 @@ interface Case3bisProps {
 const Case3bis: React.FC<Case3bisProps> = ({ data }) => {
 
   const { firstLineTitle, secondLineTitle, images, description, marginBottom, marginTop } = data.fields
+  const caption = data.fields?.caption || null
   
   return(
     <Wrapper marginTop={marginTop} marginBottom={marginBottom}>
@@ -23,6 +24,11 @@ const Case3bis: React.FC<Case3bisProps> = ({ data }) => {
         <SecondTitleSmall>
           {secondLineTitle}
         </SecondTitleSmall>
+      }
+      {caption && 
+        <Caption>
+          {caption}
+        </Caption>
       }
       <Description>
         {description}
@@ -57,7 +63,7 @@ const Wrapper = styled.div<{marginTop: string, marginBottom: string}>`
 `
 
 const Description = styled.div`
-  padding-top: 20px;
+  padding-top: 30px;
   max-width: 750px;
   margin: auto;
   line-height: clamp(1rem, 1.3vw, 2rem);
@@ -88,4 +94,23 @@ const ImagesWrapper = styled.div`
 
 const CustomImage = styled.img`
   width: 23%;
+`
+
+const Caption = styled.div`
+  padding-top: 30px;
+  font-family: 'KnockoutHTF', sans-serif !important;
+  font-size: clamp(1rem, 1vw, 2rem);
+  letter-spacing: 3px;
+  max-width: 800px;
+  text-transform: uppercase;
+  margin: auto;
+  line-height: 25px;
+
+  @media (max-width: 800px) {
+    font-size: 1.5vw;
+    letter-spacing: 2px;
+  }
+  @media (max-width: 600px) {
+    line-height: 20px;
+  }
 `
