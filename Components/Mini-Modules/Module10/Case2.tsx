@@ -2,19 +2,21 @@ import styled from "styled-components";
 import React from 'react'
 import SecondTitleSmall from "@/Components/SecondTitleSmall";
 import FirstTitle from "@/Components/FirstTitle";
-import { IModuleNine } from "@/Types/contentful";
+import { IModuleTen } from "@/Types/contentful";
 
 interface Case2Props {
-  data: IModuleNine
+  data: IModuleTen
 }
 
 const Case2: React.FC<Case2Props> = ({ data }) => {
 
-  const { firstLineTitle, secondLineTitle, images, marginBottom, marginTop } = data.fields
+  const { firstLineTitle, secondLineTitle, marginBottom, marginTop } = data.fields
   const description = data.fields?.description || null 
-  const firstPic = images[0]
-  const secondPic = images[1]
-  
+  const video = data.fields?.video || null
+
+  const firstPic = !data.fields.images ? null : data.fields.images[0]
+  const secondPic = !data.fields.images ? null : data.fields.images[1]
+
   return(
     <Wrapper marginTop={marginTop} marginBottom={marginBottom}>
       <FirstTitle>
@@ -28,10 +30,23 @@ const Case2: React.FC<Case2Props> = ({ data }) => {
           {description}
         </Description>
       }
+      {(firstPic || secondPic) && 
       <ImagesWrapper>
-        <CustomImage src={(firstPic.fields.file as any).url} />
-        <CustomImage src={(secondPic.fields.file as any).url} />
-      </ImagesWrapper>
+        <CustomImage src={(firstPic?.fields.file as any)?.url} />
+        <CustomImage src={(secondPic?.fields.file as any)?.url} />
+      </ImagesWrapper>}
+
+      {video && 
+      <VideoWrapper>
+        <VideoPlayer 
+          src={video.fields.file?.url as any} 
+          controls 
+          muted 
+          playsInline 
+          autoPlay
+          loop
+        />
+      </VideoWrapper>}
     </Wrapper>
   )
 }
@@ -68,6 +83,27 @@ const ImagesWrapper = styled.div`
     padding-top: 20px;
     gap: 3vw;
   }
+`
+
+const VideoWrapper = styled.div`
+  margin-top: 30px;
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  @media (max-width: 600px) {
+    max-width: 100%;
+    margin-top: 17px;
+  }
+`
+
+const VideoPlayer = styled.video`
+  object-fit: cover;
+  transition: opacity 0.3s ease-in-out;
+  width: 100%;
 `
 
 const CustomImage = styled.img`

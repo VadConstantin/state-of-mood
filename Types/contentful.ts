@@ -284,7 +284,8 @@ interface ModuleTenFields {
   firstLineTitle: string
   secondLineTitle: string
   description?: string
-  images: Array<Asset>
+  images?: Array<Asset>
+  video?: Asset
   marginTop: string
   marginBottom: string
 }

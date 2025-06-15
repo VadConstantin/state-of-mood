@@ -25,92 +25,92 @@ const Case2:React.FC<Case2Props> = ({ data }) => {
     <Wrapper textColor={textColor} bgColor={backgroundColor} marginTop={marginTop} marginBottom={marginBottom} photoOnTheLeft={photoOnTheLeft}>
       <TextsWrapper>
         <Texts>
-        <div>
-          <Title>
-            {title}
-          </Title>
-          <Description>
-            {description}
-          </Description>
-        </div>
-
-        {description2ndParagraph && <div>
-          {secondTitle && 
-          <Title>
-            {secondTitle}
-          </Title>
-          }
-          {description2ndParagraph && 
-            <Description>
-              {description2ndParagraph}
-            </Description>
-          }
-        </div>}
-        
-        {description3rdParagraph && <div>
-          {thirdTitle && 
-          <Title>
-            {thirdTitle}
-          </Title>
-          }
-          {description3rdParagraph && 
-            <Description>
-              {description3rdParagraph}
-            </Description>
-          }
-        </div>}
-
-        {description4thParagraph && <div>
-          {fourthTitle && 
-          <Title>
-            {fourthTitle}
-          </Title>
-          }
-          {description4thParagraph && 
-            <Description>
-              {description4thParagraph}
-            </Description>
-          }
-        </div>}
-
-        {description5thParagraph && <div>
-          {fifthTitle && 
-          <Title>
-            {fifthTitle}
-          </Title>
-          }
-          {description5thParagraph && 
-            <Description>
-              {description5thParagraph}
-            </Description>
-          }
-        </div>}
-
-        {description6thParagraph && <div>
-          {sixthTitle && 
+          <div>
             <Title>
-              {sixthTitle}
+              {title}
+            </Title>
+            <Description>
+              {description}
+            </Description>
+          </div>
+
+          {description2ndParagraph && <div>
+            {secondTitle && 
+            <Title>
+              {secondTitle}
             </Title>
             }
-          {description6thParagraph && 
-            <Description>
-              {description6thParagraph}
-            </Description>
-          }
-        </div>}
-
-        {description7thParagraph && <div>
-          {seventhTitle && 
+            {description2ndParagraph && 
+              <Description>
+                {description2ndParagraph}
+              </Description>
+            }
+          </div>}
+          
+          {description3rdParagraph && <div>
+            {thirdTitle && 
             <Title>
-              {seventhTitle}
+              {thirdTitle}
             </Title>
-          }
-          {description7thParagraph && 
-            <Description>
-              {description7thParagraph}
-            </Description>
-          }
-        </div>}
+            }
+            {description3rdParagraph && 
+              <Description>
+                {description3rdParagraph}
+              </Description>
+            }
+          </div>}
+
+          {description4thParagraph && <div>
+            {fourthTitle && 
+            <Title>
+              {fourthTitle}
+            </Title>
+            }
+            {description4thParagraph && 
+              <Description>
+                {description4thParagraph}
+              </Description>
+            }
+          </div>}
+
+          {description5thParagraph && <div>
+            {fifthTitle && 
+            <Title>
+              {fifthTitle}
+            </Title>
+            }
+            {description5thParagraph && 
+              <Description>
+                {description5thParagraph}
+              </Description>
+            }
+          </div>}
+
+          {description6thParagraph && <div>
+            {sixthTitle && 
+              <Title>
+                {sixthTitle}
+              </Title>
+              }
+            {description6thParagraph && 
+              <Description>
+                {description6thParagraph}
+              </Description>
+            }
+          </div>}
+
+          {description7thParagraph && <div>
+            {seventhTitle && 
+              <Title>
+                {seventhTitle}
+              </Title>
+            }
+            {description7thParagraph && 
+              <Description>
+                {description7thParagraph}
+              </Description>
+            }
+          </div>}
         </Texts>
       </TextsWrapper>
       <ImageWrapper>
