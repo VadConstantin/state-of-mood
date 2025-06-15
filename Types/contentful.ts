@@ -370,8 +370,15 @@ interface Module15Fields {
   name: string
   type: string
   backgroundColor: string
+  photoOnTheLeft: boolean
   textColor: string
   title: string
+  secondTitle?: string
+  thirdTitle?: string
+  fourthTitle?: string
+  fifthTitle?: string
+  sixthTitle?: string
+  seventhTitle?: string
   description: string
   description2ndParagraph?: string
   description3rdParagraph?: string
