@@ -19,6 +19,8 @@ const PortfolioGrid: React.FC<PortfolioGrid> = ({ elements }) => {
     }))
     .filter(obj => obj.imageUrl);
 
+  const isFewElements = objects.length <= 3;
+
   const handleLoad = (index: number) => {
     setLoadedIndexes(prev => new Set(prev).add(index));
   };
@@ -33,14 +35,19 @@ const PortfolioGrid: React.FC<PortfolioGrid> = ({ elements }) => {
 
   return (
     <>
-      <Wrapper>
+      <Wrapper isFewElements={isFewElements}>
         {objects.map((obj, i) => (
-          <ImageCard key={i} isVisible={loadedIndexes.has(i)} clickable={!!obj.link}>
+          <ImageCard
+            key={i}
+            isVisible={loadedIndexes.has(i)}
+            clickable={!!obj.link}
+            isFewElements={isFewElements}
+          >
             <img
               src={obj.imageUrl as any}
               alt={`img-${i}`}
               onLoad={() => handleLoad(i)}
-              onClick={(e: any) => {
+              onClick={(e) => {
                 if (!obj.link) {
                   e.preventDefault();
                   handleImageClick(obj.imageUrl as any);
@@ -61,9 +68,14 @@ const PortfolioGrid: React.FC<PortfolioGrid> = ({ elements }) => {
           </ImageCard>
         ))}
       </Wrapper>
+
       {fullscreenImage && (
         <FullscreenOverlay onClick={handleClose}>
-          <FullscreenImage src={fullscreenImage} alt="fullscreen" onClick={(e: any) => e.stopPropagation()} />
+          <FullscreenImage
+            src={fullscreenImage}
+            alt="fullscreen"
+            onClick={(e: any) => e.stopPropagation()}
+          />
         </FullscreenOverlay>
       )}
     </>
@@ -72,21 +84,30 @@ const PortfolioGrid: React.FC<PortfolioGrid> = ({ elements }) => {
 
 export default PortfolioGrid;
 
-const Wrapper = styled.div`
+
+const Wrapper = styled.div<{ isFewElements: boolean }>`
   width: 100%;
-  column-count: 3;
-  column-gap: 3vw;
+  display: ${({ isFewElements }) => (isFewElements ? "flex" : "block")};
+  flex-wrap: wrap;
+  gap: 3vw;
 
-  @media (max-width: 1000px) {
-    column-count: 2;
-  }
+  ${({ isFewElements }) =>
+    !isFewElements &&
+    `
+      column-count: 3;
+      column-gap: 3vw;
 
-  @media (max-width: 600px) {
-    column-count: 2;
-  }
+      @media (max-width: 1000px) {
+        column-count: 2;
+      }
+
+      @media (max-width: 600px) {
+        column-count: 2;
+      }
+    `}
 `;
 
-const ImageCard = styled.div<{ isVisible: boolean, clickable: boolean }>`
+const ImageCard = styled.div<{ isVisible: boolean; clickable: boolean; isFewElements: boolean }>`
   display: inline-block;
   position: relative;
   break-inside: avoid;
@@ -95,7 +116,16 @@ const ImageCard = styled.div<{ isVisible: boolean, clickable: boolean }>`
   transform: ${({ isVisible }) => (isVisible ? "translateY(0)" : "translateY(20px)")};
   transition: opacity 0.6s ease, transform 0.6s ease;
   will-change: opacity, transform;
-  cursor: ${(props) => props.clickable ? 'auto' : 'zoom-in'};
+  cursor: ${({ clickable }) => (clickable ? "auto" : "zoom-in")};
+  width: ${({ isFewElements }) => (isFewElements ? "calc(33.333% - 2vw)" : "100%")};
+
+  @media (max-width: 1000px) {
+    width: ${({ isFewElements }) => (isFewElements ? "calc(50% - 1.5vw)" : "100%")};
+  }
+
+  @media (max-width: 600px) {
+    width: 100%;
+  }
 
   img {
     width: 100%;
