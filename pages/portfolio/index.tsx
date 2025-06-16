@@ -16,9 +16,9 @@ interface IndexProps {
   navData: Entry<INavigation>
 }
 
-const Index:React.FC<IndexProps> = ({ data, navData }) => {
+const Index:React.FC<IndexProps> = ({ data, navData }) => {
   const [isMounted, setIsMounted] = useState<boolean>(false);
-  const [ selectedTag, setSelectedTag ] = useState<string>('')
+  const [selectedTags, setSelectedTags] = useState<string[]>([])
 
   useEffect(() => {
     setIsMounted(true);
@@ -26,11 +26,14 @@ const Index:React.FC<IndexProps> = ({ data, navData }) => {
 
   if (!isMounted) return null;
 
-  const tags = data.fields.modules.reduce<string[]>((acc, caseStudy) => {
-    const tag = caseStudy.fields.tagForPortfolioPage;
-    if (!acc.includes(tag)) acc.push(tag);
-    return acc;
-  }, []);
+  const realTags = data.fields.modules.reduce<string[]>((acc, caseStudy) => {
+    const tags = caseStudy.fields.tagsForPortfolio?.split(',').map(word => word.trim()) || []
+    tags.forEach((tag) => {
+      if (!acc.includes(tag)) acc.push(tag);
+    })
+    return acc
+  }, [])
+
 
   function shuffleArray(array: any[]) {
     const shuffled = [...array];
@@ -42,8 +45,9 @@ const Index:React.FC<IndexProps> = ({ data, navData }) => {
   }
 
   const filteredCases = data.fields.modules.filter((caseStudy) => {
-    return caseStudy.fields.tagForPortfolioPage.includes(selectedTag)
-  })
+    const tags = caseStudy.fields.tagsForPortfolio?.split(',').map(tag => tag.trim()) || [];
+    return selectedTags.length === 0 || tags.some(tag => selectedTags.includes(tag));
+  });
 
 
   const imagesAndSlugs = filteredCases.map((caseStudy) => {
@@ -55,12 +59,18 @@ const Index:React.FC<IndexProps> = ({ data, navData }) => {
     }
   })
 
-  const otherImagesAndSlugs = selectedTag === ''
+  const otherImagesAndSlugs = selectedTags.length === 0
   ? data.fields.images.map(image => ({ image, link: '', firstTitle: '', secondTitle: '' }))
   : [];
 
+
   const finalObjetcts = shuffleArray([...imagesAndSlugs, ...otherImagesAndSlugs])
 
+  const toggleTag = (tag: string) => {
+    setSelectedTags(prev => 
+      prev.includes(tag) ? prev.filter(t => t !== tag) : [...prev, tag]
+    );
+  }
 
   return(
     <Wrapper>
@@ -70,14 +80,18 @@ const Index:React.FC<IndexProps> = ({ data, navData }) => {
         <SecondTitleSmall>{data.fields.secondLineTitle}</SecondTitleSmall>
         <MiddleTitle>{data.fields.middleTitle}</MiddleTitle>
         <TagsWrapper>
-          {tags.map((tag, index) => {
+          {realTags.map((tag, index) => {
             return(
-              <Tag key={index} onClick={() => setSelectedTag(tag)} bold={tag === selectedTag}>
-                {tag}
-              </Tag>
+            <Tag
+              key={index}
+              onClick={() => toggleTag(tag)}
+              bold={selectedTags.includes(tag)}
+            >
+              {tag}
+            </Tag>
             )
           })}
-          <Tag onClick={() => setSelectedTag('')} bold={selectedTag === ''}>
+          <Tag onClick={() => setSelectedTags([])} bold={selectedTags.length === 0}>
             ALL
           </Tag>
         </TagsWrapper>

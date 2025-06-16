@@ -181,6 +181,7 @@ export interface CaseStudyPageFieds {
   color: string
   textColor: string
   tagForPortfolioPage: string
+  tagsForPortfolio: string
   firstLineTitleForPortfolioPage: string
   secondLineTitleForPortfolioPage: string
   modules: Array<IModuleFive | IModuleSix
