@@ -57,7 +57,7 @@ const Index:React.FC<IndexProps> = ({ data, navData }) => {
       </TopWrapper>
       <PagesWrapper>
         <AnimatePresence mode="wait">
-        <motion.div key={selectedTag}>
+        <motion.div key={selectedTag} style={{ width: '100%' }} >
           {filteredPages.map((page, index) => {
             return(
               <motion.div
@@ -66,6 +66,7 @@ const Index:React.FC<IndexProps> = ({ data, navData }) => {
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: 0 }}
                 transition={{ duration: 0.3, ease: "easeOut" }}
+                style={{ width: '100%' }} 
               >
                 <Page key={index} reverse={index % 2 === 1} href={"/moodboards/" + page.fields.slug}>
                   <CustomImage src={ (page.fields.pictureForMoodsPage.fields.file as any).url} 

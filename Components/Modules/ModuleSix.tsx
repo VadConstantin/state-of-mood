@@ -41,26 +41,17 @@ const ModuleSix:React.FC<ModuleSixProps> = ({ data }) => {
     picture12,
   ].filter(Boolean)
 
-  function splitIntoBalancedColumns<T>(pictures: T[], columnCount: number): T[][] {
-    const total = pictures.length;
-    const baseSize = Math.floor(total / columnCount);
-    const remainder = total % columnCount;
-  
-    const columns: T[][] = []
-    let index = 0
-  
-    for (let i = 0; i < columnCount; i++) {
-      const extra = i === columnCount - 1 ? remainder : 0
-      const count = baseSize + (i < columnCount - 1 ? 0 : extra)
-      columns.push(pictures.slice(index, index + count))
-      index += count
-    }
-  
-    return columns;
+
+  function splitIntoColumnsRoundRobin<T>(items: T[], columnCount: number): T[][] {
+    const cols: T[][] = Array.from({ length: columnCount }, () => []);
+    items.forEach((item, idx) => {
+      cols[idx % columnCount].push(item);
+    });
+    return cols;
   }
   
+  const columns = splitIntoColumnsRoundRobin(allPictures, 3);
   
-  const columns = splitIntoBalancedColumns(allPictures, 3);
 
   const keyWord1 = data.fields.keyWord1 || ''
 

@@ -106,13 +106,15 @@ const Overlay = styled.div<{bgColor: string}>`
 const OverlayText = styled.div<{textColor: string}>`
   font-family: 'Knockout', sans-serif !important;
   color: ${(props) => props.textColor};
-  font-size: 1.5rem;
+  font-size: 15px;
+  letter-spacing: 8px;
   text-align: center;
   padding: 1rem;
   text-transform: uppercase;
 
   @media (max-width: 600px) {
-    font-size: 1rem;
+    font-size: 12px;
+    letter-spacing: 6px;
   }
 `
 

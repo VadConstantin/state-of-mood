@@ -207,8 +207,9 @@ const SecondLine = styled.div`
   position: absolute;
   bottom: -100px;
   width: 100%;
-  text-align: center;
-  min-width: 800px;
+  left: 15%;
+  white-space: nowrap;
+    transform: translateX(-50%);
 
   @media (max-width: 1300px) {
     display: none;
