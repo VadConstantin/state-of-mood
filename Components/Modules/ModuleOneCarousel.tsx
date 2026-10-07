@@ -97,6 +97,7 @@ const Track = styled.div<{ $index: number; $animate: boolean }>`
 const Slide = styled.div`
   flex: 0 0 100%;
   width: 100%;
+  display: flex;
 `;
 
 const Dots = styled.div`

@@ -34,6 +34,11 @@ const ModuleEight:React.FC<ModuleEightProps> = ({ data }) => {
           <SecondTitle>
             {secondLineTitle}
           </SecondTitle>
+          {data.fields.interLigne && 
+          <InterLigne>
+            {data.fields.interLigne}
+          </InterLigne>
+          }
         </Title>
         {description && <Description>
           {description}
@@ -102,11 +107,12 @@ const Description = styled.div`
   max-width: 750px;
   margin: auto;
   line-height: clamp(1rem, 1.3vw, 2rem);
-  font-size: clamp(0.8rem, 0.8vw, 2rem);
+  font-size: clamp(1rem, 0.8vw, 2rem);
 
   @media (max-width: 800px) {
     font-size: 1.5vw;
     line-height: 1.8vw;
+    padding-top: 0px;
   }
 
   @media (max-width: 600px) {
@@ -161,6 +167,20 @@ const KeyWord = styled.div`
     font-size: 1.5vw;
     letter-spacing: 1px;
   }
+`
+
+const InterLigne = styled.div`
+font-family: 'KnockoutHTF', sans-serif !important;
+font-size: clamp(1rem, 1vw, 2rem);
+letter-spacing: 2px;
+font-weight: 200;
+padding: 35px 0 10px;
+
+@media (max-width: 800px) {
+  font-size: 3.5vw;
+  letter-spacing: 1px;
+  padding: 15px 0 0px;
+}
 `
 
 const ImagesWrapper = styled.div`

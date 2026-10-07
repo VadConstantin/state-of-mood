@@ -7,52 +7,69 @@ interface FooterProps {
 
 const Footer:React.FC<FooterProps> = ({ bottomFixed }) => {
   return(
-    <Wrapper bFixed={bottomFixed as boolean}>
-      <About>
-        <Title>
-          About
-        </Title>
-        <Links>
-          <a href="/what-we-do">What we do</a>
-          <a href="/contact">Contact us</a>
-        </Links>
-      </About>
-      <Studio>
-        <Title>
-          Studio
-        </Title>
-        <Links>
-          <a href="/cases-study">Cases Study</a>
-          <a href="/custom-design">Custom design</a>
-        </Links>
-      </Studio>
-      <Social>
-        <Title>
-          Social
-        </Title>
-        <Links>
-          <a href="www.instagram.com/state_of_moods">Instagram</a>
-          <a href="#">Pinterest</a>
-          <a href="#">LinkedIn</a>
-        </Links>
-      </Social>
-      <NewsLetter>
-        <Title>
-          Get inspired with the monthly newsletter
-        </Title>
-        <NewsletterForm />
-      </NewsLetter>
-    </Wrapper>
+    <FooterWrapper>
+      <Wrapper bFixed={bottomFixed as boolean}>
+        <About>
+          <Title>
+            About
+          </Title>
+          <Links>
+            <a href="/what-we-do">What we do</a>
+            <a href="/contact">Contact us</a>
+          </Links>
+        </About>
+        <Studio>
+          <Title>
+            Studio
+          </Title>
+          <Links>
+            <a href="/selected-work">Selected Work</a>
+            {/* <a href="/custom-design">Custom design</a> */}
+          </Links>
+        </Studio>
+        <Social>
+          <Title>
+            Social
+          </Title>
+          <Links>
+            <a href="www.instagram.com/state_of_moods">Instagram</a>
+            <a href="#">Pinterest</a>
+            <a href="#">LinkedIn</a>
+          </Links>
+        </Social>
+        <NewsLetter>
+          <Title>
+            Get inspired with the monthly newsletter
+          </Title>
+          <NewsletterForm />
+        </NewsLetter>
+      </Wrapper>
+      <SmallCredits>
+        2026 - Website developed by Vadim Constantin - vad.constantin@gmail.com
+      </SmallCredits>
+    </FooterWrapper>
   )
 }
 
 export default Footer
 
+const SmallCredits = styled.div`
+  font-size: 10px;
+  padding-bottom: 10px;
+  text-align: center;
+  font-family: 'KnockoutHTF', sans-serif !important;
+  opacity: 0.6;
+`
+
+const FooterWrapper = styled.div`
+
+`
+
 const Wrapper = styled.div<{bFixed: boolean}>`
   position: ${(props) => props.bFixed ? 'fixed' : 'auto'};
   bottom: 0;
   width: 100%;
-  padding: 50px 5vw 50px 5vw;
+  padding: 50px 5vw 80px 5vw;
   background-color: white;
   display: flex;
     justify-content: center;

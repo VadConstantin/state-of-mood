@@ -2,6 +2,7 @@ import { IModuleEleven } from "@/Types/contentful"
 import styled from "styled-components"
 import CaseCredits from "../Mini-Modules/Module11/CaseCredits"
 import CaseOthers from "../Mini-Modules/Module11/CaseOthers"
+import CaseCallToAction from "../Mini-Modules/Module11/CaseCallToAction"
 
 interface ModuleElevenProps {
   data: IModuleEleven
@@ -13,6 +14,7 @@ const ModuleEleven:React.FC<ModuleElevenProps> = ({ data }) => {
   const { marginBottom, marginTop } = data.fields
 
   if (type === 'Credits') return <CaseCredits data={data} />
+  if (type === 'Call To Action') return <CaseCallToAction data={data}/>
   if (type === 'Other') return <CaseOthers data={data} />
 
   return(

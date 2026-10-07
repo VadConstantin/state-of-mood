@@ -1,13 +1,11 @@
-import NavBar from "@/Components/Navigation/NavBar";
-import styled from "styled-components";
-import { GetServerSideProps } from "next";
+import { ICaseStudyPage, IModuleEight, IModuleFive, IModuleNine, IModuleSeven, IModuleSix, IModuleTwo, INavigation, } from "@/Types/contentful";
 import { Entry } from 'contentful';
-import { getHomePageData, getNavigationData } from "@/Services/get_contentful_data";
+import styled from "styled-components";
 import { useEffect, useState } from "react";
-import ModuleOneCarousel from "@/Components/Modules/ModuleOneCarousel";
-import ModuleTwo from "@/Components/Modules/ModuleTwo";
-import ModuleThree from "@/Components/Modules/ModuleThree";
+import { GetServerSideProps } from "next";
+import { getNavigationData, getCaseStudyData } from "@/Services/get_contentful_data";
 import ModuleFive from "@/Components/Modules/ModuleFive";
+import NavBar from "@/Components/Navigation/NavBar";
 import ModuleSix from "@/Components/Modules/ModuleSix";
 import ModuleSeven from "@/Components/Modules/ModuleSeven";
 import ModuleEight from "@/Components/Modules/ModuleEight";
@@ -19,16 +17,14 @@ import Footer from "@/Components/Navigation/Footer";
 import Module13 from "@/Components/Modules/Module13";
 import Module14 from "@/Components/Modules/Module14";
 import Module15 from "@/Components/Modules/Module15";
-import { IModuleEight, IModuleFive, IModuleNine, IModuleSeven, IModuleSix, IModuleTwo, INavigation, IHomePage, IModuleThree, IModuleFour, IModuleVideos } from "@/Types/contentful";
-import ModuleFour from "@/Components/Modules/ModuleFour";
-import ModuleVideos from "@/Components/Modules/ModuleVideos";
 
-interface HomePageProps {
+interface CaseStudySlugProps {
+  caseStudyData: ICaseStudyPage
   navData: Entry<INavigation>
-  homePageData: IHomePage
 }
 
-const Index:React.FC<HomePageProps> = ({ navData, homePageData }) => {
+const Slug: React.FC<CaseStudySlugProps> = ({ caseStudyData, navData }) => {
+  
   const [isMounted, setIsMounted] = useState(false);
 
   useEffect(() => {
@@ -37,17 +33,21 @@ const Index:React.FC<HomePageProps> = ({ navData, homePageData }) => {
 
   if (!isMounted) return null;
 
+  if (!caseStudyData?.fields.modules) {
+    return(
+      <Wrapper>
+        <NavBar navData={navData}/>
+        <NoModules>{"No Modules uploaded :-("}</NoModules>
+        <Footer />
+      </Wrapper>
+    )
+  }
+
   return(
     <Wrapper>
       <NavBar navData={navData}/>
-      <ModuleOneCarousel modulesOneData={homePageData.fields.modulesOne} />
-      {homePageData.fields.modules && 
       <ModulesWrapper>
-        {homePageData.fields.modules.map((module, index) => {
-          if ((module as any).sys.contentType.sys.id === "moduleVideos") return <ModuleVideos data={module as IModuleVideos} key={index}/>
-          if ((module as any).sys.contentType.sys.id === "moduleTwo") return <ModuleTwo moduleTwoData={module as IModuleTwo} key={index}/>
-          if ((module as any).sys.contentType.sys.id === "moduleThree") return <ModuleThree moduleThreeData={module as IModuleThree} key={index}/>
-          if ((module as any).sys.contentType.sys.id === "moduleFour") return <ModuleFour moduleFourData={module as IModuleFour}key={index}/>
+        {caseStudyData.fields.modules.map((module, index) => {
           if ((module as any).sys.contentType.sys.id === "moduleFive") return <ModuleFive data={module as IModuleFive} key={index}/>
           if ((module as any).sys.contentType.sys.id === "moduleSix") return <ModuleSix data={module as IModuleSix} key={index}/>
           if ((module as any).sys.contentType.sys.id === "moduleSeven") return <ModuleSeven data={module as IModuleSeven}key={index}/>
@@ -60,32 +60,42 @@ const Index:React.FC<HomePageProps> = ({ navData, homePageData }) => {
           if ((module as any).sys.contentType.sys.id === "moduleFourteen") return <Module14 data={module as any} key={index}/>
           if ((module as any).sys.contentType.sys.id === "moduleFifteen") return <Module15 data={module as any} key={index}/>
         })}
-      </ModulesWrapper>}
+      </ModulesWrapper>
       <Footer />
     </Wrapper>
   )
 }
 
-export default Index;
+export default Slug
 
-const Wrapper = styled.div`
-  color: black;
-`
+export const getServerSideProps: GetServerSideProps = async (context: any) => {
+  const navData = await getNavigationData()
+  const slug = context.params.slug
+  const caseStudyData = await getCaseStudyData(slug)
+  
+  return(
+    {
+      props: {
+        caseStudyData,
+        navData
+      }
+    }
+  )
+}
 
 const ModulesWrapper = styled.div`
   display: flex;
     flex-direction: column;
 `
 
-export const getServerSideProps: GetServerSideProps = async (context) => {
-  const locale = context.locale;
-  const navData = await getNavigationData()
-  const homePageData = await getHomePageData()
-  return({
-    props: {
-      navData,
-      homePageData
-    }
-  })
-}
+const Wrapper = styled.div`
 
+`
+
+const NoModules = styled.div`
+  padding: 50px 8vw 50px 8vw;
+
+  @media (max-width: 600px) {
+    padding: 30px 5vw 30px 5vw;
+  }
+`

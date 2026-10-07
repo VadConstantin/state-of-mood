@@ -14,7 +14,7 @@ export default SecondTitle
 
 const Second = styled.div`
   font-family: 'Americana', sans-serif !important;
-  font-size: clamp(1rem, 3.5vw, 5rem);
+  font-size: clamp(1rem, 2vw, 5rem);
   text-transform: uppercase;
 
   @media (max-width: 600px) {

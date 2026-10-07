@@ -23,29 +23,6 @@ const contentful = createClient({
 })
 
 
-const enrichModuleTwo = async (entry: Entry<IHomePage>) => {
-  const moduleTwo = entry.fields.moduleTwo as any;
-
-  if (moduleTwo?.sys?.contentType?.sys?.id === 'moduleTwo') {
-    if (moduleTwo.fields?.weeklySelectionModules) {
-      const idsToGet = moduleTwo.fields.weeklySelectionModules.map(
-        (weeklyModule: any) => weeklyModule.sys.id
-      );
-
-      const weeklyModulesInfo = await contentful.getEntries<IWeeklySelectionModule>({
-        content_type: 'weeklySelectionModule',
-        'sys.id[in]': idsToGet.join(',')
-      });
-
-      weeklyModulesInfo.items.sort((itemA, itemB) =>
-        idsToGet.indexOf(itemA.sys.id) < idsToGet.indexOf(itemB.sys.id) ? -1 : 1
-      );
-
-      moduleTwo.fields.weeklySelectionModules = weeklyModulesInfo.items;
-    }
-  }
-};
-
 // const enrichNavCategories = async (entry: Entry<INavigation>) => {
 //   await Promise.all(
 //     (entry.fields.navCategories as any).map(async (cat: any, index: any) => {
@@ -202,7 +179,9 @@ export const getNavigationData = async () => {
                       "locale": "en-US"
                   },
                   "fields": {
-                      "name": "Webzine",
+                      "name": "REEL STORIES",
+                      "clickable": 'clickable',
+                      "link": "/reel-stories",
                       "numberInMenu": "01",
                       "links": [
                           {
@@ -241,8 +220,8 @@ export const getNavigationData = async () => {
                                   "locale": "en-US"
                               },
                               "fields": {
-                                  "name": "moodboards",
-                                  "slug": "moodboards"
+                                  "name": "Places",
+                                  "slug": "places"
                               }
                           },
                           {
@@ -281,8 +260,8 @@ export const getNavigationData = async () => {
                                   "locale": "en-US"
                               },
                               "fields": {
-                                  "name": "focus",
-                                  "slug": "focus"
+                                  "name": "People We Met",
+                                  "slug": "people-we-met"
                               }
                           },
                           {
@@ -321,8 +300,8 @@ export const getNavigationData = async () => {
                                   "locale": "en-US"
                               },
                               "fields": {
-                                  "name": "thoughts on design",
-                                  "slug": "thoughts-on-design"
+                                  "name": "Notes From the Field",
+                                  "slug": "notes-from-the-field"
                               }
                           }
                       ]
@@ -364,7 +343,7 @@ export const getNavigationData = async () => {
                       "locale": "en-US"
                   },
                   "fields": {
-                      "name": "Le Studio",
+                      "name": "Studio",
                       "numberInMenu": "02",
                       "links": [
                           {
@@ -443,50 +422,50 @@ export const getNavigationData = async () => {
                                   "locale": "en-US"
                               },
                               "fields": {
-                                  "name": "cases study",
-                                  "slug": "cases-study"
+                                  "name": "selected work",
+                                  "slug": "selected-work"
                               }
                           },
-                          {
-                              "metadata": {
-                                  "tags": [],
-                                  "concepts": []
-                              },
-                              "sys": {
-                                  "space": {
-                                      "sys": {
-                                          "type": "Link",
-                                          "linkType": "Space",
-                                          "id": "49dkaadk94op"
-                                      }
-                                  },
-                                  "id": "7832Y3grzCc1gSiBGJUJb8",
-                                  "type": "Entry",
-                                  "createdAt": "2025-03-06T16:05:01.186Z",
-                                  "updatedAt": "2025-03-26T15:46:01.235Z",
-                                  "environment": {
-                                      "sys": {
-                                          "id": "master",
-                                          "type": "Link",
-                                          "linkType": "Environment"
-                                      }
-                                  },
-                                  "publishedVersion": 4,
-                                  "revision": 2,
-                                  "contentType": {
-                                      "sys": {
-                                          "type": "Link",
-                                          "linkType": "ContentType",
-                                          "id": "navLink"
-                                      }
-                                  },
-                                  "locale": "en-US"
-                              },
-                              "fields": {
-                                  "name": "portfolio",
-                                  "slug": "portfolio"
-                              }
-                          }
+                        //   {
+                        //       "metadata": {
+                        //           "tags": [],
+                        //           "concepts": []
+                        //       },
+                        //       "sys": {
+                        //           "space": {
+                        //               "sys": {
+                        //                   "type": "Link",
+                        //                   "linkType": "Space",
+                        //                   "id": "49dkaadk94op"
+                        //               }
+                        //           },
+                        //           "id": "7832Y3grzCc1gSiBGJUJb8",
+                        //           "type": "Entry",
+                        //           "createdAt": "2025-03-06T16:05:01.186Z",
+                        //           "updatedAt": "2025-03-26T15:46:01.235Z",
+                        //           "environment": {
+                        //               "sys": {
+                        //                   "id": "master",
+                        //                   "type": "Link",
+                        //                   "linkType": "Environment"
+                        //               }
+                        //           },
+                        //           "publishedVersion": 4,
+                        //           "revision": 2,
+                        //           "contentType": {
+                        //               "sys": {
+                        //                   "type": "Link",
+                        //                   "linkType": "ContentType",
+                        //                   "id": "navLink"
+                        //               }
+                        //           },
+                        //           "locale": "en-US"
+                        //       },
+                        //       "fields": {
+                        //           "name": "portfolio",
+                        //           "slug": "portfolio"
+                        //       }
+                        //   }
                       ]
                   }
               },
@@ -583,7 +562,7 @@ export const getHomePageData = async ():Promise<Entry<IHomePage>> => {
     content_type: 'homePage'
   } as any)
 
-  await enrichModuleTwo(entries.items[0])
+  await enrichModuleTwoGeneric(entries.items[0])
   return entries.items[0]
 }
 

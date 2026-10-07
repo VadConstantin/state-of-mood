@@ -1,4 +1,4 @@
-import { Asset, Entry, EntrySkeletonType } from 'contentful';
+import { Asset, EntrySkeletonType } from 'contentful';
 
 export interface NavigationFields {
   name: string
@@ -28,18 +28,19 @@ export interface INavLink extends EntrySkeletonType<NavLinkFields> {}
 
 
 export interface ModuleOneFields {
-  name: string
-  titleFirstLine: string
-  titleSecondLine?: string
-  tag: string
-  linkTitle: string
-  backgroundColor: string
-  firstPicture: Asset
-  secondPicture: Asset
-  linkSlug: string
-  stampForSecondPicture?: Asset
-  marginTop: string
-  marginBottom: string
+  name: string;
+  titleFirstLine?: string;
+  titleSecondLine?: string;
+  tag?: string;
+  linkTitle?: string;
+  backgroundColor?: string;
+  firstPicture?: Asset;
+  secondPicture?: Asset;
+  linkSlug?: string;
+  stampForSecondPicture?: Asset;
+  marginTop?: string;
+  marginBottom?: string;
+  video?: Asset;
 }
 
 export interface IModuleOne extends EntrySkeletonType<ModuleOneFields> {}
@@ -96,8 +97,23 @@ export interface IModuleThree extends EntrySkeletonType<ModuleThreeFields> {}
 export interface HomePageFields {
   name: string
   modulesOne: Array<IModuleOne>
-  moduleTwo: IModuleTwo
-  moduleThree: IModuleThree
+  modules?: Array<
+    IModuleTwo
+  | IModuleThree
+  | IModuleFour
+  | IModuleFive 
+  | IModuleSix
+  | IModuleSeven  
+  | IModuleEight 
+  | IModuleNine 
+  | IModuleTen 
+  | IModuleEleven
+  | IModuleTwelve
+  | IModule13
+  | IModule14
+  | IModule15
+  | IModuleVideos 
+  >
 }
 
 export interface IHomePage extends EntrySkeletonType<HomePageFields> {}
@@ -168,6 +184,7 @@ export interface ModuleFiveFieds {
   description?: string
   marginTop: string
   marginBottom: string
+  videoForCase1?: Asset
 }
 
 export interface IModuleFive extends EntrySkeletonType<ModuleFiveFieds> {}
@@ -194,6 +211,7 @@ export interface CaseStudyPageFieds {
                              | IModule13
                              | IModule14
                              | IModule15
+                             | IModuleVideos
                              >
 }
 
@@ -259,6 +277,7 @@ interface ModuleEightFields {
   keyWord5?: string
   marginTop: string
   marginBottom: string
+  interLigne?: string
 }
 
 export interface IModuleEight extends EntrySkeletonType<ModuleEightFields> {}
@@ -274,6 +293,18 @@ interface ModuleNineFields {
   images: Array<Asset>
   marginTop: string
   marginBottom: string
+  case3bis1stImageTitle?: string
+  case3bis1stImageDescription?: string
+  case3bis1stImageLink?: string
+  case3bis2ndImageTitle?: string
+  case3bis2ndImageDescription?: string
+  case3bis2ndImageLink?: string
+  case3bis3rdImageTitle?: string
+  case3bis3rdImageDescription?: string
+  case3bis3rdImageLink?: string
+  case3bis4thImageTitle?: string
+  case3bis4thImageDescription?: string
+  case3bis4thImageLink?: string
 }
 
 export interface IModuleNine extends EntrySkeletonType<ModuleNineFields> {}
@@ -307,6 +338,11 @@ interface ModuleElevenFields {
   line7?: string
   marginTop: string
   marginBottom: string
+  caseCallToActionBackgroundColor?: string
+  caseCallToActionTitle?: string
+  caseCallToActionSubtitle?: string
+  caseCallToActionSubtitleBandeauColor: string
+  caseCallToActionDescription?: string
 }
 
 export interface IModuleEleven extends EntrySkeletonType<ModuleElevenFields> {}
@@ -429,6 +465,7 @@ interface ArticlePageFields {
   | IModule13
   | IModule14
   | IModule15
+  | IModuleVideos 
   >
 }
 
@@ -501,3 +538,24 @@ interface moduleConvertTheMoodFields {
 }
 
 export interface ImoduleConvertTheMood extends EntrySkeletonType<moduleConvertTheMoodFields> {}
+
+
+interface moduleVideosFields {
+  name: string
+  marginBottom: string
+  marginTop: string
+  title: string
+  subtitle: string
+  description: string
+  video1: Asset
+  formatVideo1: string
+  video2?: Asset
+  formatVideo2?: string
+  video3?: Asset
+  formatVideo3?: string
+
+}
+
+export interface IModuleVideos extends EntrySkeletonType<moduleVideosFields> {
+
+}

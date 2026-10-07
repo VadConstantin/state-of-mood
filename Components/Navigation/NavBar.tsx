@@ -37,6 +37,20 @@ const NavBar:React.FC<NavBarProps> = ({ navData }) => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  const getSubCategoryHref = (link: any) => {
+    const slug = link.fields.slug;
+  
+    if (slug === "places") {
+      return "/reel-stories?tag=PLACES";
+    }
+  
+    if (slug === "people-we-met") {
+      return "/reel-stories?tag=PEOPLE";
+    }
+  
+    return `/${slug}`;
+  };
+
   return(
     <DesktopWrapper>
       <Top isDropdown={isDropDownVisible} isVisible={isVisible}>
@@ -47,7 +61,7 @@ const NavBar:React.FC<NavBarProps> = ({ navData }) => {
         </TopMenu>
         <TopMenu>
           <a href="/">
-            {logoUrl && <CustomLogo src={logoUrl} alt="Logo" />}
+            {logoUrl && <CustomLogo src="/reel-logo.png" alt="Logo" />}
           </a>
         </TopMenu>
         <TopMenu>
@@ -74,18 +88,23 @@ const NavBar:React.FC<NavBarProps> = ({ navData }) => {
                   <MenuNumber>
                     {cat.fields.numberInMenu}
                   </MenuNumber>
-                  <DropdownLinkTitle>
+                  <DropdownLinkTitle clickable={cat.fields.clickable} href={cat.fields.link as any || ""}>
                     {cat.fields.name}
                   </DropdownLinkTitle>
                 </span>
                 <SubCategoriesWrapper onClick={handleClickDropdown}>
                   {cat.fields.links.map((link: any, i: number)=> {
                     return ( 
-                      <Link href={`/${link.fields.slug}`} key={i} passHref legacyBehavior>
-                        <SubCategory>
-                          {link.fields.name}
-                        </SubCategory>
-                      </Link>
+                    <Link
+                      href={getSubCategoryHref(link)}
+                      key={i}
+                      passHref
+                      legacyBehavior
+                    >
+                      <SubCategory>
+                        {link.fields.name}
+                      </SubCategory>
+                    </Link>
                     )
                   })}
                 </SubCategoriesWrapper>
@@ -193,7 +212,7 @@ const TopMenu = styled.div`
 `
 
 const CustomLogo = styled.img`
-  width: 240px;
+  width: 100px;
 `
 
 const SocialLinks = styled.div`
@@ -272,12 +291,14 @@ const DropdownLinksWrapper = styled.div`
   }
 `
 
-const DropdownLinkTitle = styled.div`
+const DropdownLinkTitle = styled.a<{clickable: boolean}>`
   font-size: 30px;
   padding-bottom: 10px;
   font-family: 'Knockout', sans-serif !important;
   text-transform: uppercase;
   display: inline-block;
+  cursor: ${(props) => props.clickable ? 'pointer' : 'auto'};
+  pointer-events: ${(props) => props.clickable ? 'auto' : 'none'};
 `
 
 const SubCategoriesWrapper = styled.div`
