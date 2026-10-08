@@ -453,6 +453,7 @@ interface ArticlePageFields {
   slug: string
   modules: Array<
   IModuleThree
+  | IModuleTwo
   | IModuleFour
   | IModuleFive 
   | IModuleSix

@@ -1,5 +1,5 @@
 import { getNavigationData, getArticlePageData } from '@/Services/get_contentful_data'
-import { IArticlePage, IModuleEight, IModuleFive, IModuleNine, IModuleSeven, IModuleSix, IModuleThree, INavigation, IModuleFour, IModuleVideos } from '@/Types/contentful'
+import { IArticlePage, IModuleEight, IModuleFive, IModuleNine, IModuleSeven, IModuleSix, IModuleThree, INavigation, IModuleFour, IModuleVideos, IModuleTwo } from '@/Types/contentful'
 import { GetServerSideProps } from 'next'
 import styled from 'styled-components'
 import { Entry } from 'contentful';
@@ -20,6 +20,7 @@ import Module15 from "@/Components/Modules/Module15";
 import ModuleFour from '@/Components/Modules/ModuleFour';
 import ModuleThree from '@/Components/Modules/ModuleThree';
 import ModuleVideos from '@/Components/Modules/ModuleVideos';
+import ModuleTwo from '@/Components/Modules/ModuleTwo';
 
 
 interface SlugProps {
@@ -52,6 +53,7 @@ const Slug:React.FC<SlugProps> = ({ data, navData }) => {
       <ModulesWrapper>
         {data.fields.modules.map((module, index) => {
           if ((module as any).sys.contentType.sys.id === "moduleVideos") return <ModuleVideos data={module as IModuleVideos} key={index}/>
+          if ((module as any).sys.contentType.sys.id === "moduleTwo") return <ModuleTwo moduleTwoData={module as IModuleTwo} key={index}/>
           if ((module as any).sys.contentType.sys.id === "moduleThree") return <ModuleThree moduleThreeData={module as IModuleThree} key={index}/>
           if ((module as any).sys.contentType.sys.id === "moduleFour") return <ModuleFour moduleFourData={module as IModuleFour} key={index}/>
           if ((module as any).sys.contentType.sys.id === "moduleFive") return <ModuleFive data={module as IModuleFive} key={index}/>
