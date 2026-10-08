@@ -548,12 +548,12 @@ interface moduleVideosFields {
   subtitle: string
   description: string
   video1: Asset
+  video1FullScreen: string
   formatVideo1: string
   video2?: Asset
   formatVideo2?: string
   video3?: Asset
   formatVideo3?: string
-
 }
 
 export interface IModuleVideos extends EntrySkeletonType<moduleVideosFields> {

@@ -25,6 +25,7 @@ const ModuleVideos: React.FC<ModuleVideosProps> = ({ data }) => {
     formatVideo2,
     video3,
     formatVideo3,
+    video1FullScreen
   } = data.fields;
 
   const videos: VideoData[] = [
@@ -44,6 +45,8 @@ const ModuleVideos: React.FC<ModuleVideosProps> = ({ data }) => {
     },
   ].filter(Boolean) as VideoData[];
 
+  const isSingleVideoFullScreen = videos.length === 1 && video1FullScreen?.trim().toLowerCase() === "oui";
+
   const verticalVideos = videos.filter(
     (video) => video.format === "vertical"
   );
@@ -58,9 +61,12 @@ const ModuleVideos: React.FC<ModuleVideosProps> = ({ data }) => {
      */
     if (videos.length === 1) {
       const video = videos[0];
-
+    
       return (
-        <SingleVideoWrapper $format={video.format}>
+        <SingleVideoWrapper
+          $format={video.format}
+          $fullScreen={isSingleVideoFullScreen}
+        >
           <VideoItem data={video} />
         </SingleVideoWrapper>
       );
@@ -197,6 +203,7 @@ const ModuleVideos: React.FC<ModuleVideosProps> = ({ data }) => {
 
       <VideosWrapper
         $hasHeader={Boolean(title || subtitle || description)}
+        $fullScreen={isSingleVideoFullScreen}
       >
         {renderVideos()}
       </VideosWrapper>
@@ -357,20 +364,32 @@ const Description = styled.div`
 
 const VideosWrapper = styled.div<{
   $hasHeader: boolean;
+  $fullScreen: boolean;
 }>`
   width: 100%;
 
-  padding: ${({ $hasHeader }) =>
-    $hasHeader ? "80px 12vw 0" : "0 12vw"};
+  padding: ${({ $hasHeader, $fullScreen }) => {
+    if ($fullScreen) {
+      return $hasHeader ? "80px 0 0" : "0";
+    }
+
+    return $hasHeader ? "80px 12vw 0" : "0 12vw";
+  }};
 
   @media (max-width: 600px) {
-    padding: ${({ $hasHeader }) =>
-      $hasHeader ? "40px 6vw 0" : "0 6vw"};
+    padding: ${({ $hasHeader, $fullScreen }) => {
+      if ($fullScreen) {
+        return $hasHeader ? "40px 0 0" : "0";
+      }
+
+      return $hasHeader ? "40px 6vw 0" : "0 6vw";
+    }};
   }
 `;
 
 const SingleVideoWrapper = styled.div<{
   $format: "horizontal" | "vertical";
+  $fullScreen: boolean;
 }>`
   width: 100%;
 
@@ -378,14 +397,20 @@ const SingleVideoWrapper = styled.div<{
   justify-content: center;
 
   & > div {
-    width: ${({ $format }) =>
-      $format === "vertical" ? "42%" : "100%"};
+    width: ${({ $format, $fullScreen }) => {
+      if ($fullScreen) return "100%";
+
+      return $format === "vertical" ? "42%" : "100%";
+    }};
   }
 
   @media (max-width: 600px) {
     & > div {
-      width: ${({ $format }) =>
-        $format === "vertical" ? "75%" : "100%"};
+      width: ${({ $format, $fullScreen }) => {
+        if ($fullScreen) return "100%";
+
+        return $format === "vertical" ? "75%" : "100%";
+      }};
     }
   }
 `;
