@@ -1,4 +1,4 @@
-import { ICaseStudyPage, IModuleEight, IModuleFive, IModuleNine, IModuleSeven, IModuleSix, IModuleTwo, INavigation, } from "@/Types/contentful";
+import { ICaseStudyPage, IModuleEight, IModuleFive, IModuleNine, IModuleSeven, IModuleSix, IModuleTwo, IModuleVideos, INavigation, } from "@/Types/contentful";
 import { Entry } from 'contentful';
 import styled from "styled-components";
 import { useEffect, useState } from "react";
@@ -17,6 +17,7 @@ import Footer from "@/Components/Navigation/Footer";
 import Module13 from "@/Components/Modules/Module13";
 import Module14 from "@/Components/Modules/Module14";
 import Module15 from "@/Components/Modules/Module15";
+import ModuleVideos from "@/Components/Modules/ModuleVideos";
 
 interface CaseStudySlugProps {
   caseStudyData: ICaseStudyPage
@@ -48,6 +49,7 @@ const Slug: React.FC<CaseStudySlugProps> = ({ caseStudyData, navData }) => {
       <NavBar navData={navData}/>
       <ModulesWrapper>
         {caseStudyData.fields.modules.map((module, index) => {
+          if ((module as any).sys.contentType.sys.id === "moduleVideos") return <ModuleVideos data={module as IModuleVideos} key={index}/>
           if ((module as any).sys.contentType.sys.id === "moduleFive") return <ModuleFive data={module as IModuleFive} key={index}/>
           if ((module as any).sys.contentType.sys.id === "moduleSix") return <ModuleSix data={module as IModuleSix} key={index}/>
           if ((module as any).sys.contentType.sys.id === "moduleSeven") return <ModuleSeven data={module as IModuleSeven}key={index}/>
