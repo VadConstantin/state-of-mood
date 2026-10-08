@@ -2,9 +2,10 @@ import styled from "styled-components";
 
 interface ModuleOneProps {
   moduleOneData: any;
+  isOnlySlide?: boolean;
 }
 
-const ModuleOne: React.FC<ModuleOneProps> = ({ moduleOneData }) => {
+const ModuleOne: React.FC<ModuleOneProps> = ({ moduleOneData, isOnlySlide = false }) => {
   const {
     backgroundColor,
     titleFirstLine,
@@ -20,31 +21,31 @@ const ModuleOne: React.FC<ModuleOneProps> = ({ moduleOneData }) => {
     video,
   } = moduleOneData.fields;
 
-  // VERSION VIDEO
   if (video) {
     return (
-      <VideoWrapper>
+      <VideoWrapper $isOnlySlide={isOnlySlide}>
         <Video
+          $isOnlySlide={isOnlySlide}
           src={video.fields.file.url}
           autoPlay
           muted
           loop
           playsInline
         />
-
+  
         <VideoContent>
           <Tag>{tag}</Tag>
-
+  
           <FirstLine>{titleFirstLine}</FirstLine>
-
+  
           {titleSecondLine && (
             <SecondLine>{titleSecondLine}</SecondLine>
           )}
-
+  
           {linkSlug && linkTitle && (
             <LinkAndArrow>
               <Arrow src="/Arrow-white.png" alt="arrow" />
-
+  
               <CustomLink href={linkSlug}>
                 {linkTitle}
               </CustomLink>
@@ -106,22 +107,34 @@ const ModuleOne: React.FC<ModuleOneProps> = ({ moduleOneData }) => {
 
 export default ModuleOne;
 
-const VideoWrapper = styled.div`
+const VideoWrapper = styled.div<{
+  $isOnlySlide: boolean;
+}>`
   position: relative;
   width: 100%;
   flex: 1;
   overflow: hidden;
 `;
 
-const Video = styled.video`
-  position: absolute;
-  inset: 0;
-
+const Video = styled.video<{
+  $isOnlySlide: boolean;
+}>`
   width: 100%;
-  height: 100%;
-
   display: block;
-  object-fit: cover;
+
+  ${({ $isOnlySlide }) =>
+    $isOnlySlide
+      ? `
+        position: relative;
+        height: auto;
+      `
+      : `
+        position: absolute;
+        inset: 0;
+        height: 100%;
+        object-fit: cover;
+      `
+  }
 `;
 
 const VideoContent = styled.div`
