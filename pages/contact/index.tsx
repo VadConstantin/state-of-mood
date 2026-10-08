@@ -31,26 +31,28 @@ const Index:React.FC<ContactPageProps> = ({ navData }) => {
         </MobileTitle>
         <LeftSection>
           <Title>
-            About State Of Mood
+            About The Team
           </Title>
           <Description>
-            Behind State of Mood is a seasoned Creative  Director with a decade of experience crafting bold visual identities and campaigns for luxury, lifestyle, and creative brands. With a refined eye for detail and a passion for storytelling, State of Mood blends inspiration with strategy to create designs that resonate. Whether collaborating with teams or working independently, the focus remains on delivering tailored, timeless creative solutions.
+          REEL is a creative studio founded by a collective of filmmakers, photographers and art directors exploring the space between cinema, documentary and brand storytelling.
+          We are drawn to characters, places and contemporary mythologies — the stories hidden in everyday life that reveal something universal. This curiosity informs both our editorial projects and our commercial work. <br></br>
+          From luxury brands and cultural institutions to emerging artists, we help shape narratives that people don’t just see, but remember.
           </Description>
         </LeftSection>
         <MiddleSection>
           <FirstLine>GET</FirstLine>
           <SecondLine>IN TOUCH</SecondLine>
-          <Picture src="/contact-picture.png"/>
+          <Picture src="/photo-contact.png"/>
         </MiddleSection>
         <RightSection>
           <div>Nathalie Royneau</div>
           <a href="tel:+33650696546">+ 33 6 50 69 65 46</a>
-          <a href="mailto:contact@stateofmood.com">Contact@stateofmood.com</a>
+          <a href="mailto:CONTACT@REELFILMS.COM">CONTACT@REELFILMS.COM</a>
           <SocialLinks>
             <CustomLink href="">
               Pinterest
             </CustomLink>
-            <CustomLink href="">
+            <CustomLink href="https://www.instagram.com/reelfilmsparis/">
               Instagram
             </CustomLink>
             <CustomLink href="">
@@ -79,7 +81,7 @@ const Wrapper = styled.div`
   padding: 0px 10vw 150px 10vw;
   width: 100%;
   color: white;
-  background-color: #B7D4D5;
+  background-color: #020C08;
   display: flex;
     justify-content: space-around;
     gap: 3vw;

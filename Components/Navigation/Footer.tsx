@@ -32,7 +32,7 @@ const Footer:React.FC<FooterProps> = ({ bottomFixed }) => {
             Social
           </Title>
           <Links>
-            <a href="www.instagram.com/state_of_moods">Instagram</a>
+            <a href="https://www.instagram.com/reelfilmsparis/">Instagram</a>
             <a href="#">Pinterest</a>
             <a href="#">LinkedIn</a>
           </Links>

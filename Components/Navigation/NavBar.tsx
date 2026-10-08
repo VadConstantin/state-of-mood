@@ -70,7 +70,7 @@ const NavBar:React.FC<NavBarProps> = ({ navData }) => {
           <a href="/">
             <CustomLinkLogo src="/logo-pinterest.png" alt="logo-pinterest" />
           </a>
-          <a href="/">
+          <a href="https://www.instagram.com/reelfilmsparis/">
             <CustomLinkLogo src="/logo-insta.png" alt="logo-insta" />
           </a>
           </SocialLinks>
