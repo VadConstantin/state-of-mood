@@ -38,7 +38,7 @@ const Index: React.FC<IndexProps> = ({
 
   const tags = useMemo(() => {
     return articles.reduce<string[]>((acc, article) => {
-      const tag = article.fields.tagForFocusPage;
+      const tag = article?.fields?.tagForFocusPage;
 
       if (tag && !acc.includes(tag)) {
         acc.push(tag);
