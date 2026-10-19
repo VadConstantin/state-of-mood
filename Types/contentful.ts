@@ -149,7 +149,9 @@ export interface ModuleFourFields {
   firstPartMiddleTitle: string
   firstPartTags: string
   firstPartDescription: string
+  firstPartFirstLinkText: string
   firstPartWorkTogetherLinkSlug: string
+  firstPartSecondLinkText: string
   firstPartSeeCaseStudyLinkSlug: string
   secondPartPicture: Asset
   secondPartFirstLineTitle: string
@@ -157,7 +159,9 @@ export interface ModuleFourFields {
   secondPartMiddleTitle: string
   secondPartTags: string
   secondPartDescription: string
+  secondPartFirstLinkText: string
   secondPartWorkTogetherLinkSlug: string
+  secondPartSecondLinkText: string
   secondPartSeeCaseStudyLinkSlug: string
   marginTop: string
   marginBottom: string

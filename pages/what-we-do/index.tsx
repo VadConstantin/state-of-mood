@@ -92,7 +92,6 @@ const BannerWrapper = styled.div<{bgImage: string}>`
 
 const BannerRectangle = styled.div<{backgroundColor: string, color: string}>`
   width: 760px;
-  height: 300px;
   background-color: ${(props) => props.backgroundColor};
   margin: auto;
   color: ${(props) => props.color};
@@ -150,7 +149,7 @@ const Description = styled.div`
 `
 
 const TextsWrapper = styled.div`
-  padding: 80px 20px 50px 20px;
+  padding: 60px 20px 60px 20px;
   width: 100%;
 
   @media (max-width: 800px) {

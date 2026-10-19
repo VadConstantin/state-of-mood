@@ -67,9 +67,9 @@ const NavBar:React.FC<NavBarProps> = ({ navData }) => {
         <TopMenu>
           {!isDropDownVisible ? 
           <SocialLinks>
-          <a href="/">
+          {/* <a href="/">
             <CustomLinkLogo src="/logo-pinterest.png" alt="logo-pinterest" />
-          </a>
+          </a> */}
           <a href="https://www.instagram.com/reelfilmsparis/">
             <CustomLinkLogo src="/logo-insta.png" alt="logo-insta" />
           </a>

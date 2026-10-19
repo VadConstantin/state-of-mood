@@ -34,9 +34,8 @@ const Index:React.FC<ContactPageProps> = ({ navData }) => {
             About The Team
           </Title>
           <Description>
-          REEL is a creative studio founded by a collective of filmmakers, photographers and art directors exploring the space between cinema, documentary and brand storytelling.
-          We are drawn to characters, places and contemporary mythologies — the stories hidden in everyday life that reveal something universal. This curiosity informs both our editorial projects and our commercial work. <br></br>
-          From luxury brands and cultural institutions to emerging artists, we help shape narratives that people don’t just see, but remember.
+            REEL réunit trois regards complémentaires, animés par une même exigence cinématographique, esthétique et narrative.
+            Vincent Vallon, réalisateur passé par VICE, le documentaire et la fiction, cultive une approche sensible des personnages et des émotions. À ses côtés depuis plus de dix ans, Julien Courret, directeur de la photographie, façonne la lumière et le cadre. Nathalie Royneau, directrice artistique et photographe, imagine depuis plus de dix ans des concepts et des univers visuels pour les marques. Ensemble, ils conjuguent leurs sensibilités et leurs savoir-faire pour donner à chaque projet une écriture et une signature visuelle singulières.
           </Description>
         </LeftSection>
         <MiddleSection>
@@ -45,18 +44,20 @@ const Index:React.FC<ContactPageProps> = ({ navData }) => {
           <Picture src="/photo-contact.png"/>
         </MiddleSection>
         <RightSection>
-          <div>Nathalie Royneau</div>
-          <a href="tel:+33650696546">+ 33 6 50 69 65 46</a>
           <a href="mailto:CONTACT@REELFILMS.COM">CONTACT@REELFILMS.COM</a>
+          <Adresse>
+            <div>14 RUE FRUCTIDOR</div>
+            <div>93400 SAINT-OUEN-SUR-SEINE</div>
+          </Adresse>
           <SocialLinks>
-            <CustomLink href="">
-              Pinterest
-            </CustomLink>
-            <CustomLink href="https://www.instagram.com/reelfilmsparis/">
+            <CustomLink href="https://www.instagram.com/reelfilmsparis/" target="_blank">
               Instagram
             </CustomLink>
-            <CustomLink href="">
-              LinkedIn
+            <CustomLink href="" target="_blank">
+              Youtube
+            </CustomLink>
+            <CustomLink href="" target="_blank">
+              Behance
             </CustomLink>
           </SocialLinks>
         </RightSection>
@@ -76,6 +77,13 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     }
   })
 }
+
+const Adresse = styled.div`
+  display: flex;
+    flex-direction: column;
+    gap: 5px;
+`
+
 
 const Wrapper = styled.div`
   padding: 0px 10vw 150px 10vw;

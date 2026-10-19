@@ -7,7 +7,7 @@ interface WorkTogetherButtonProps {
 
 const WorkTogetherButton:React.FC<WorkTogetherButtonProps> = ({ color, text }) => {
   return(
-    <CustomButton color={color} href='mailto:contact@stateofmood.com'>
+    <CustomButton color={color} href='mailto:reelfilmsparis@gmail.com'>
       {text}
     </CustomButton>
   )

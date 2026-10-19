@@ -1,5 +1,6 @@
 import { IModuleFour } from "@/Types/contentful";
 import styled from "styled-components";
+import CustomButton from "../Navigation/CustomButton";
 import WorkTogetherButton from "../WorkTogetherButton";
 
 interface ModuleFourProps {
@@ -31,6 +32,10 @@ const ModuleFour:React.FC<ModuleFourProps> = ({ moduleFourData }) => {
           secondPartMiddleTitle,
           secondPartTags,
           secondPartDescription,
+          secondPartFirstLinkText,
+          secondPartSecondLinkText,
+          firstPartFirstLinkText,
+          firstPartSecondLinkText,
           secondPartWorkTogetherLinkSlug,
           secondPartSeeCaseStudyLinkSlug,
           marginBottom,
@@ -69,9 +74,9 @@ const ModuleFour:React.FC<ModuleFourProps> = ({ moduleFourData }) => {
           <Description>
             {firstPartDescription}
           </Description>
-          <WorkTogetherButton color={lineColor} text={"Let's work together"}/>
-          <CaseStudyLink href={firstPartSeeCaseStudyLinkSlug}>
-            See Case Study
+          <CustomButton color={lineColor} text={firstPartFirstLinkText} link={firstPartWorkTogetherLinkSlug}/>
+          <CaseStudyLink href={`mailto:${firstPartSeeCaseStudyLinkSlug}`}>
+            {firstPartSecondLinkText}
           </CaseStudyLink>
         </Texts>
       </PartWrapper>
@@ -97,9 +102,9 @@ const ModuleFour:React.FC<ModuleFourProps> = ({ moduleFourData }) => {
           <Description>
             {secondPartDescription}
           </Description>
-          <WorkTogetherButton color={lineColor} text={"let's work together"}/>
-          <CaseStudyLink href={secondPartSeeCaseStudyLinkSlug}>
-            See Case Study
+          <CustomButton color={lineColor} text={secondPartFirstLinkText} link={secondPartWorkTogetherLinkSlug}/>
+          <CaseStudyLink href={`mailto:${secondPartSeeCaseStudyLinkSlug}`}>
+            {secondPartSecondLinkText}
           </CaseStudyLink>
         </Texts>
         {isScreenWidthGreaterThan600() && <SecondPicture src={secondPartPicture.fields.file?.url as any}/>}
@@ -132,6 +137,8 @@ const FirstTexts = styled.div`
 
 const LeftText = styled.div`
   font-family: 'Americana', sans-serif !important;
+  white-space: pre-line;
+
   text-transform: uppercase;
   max-width: 650px;
   font-size: clamp(1rem, 1.5vw, 5rem);

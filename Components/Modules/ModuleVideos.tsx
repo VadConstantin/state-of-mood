@@ -138,13 +138,6 @@ const ModuleVideos: React.FC<ModuleVideosProps> = ({ data }) => {
       );
     }
 
-    /*
-     * AUTRES COMBINAISONS
-     *
-     * Exemples :
-     * - 1 horizontale + 1 verticale
-     * - 2 horizontales + 1 verticale
-     */
     return (
       <MixedLayout>
         {horizontalVideos.length > 0 && (
@@ -224,20 +217,37 @@ interface VideoItemProps {
 
 const VideoItem: React.FC<VideoItemProps> = ({ data }) => {
   const videoRef = useRef<HTMLVideoElement>(null);
-
   const [isPlaying, setIsPlaying] = useState(false);
 
-  const videoUrl = (data.asset.fields.file as any)?.url;
+  const rawVideoUrl = (data.asset.fields.file as any)?.url;
 
-  const handlePlayPause = () => {
+  const videoUrl = rawVideoUrl?.startsWith("//")
+    ? `https:${rawVideoUrl}`
+    : rawVideoUrl;
+
+  const handlePlayPause = async () => {
     const video = videoRef.current;
 
     if (!video) return;
 
-    if (video.paused) {
-      video.play();
-    } else {
-      video.pause();
+    try {
+      if (video.paused) {
+        await video.play();
+      } else {
+        video.pause();
+      }
+    } catch (error) {
+      console.error("Impossible de lire la vidéo :", error);
+    }
+  };
+
+  const handleLoadedMetadata = () => {
+    const video = videoRef.current;
+
+    if (!video) return;
+
+    if (video.currentTime === 0) {
+      video.currentTime = 0.01;
     }
   };
 
@@ -247,7 +257,8 @@ const VideoItem: React.FC<VideoItemProps> = ({ data }) => {
         ref={videoRef}
         src={videoUrl}
         playsInline
-        preload="metadata"
+        preload="auto"
+        onLoadedMetadata={handleLoadedMetadata}
         onPlay={() => setIsPlaying(true)}
         onPause={() => setIsPlaying(false)}
         onEnded={() => setIsPlaying(false)}
@@ -463,14 +474,19 @@ const VideoContainer = styled.div`
   align-items: center;
 
   overflow: hidden;
+
+  @media (hover: hover) {
+    &:hover button {
+      opacity: 1;
+      pointer-events: auto;
+    }
+  }
 `;
 
 const Video = styled.video`
   width: 100%;
   height: auto;
-
   display: block;
-
   object-fit: contain;
 `;
 
@@ -498,6 +514,14 @@ const PlayButton = styled.button`
   cursor: pointer;
 
   z-index: 2;
+
+  opacity: 1;
+  transition: opacity 0.25s ease;
+
+  @media (hover: hover) {
+    opacity: 0;
+    pointer-events: none;
+  }
 
   @media (max-width: 600px) {
     width: 55px;
