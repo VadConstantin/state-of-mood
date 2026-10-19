@@ -221,9 +221,14 @@ const VideoItem: React.FC<VideoItemProps> = ({ data }) => {
 
   const rawVideoUrl = (data.asset.fields.file as any)?.url;
 
-  const videoUrl = rawVideoUrl?.startsWith("//")
+  const baseVideoUrl = rawVideoUrl?.startsWith("//")
     ? `https:${rawVideoUrl}`
     : rawVideoUrl;
+
+  // Permet notamment à Safari iOS de charger une première frame
+  const videoUrl = baseVideoUrl
+    ? `${baseVideoUrl}#t=0.001`
+    : "";
 
   const handlePlayPause = async () => {
     const video = videoRef.current;
@@ -237,17 +242,7 @@ const VideoItem: React.FC<VideoItemProps> = ({ data }) => {
         video.pause();
       }
     } catch (error) {
-      console.error("Impossible de lire la vidéo :", error);
-    }
-  };
-
-  const handleLoadedMetadata = () => {
-    const video = videoRef.current;
-
-    if (!video) return;
-
-    if (video.currentTime === 0) {
-      video.currentTime = 0.01;
+      console.error("Erreur lecture vidéo :", error);
     }
   };
 
@@ -257,8 +252,7 @@ const VideoItem: React.FC<VideoItemProps> = ({ data }) => {
         ref={videoRef}
         src={videoUrl}
         playsInline
-        preload="auto"
-        onLoadedMetadata={handleLoadedMetadata}
+        preload="metadata"
         onPlay={() => setIsPlaying(true)}
         onPause={() => setIsPlaying(false)}
         onEnded={() => setIsPlaying(false)}
@@ -466,7 +460,6 @@ const MixedLayout = styled.div`
 
 const VideoContainer = styled.div`
   position: relative;
-
   width: 100%;
 
   display: flex;
@@ -475,6 +468,16 @@ const VideoContainer = styled.div`
 
   overflow: hidden;
 
+  /*
+   * Evite une zone totalement blanche
+   * pendant que Safari mobile charge la première frame.
+   */
+  background-color: black;
+
+  /*
+   * Desktop :
+   * le bouton apparaît uniquement au hover.
+   */
   @media (hover: hover) {
     &:hover button {
       opacity: 1;
