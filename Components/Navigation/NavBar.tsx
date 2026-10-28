@@ -61,7 +61,7 @@ const NavBar:React.FC<NavBarProps> = ({ navData }) => {
         </TopMenu>
         <TopMenu>
           <a href="/">
-            {logoUrl && <CustomLogo src="/reel-logo.png" alt="Logo" />}
+            {logoUrl && <CustomLogo src="/reel-logo-white.jpeg" alt="Logo" />}
           </a>
         </TopMenu>
         <TopMenu>

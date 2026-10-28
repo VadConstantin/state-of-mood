@@ -465,19 +465,10 @@ const VideoContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-
   overflow: hidden;
 
-  /*
-   * Evite une zone totalement blanche
-   * pendant que Safari mobile charge la première frame.
-   */
   background-color: black;
 
-  /*
-   * Desktop :
-   * le bouton apparaît uniquement au hover.
-   */
   @media (hover: hover) {
     &:hover button {
       opacity: 1;

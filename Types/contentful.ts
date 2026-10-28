@@ -309,6 +309,19 @@ interface ModuleNineFields {
   case3bis4thImageTitle?: string
   case3bis4thImageDescription?: string
   case3bis4thImageLink?: string
+  case3bis5thImageTitle?: string
+  case3bis5thImageDescription?: string
+  case3bis5thImageLink?: string
+  case3bis6thImageTitle?: string
+  case3bis6thImageDescription?: string
+  case3bis6thImageLink?: string
+  case3bis7thImageTitle?: string
+  case3bis7thImageDescription?: string
+  case3bis7thImageLink?: string
+  case3bis8thImageTitle?: string
+  case3bis8thImageDescription?: string
+  case3bis8thImageLink?: string
+
 }
 
 export interface IModuleNine extends EntrySkeletonType<ModuleNineFields> {}

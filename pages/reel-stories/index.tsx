@@ -131,199 +131,215 @@ const Index: React.FC<IndexProps> = ({
         </TagsWrapper>
       </TopWrapper>
       <ArticlesWrapper>
-        {filteredArticles.map((article, index) => {
-          if (index === 4) {
+  {filteredArticles.map((article, index) => {
+    const positionInPattern = index % 7;
 
-            const article5 = filteredArticles[4];
-            const article6 = filteredArticles[5];
+    /*
+     * POSITION 5 DU PATTERN
+     *
+     * Articles :
+     * 5 + 6
+     * 12 + 13
+     * 19 + 20
+     * etc.
+     *
+     * Deux articles empilés.
+     */
+    if (positionInPattern === 4) {
+      const firstStackArticle = filteredArticles[index];
+      const secondStackArticle = filteredArticles[index + 1];
 
-            return (
-              <ArticleStack key="stack-5">
-                <Article
-                  image={
-                    (article5 as any)
-                      .fields
-                      .pictureForFocusPage
-                      .fields
-                      .file
-                      .url
-                  }
-                  fullWidth
-                >
-                  <SmallTexts>
-                    <SmallTextsTag>
-                      {article5.fields.tagForFocusPage}
-                    </SmallTextsTag>
-                    <SmallTextsFirstTitle>
-                      {article5.fields.firstLineTitleForFocusPage}
-                    </SmallTextsFirstTitle>
-                    <SmallTextsSecondTitle>
-                      {article5.fields.secondLineTitleForFocusPage}
-                    </SmallTextsSecondTitle>
-                    <SmallTextsLink
-                      href={
-                        "/articles/" +
-                        article5.fields.slug
-                      }
-                    >
-                      {article5.fields.linkTitleForFocusPage}
-                    </SmallTextsLink>
-                  </SmallTexts>
-                </Article>
-                {article6 && (
-                  <Article
-                    image={
-                      (article6 as any)
-                        ?.fields
-                        ?.pictureForFocusPage
-                        ?.fields
-                        ?.file
-                        ?.url
-                    }
-                    fullWidth
-                  >
-                    <SmallTexts>
-                      <SmallTextsTag>
-                        {article6.fields.tagForFocusPage}
-                      </SmallTextsTag>
-                      <SmallTextsFirstTitle>
-                        {article6.fields.firstLineTitleForFocusPage}
-                      </SmallTextsFirstTitle>
-                      <SmallTextsSecondTitle>
-                        {article6.fields.secondLineTitleForFocusPage}
-                      </SmallTextsSecondTitle>
-                      <SmallTextsLink
-                        href={
-                          "/articles/" +
-                          article6.fields.slug
-                        }
-                      >
-                        {article6.fields.linkTitleForFocusPage}
-                      </SmallTextsLink>
-                    </SmallTexts>
-                  </Article>
-                )}
-              </ArticleStack>
-            );
-          }
-          if (index === 6) {
+      return (
+        <ArticleStack key={`stack-${index}`}>
+          <Article
+            image={
+              (firstStackArticle as any)
+                .fields
+                .pictureForFocusPage
+                .fields
+                .file
+                .url
+            }
+            fullWidth
+          >
+            <SmallTexts>
+              <SmallTextsTag>
+                {firstStackArticle.fields.tagForFocusPage}
+              </SmallTextsTag>
 
-            return (
-              <Article
-                key="6"
-                image={
-                  (filteredArticles[6] as any)
-                    .fields
-                    .pictureForFocusPage
-                    .fields
-                    .file
-                    .url
+              <SmallTextsFirstTitle>
+                {firstStackArticle.fields.firstLineTitleForFocusPage}
+              </SmallTextsFirstTitle>
+
+              <SmallTextsSecondTitle>
+                {firstStackArticle.fields.secondLineTitleForFocusPage}
+              </SmallTextsSecondTitle>
+
+              <SmallTextsLink
+                href={
+                  "/articles/" +
+                  firstStackArticle.fields.slug
                 }
               >
-                <MediumTexts>
-                  <MediumTextsTag>
-                    {article.fields.tagForFocusPage}
-                  </MediumTextsTag>
-                  <MediumTextsFirstTitle>
-                    {article.fields.firstLineTitleForFocusPage}
-                  </MediumTextsFirstTitle>
-                  <MediumTextsSecondTitle>
-                    {article.fields.secondLineTitleForFocusPage}
-                  </MediumTextsSecondTitle>
-                  <MediumTextsLink
-                    href={
-                      "/articles/" +
-                      article.fields.slug
-                    }
-                  >
-                    {article.fields.linkTitleForFocusPage}
-                  </MediumTextsLink>
-                </MediumTexts>
-              </Article>
-            );
-          }
-          if (index === 5) {
-            return null;
-          }
-          if (
-            index === 0 ||
-            index === 3
-          ) {
+                {firstStackArticle.fields.linkTitleForFocusPage}
+              </SmallTextsLink>
+            </SmallTexts>
+          </Article>
 
-            return (
-              <Article
-                key={index}
-                fullWidth
-                image={
-                  (article as any)
-                    .fields
-                    .pictureForFocusPage
-                    .fields
-                    .file
-                    .url
-                }
-              >
-                <BigTexts>
-                  <BigTextsTag>
-                    {article.fields.tagForFocusPage}
-                  </BigTextsTag>
-
-                  <BigTextsFirstTitle>
-                    {article.fields.firstLineTitleForFocusPage}
-                  </BigTextsFirstTitle>
-
-                  <BigTextsSecondTitle>
-                    {article.fields.secondLineTitleForFocusPage}
-                  </BigTextsSecondTitle>
-
-                  <BigTextsLink
-                    href={
-                      "/articles/" +
-                      article.fields.slug
-                    }
-                  >
-                    {article.fields.linkTitleForFocusPage}
-                  </BigTextsLink>
-                </BigTexts>
-              </Article>
-            );
-          }
-
-          return (
+          {secondStackArticle && (
             <Article
-              key={index}
               image={
-                (article as any)
-                  .fields
-                  .pictureForFocusPage
-                  .fields
-                  .file
-                  .url
+                (secondStackArticle as any)
+                  ?.fields
+                  ?.pictureForFocusPage
+                  ?.fields
+                  ?.file
+                  ?.url
               }
+              fullWidth
             >
-              <MediumTexts>
-                <MediumTextsTag>
-                  {article.fields.tagForFocusPage}
-                </MediumTextsTag>
-                <MediumTextsFirstTitle>
-                  {article.fields.firstLineTitleForFocusPage}
-                </MediumTextsFirstTitle>
-                <MediumTextsSecondTitle>
-                  {article.fields.secondLineTitleForFocusPage}
-                </MediumTextsSecondTitle>
-                <MediumTextsLink
+              <SmallTexts>
+                <SmallTextsTag>
+                  {secondStackArticle.fields.tagForFocusPage}
+                </SmallTextsTag>
+
+                <SmallTextsFirstTitle>
+                  {secondStackArticle.fields.firstLineTitleForFocusPage}
+                </SmallTextsFirstTitle>
+
+                <SmallTextsSecondTitle>
+                  {secondStackArticle.fields.secondLineTitleForFocusPage}
+                </SmallTextsSecondTitle>
+
+                <SmallTextsLink
                   href={
                     "/articles/" +
-                    article.fields.slug
+                    secondStackArticle.fields.slug
                   }
                 >
-                  {article.fields.linkTitleForFocusPage}
-                </MediumTextsLink>
-              </MediumTexts>
+                  {secondStackArticle.fields.linkTitleForFocusPage}
+                </SmallTextsLink>
+              </SmallTexts>
             </Article>
-          );
-        })}
-      </ArticlesWrapper>
+          )}
+        </ArticleStack>
+      );
+    }
+
+    /*
+     * POSITION 6 DU PATTERN
+     *
+     * Déjà affichée dans le stack juste au-dessus.
+     *
+     * index 5
+     * index 12
+     * index 19
+     * etc.
+     */
+    if (positionInPattern === 5) {
+      return null;
+    }
+
+    /*
+     * GRAND ARTICLE FULL WIDTH
+     *
+     * positions :
+     * 0 et 3
+     *
+     * donc :
+     * 0 / 3
+     * 7 / 10
+     * 14 / 17
+     * etc.
+     */
+    if (
+      positionInPattern === 0 ||
+      positionInPattern === 3
+    ) {
+      return (
+        <Article
+          key={index}
+          fullWidth
+          image={
+            (article as any)
+              .fields
+              .pictureForFocusPage
+              .fields
+              .file
+              .url
+          }
+        >
+          <BigTexts>
+            <BigTextsTag>
+              {article.fields.tagForFocusPage}
+            </BigTextsTag>
+
+            <BigTextsFirstTitle>
+              {article.fields.firstLineTitleForFocusPage}
+            </BigTextsFirstTitle>
+
+            <BigTextsSecondTitle>
+              {article.fields.secondLineTitleForFocusPage}
+            </BigTextsSecondTitle>
+
+            <BigTextsLink
+              href={
+                "/articles/" +
+                article.fields.slug
+              }
+            >
+              {article.fields.linkTitleForFocusPage}
+            </BigTextsLink>
+          </BigTexts>
+        </Article>
+      );
+    }
+
+    /*
+     * TOUS LES AUTRES :
+     *
+     * positions 1, 2 et 6
+     *
+     * articles classiques en 48%.
+     */
+    return (
+      <Article
+        key={index}
+        image={
+          (article as any)
+            .fields
+            .pictureForFocusPage
+            .fields
+            .file
+            .url
+        }
+      >
+        <MediumTexts>
+          <MediumTextsTag>
+            {article.fields.tagForFocusPage}
+          </MediumTextsTag>
+
+          <MediumTextsFirstTitle>
+            {article.fields.firstLineTitleForFocusPage}
+          </MediumTextsFirstTitle>
+
+          <MediumTextsSecondTitle>
+            {article.fields.secondLineTitleForFocusPage}
+          </MediumTextsSecondTitle>
+
+          <MediumTextsLink
+            href={
+              "/articles/" +
+              article.fields.slug
+            }
+          >
+            {article.fields.linkTitleForFocusPage}
+          </MediumTextsLink>
+        </MediumTexts>
+      </Article>
+    );
+  })}
+</ArticlesWrapper>
       <Footer
         bottomFixed={
           data.fields.articles.length < 1
