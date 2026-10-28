@@ -44,7 +44,7 @@ const Index:React.FC<ContactPageProps> = ({ navData }) => {
           <Picture src="/photo-contact.png"/>
         </MiddleSection>
         <RightSection>
-          <a href="mailto:CONTACT@REELFILMS.COM">CONTACT@REELFILMS.COM</a>
+          <a href="mailto:reelfilmsparis@gmail.com">reelfilmsparis@gmail.com</a>
           <Adresse>
             <div>14 RUE FRUCTIDOR</div>
             <div>93400 SAINT-OUEN-SUR-SEINE</div>
